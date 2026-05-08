@@ -135,24 +135,30 @@
   :root { --reader-scale: 1; }
   html[data-text-size="sm"] { --reader-scale: 0.88; }
   html[data-text-size="md"] { --reader-scale: 1; }
-  html[data-text-size="lg"] { --reader-scale: 1.15; }
+  html[data-text-size="lg"] { --reader-scale: 1.18; }
   body { font-size: calc(19px * var(--reader-scale)); }
   .article p { font-size: calc(19px * var(--reader-scale)); }
   .article p.lede { font-size: calc(22px * var(--reader-scale)); }
   .qa-text { font-size: calc(19px * var(--reader-scale)); }
   .context-box p { font-size: calc(17px * var(--reader-scale)); }
   .article-card-dek { font-size: calc(19px * var(--reader-scale)); }
+  .hero-headline { font-size: calc(clamp(36px, 5.6vw, 64px) * var(--reader-scale)); }
+  .hero-dek { font-size: calc(clamp(19px, 2.1vw, 24px) * var(--reader-scale)); }
+  h2.section-title { font-size: calc(clamp(28px, 3.6vw, 38px) * var(--reader-scale)); }
+  .section-standfirst { font-size: calc(20px * var(--reader-scale)); }
+  .pull-quote { font-size: calc(clamp(22px, 2.8vw, 28px) * var(--reader-scale)); }
   @media (max-width: 640px) {
     body { font-size: calc(17px * var(--reader-scale)); }
     .article p { font-size: calc(17px * var(--reader-scale)); }
     .article p.lede { font-size: calc(19px * var(--reader-scale)); }
     .qa-text { font-size: calc(17px * var(--reader-scale)); }
   }
-  .text-size-switch { display: inline-flex; align-items: baseline; gap: 4px; font-family: 'IBM Plex Sans', sans-serif; }
-  .text-size-switch button { background: none; border: none; cursor: pointer; padding: 0 4px; color: var(--muted); font-family: inherit; font-weight: 600; line-height: 1; letter-spacing: 0; }
-  .text-size-switch button[data-size="sm"] { font-size: 10px; }
-  .text-size-switch button[data-size="md"] { font-size: 12px; }
-  .text-size-switch button[data-size="lg"] { font-size: 15px; }
+  /* Toggle UI: bigger tap targets on touch screens */
+  .text-size-switch { display: inline-flex; align-items: baseline; gap: 2px; font-family: 'IBM Plex Sans', sans-serif; }
+  .text-size-switch button { background: none; border: none; cursor: pointer; padding: 6px 8px; color: var(--muted); font-family: inherit; font-weight: 600; line-height: 1; letter-spacing: 0; min-width: 28px; min-height: 28px; }
+  .text-size-switch button[data-size="sm"] { font-size: 11px; }
+  .text-size-switch button[data-size="md"] { font-size: 13px; }
+  .text-size-switch button[data-size="lg"] { font-size: 17px; }
   .text-size-switch button.active { color: var(--accent); }
   .text-size-switch button:hover { color: var(--ink); }
   .masthead-meta-sep { color: var(--muted); margin: 0 4px; opacity: 0.6; }
