@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruselas en Denver · Lecturas</title>
+<meta name="description" content="Una lectura guiada de la intervención del Departamento de Justicia de EE. UU. contra la ley de discriminación algorítmica de Colorado, y de lo que significa para el efecto Bruselas, la interoperabilidad regulatoria y la gobernanza de la IA en Estados Unidos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EDE0;
+    --surface: #ECE2D0;
+    --surface-dark: #E2D6BD;
+    --ink: #1A1A1A;
+    --ink-soft: #2A2A2A;
+    --muted: #5C5C5C;
+    --rule: #1A1A1A;
+    --rule-soft: #C8C2B5;
+    --accent: #7A1F1F;
+    --accent-soft: #A14848;
+    --bar: #1A1A1A;
+    --bar-accent: #7A1F1F;
+    --gold: #B8860B;
+    --highlight: #FAF4E8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-weight: 400; line-height: 1.6; font-size: 19px; }
+
+  .masthead { border-bottom: 1px solid var(--ink); padding: 18px 0; background: var(--bg); }
+  .masthead-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink); font-weight: 500; }
+  .masthead-section { color: var(--accent); font-weight: 600; text-decoration: none; transition: color 0.15s ease; }
+  .masthead-section:hover { color: var(--ink); }
+  .masthead-meta { color: var(--muted); letter-spacing: 0.12em; display: inline-flex; align-items: center; gap: 16px; }
+
+  .lang-switch { display: inline-flex; align-items: center; gap: 7px; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; font-weight: 600; }
+  .lang-active { color: var(--accent); }
+  .lang-sep { color: var(--muted); opacity: 0.5; }
+  .lang-link { color: var(--muted); text-decoration: none; transition: color 0.15s ease; }
+  .lang-link:hover { color: var(--ink); }
+  @media (max-width: 640px) { .masthead-meta { gap: 10px; } .masthead-meta-text { display: none; } }
+
+  .hero { max-width: 1100px; margin: 0 auto; padding: 80px 32px 60px; border-bottom: 1px solid var(--ink); }
+  .hero-kicker { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-weight: 600; margin-bottom: 22px; }
+  .hero-headline { font-family: 'Spectral', serif; font-weight: 700; font-size: clamp(40px, 6.2vw, 72px); line-height: 1.05; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 28px; max-width: 900px; }
+  .hero-headline em { font-style: italic; font-weight: 500; }
+  .hero-dek { font-family: 'Spectral', serif; font-weight: 300; font-style: italic; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.4; color: var(--ink-soft); max-width: 760px; margin-bottom: 36px; }
+  .hero-meta { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; display: flex; align-items: center; gap: 14px; }
+  .hero-meta-bar { width: 28px; height: 1px; background: var(--accent); }
+
+  .article { max-width: 720px; margin: 0 auto; padding: 60px 32px 100px; }
+  .article p { margin-bottom: 1.4em; font-size: 19px; line-height: 1.7; }
+  .article p.lede { font-size: 22px; line-height: 1.55; color: var(--ink); }
+  .article p.lede::first-letter { float: left; font-family: 'Spectral', serif; font-size: 88px; line-height: 0.85; font-weight: 700; padding: 6px 12px 0 0; color: var(--accent); }
+
+  .callback {
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    border-top: 1px solid var(--ink-soft);
+    border-bottom: 1px solid var(--ink-soft);
+    padding: 12px 0;
+    margin: 32px 0 36px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .callback:hover { color: var(--accent); }
+  .callback strong { color: var(--accent); font-weight: 600; }
+
+  .section-divider { margin: 56px 0 40px; text-align: center; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); font-weight: 500; position: relative; }
+  .section-divider::before, .section-divider::after { content: ''; display: inline-block; width: 60px; height: 1px; background: var(--ink-soft); vertical-align: middle; margin: 0 18px; }
+  .section-number { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; display: block; }
+  h2.section-title { font-family: 'Spectral', serif; font-weight: 700; font-size: clamp(32px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 16px; max-width: 640px; }
+  h2.section-title em { font-style: italic; font-weight: 500; }
+  .section-standfirst { font-family: 'Spectral', serif; font-style: italic; font-weight: 400; font-size: 21px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--ink); }
+
+  .context-box { background: var(--surface); border-left: 3px solid var(--accent); padding: 26px 30px 22px; margin: 38px 0; font-family: 'Spectral', serif; }
+  .context-box-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+  .context-box p { font-size: 17px; line-height: 1.6; margin-bottom: 0.9em; color: var(--ink-soft); }
+  .context-box p:last-child { margin-bottom: 0; }
+  .context-box strong { color: var(--ink); font-weight: 600; }
+
+  .inline-note { background: transparent; border-top: 1px solid var(--ink-soft); border-bottom: 1px solid var(--ink-soft); padding: 14px 0 14px; margin: 28px 0; font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; line-height: 1.55; color: var(--muted); font-weight: 400; }
+  .inline-note strong { color: var(--ink); font-weight: 600; }
+
+  .pull-quote { margin: 50px -40px; padding: 32px 40px 28px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); font-family: 'Spectral', serif; font-style: italic; font-weight: 400; font-size: clamp(24px, 3vw, 32px); line-height: 1.3; color: var(--ink); text-align: left; letter-spacing: -0.005em; }
+  .pull-quote-attribution { display: block; font-style: normal; font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-top: 18px; font-weight: 600; }
+
+  .exhibit { margin: 56px -100px; background: var(--bg); padding: 0; }
+  @media (max-width: 980px) { .exhibit { margin: 56px 0; } .pull-quote { margin: 50px 0; padding: 32px 0 28px; } }
+  .exhibit-frame { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 28px 36px 32px; background: var(--bg); }
+  .exhibit-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .exhibit-title { font-family: 'Spectral', serif; font-weight: 600; font-size: 22px; line-height: 1.25; color: var(--ink); margin-bottom: 4px; }
+  .exhibit-subtitle { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; color: var(--muted); font-weight: 400; margin-bottom: 24px; letter-spacing: 0.01em; }
+  .exhibit-svg-wrapper { width: 100%; margin: 12px 0 18px; }
+  .exhibit-svg-wrapper svg { width: 100%; height: auto; display: block; }
+  .exhibit-source { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: var(--muted); border-top: 1px solid var(--ink-soft); padding-top: 12px; margin-top: 14px; letter-spacing: 0.04em; }
+  .exhibit-source strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding: 50px 22px 40px; }
+    .article { padding: 40px 22px 60px; }
+    .article p { font-size: 17px; }
+    .pull-quote { font-size: 22px; padding: 26px 0 22px; }
+    .exhibit-frame { padding: 22px 18px 26px; }
+    .context-box { padding: 22px 22px 18px; margin: 30px 0; }
+    .article p.lede { font-size: 19px; }
+    .article p.lede::first-letter { font-size: 70px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="masthead-section" href="../../../">← Lecturas</a>
+    <span class="masthead-meta">
+      <span class="lang-switch">
+        <a href="../en/" class="lang-link">EN</a>
+        <span class="lang-sep">·</span>
+        <span class="lang-active">ES</span>
+      </span>
+    </span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-kicker">La noticia, anotada</div>
+  <h1 class="hero-headline">Bruselas en <em>Denver</em></h1>
+  <p class="hero-dek">El 24 de abril, el Departamento de Justicia de EE. UU. intervino contra la ley de discriminación algorítmica de Colorado bajo la tesis de que exigir equidad a la IA es, en sí mismo, discriminación ilegal — el tipo de giro doctrinal que decide qué aspecto se le permitirá tener a la regulación de la IA en Estados Unidos.</p>
+  <div class="hero-meta">
+    <span class="hero-meta-bar"></span>
+    <span>A partir de la cobertura de Stone, Carlucci y Castro en el National Law Review · 1 de mayo de 2026</span>
+  </div>
+</section>
+
+<article class="article">
+
+  <p class="lede">La noticia es procedimental. Una fiscalía estatal en Denver, una demanda federal de intervención, una vista todavía sin fecha. La tesis doctrinal que contiene, no. El 24 de abril de 2026, el Departamento de Justicia de los Estados Unidos intervino contra el Estado de Colorado en <em>xAI v. Weiser</em>, una demanda que cuestiona la ley estatal Senate Bill 24-205 — la norma de «protecciones del consumidor para la inteligencia artificial» que debía entrar en vigor el 30 de junio. La demanda federal sostiene que exigir a un sistema de IA de alto riesgo que no produzca resultados dispares por raza o sexo es, en sí mismo, una forma de discriminación ilegal — que la cláusula de igualdad ante la ley, en la lectura de la Administración, prohíbe el tipo de regulación de equidad algorítmica que Colorado ha intentado promulgar. La pelea es técnica. Lo que está en juego, no.</p>
+
+  <p>La norma de Colorado es, en su arquitectura, una implementación estadounidense de la lógica del Reglamento de IA europeo: un régimen basado en el riesgo que distingue entre desarrolladores y desplegadores, designa ciertos sistemas como «de alto riesgo», impone evaluaciones de impacto y obligaciones de divulgación, y alcanza a cualquier sistema de IA que afecte aunque sea a un solo residente del estado. xAI, la desarrolladora del modelo Grok, presentó la demanda primero, el 9 de abril. Dos semanas después, el Departamento de Justicia solicitó intervenir bajo la sección 902 de la Ley de Derechos Civiles de 1964, después de que el Fiscal General en funciones certificara el caso como «de importancia pública general». El tribunal aceptó la solicitud. Lo que sigue es una lectura guiada de lo que el gobierno federal está argumentando ya formalmente — y de su lugar en la historia más amplia de cómo se está regulando, y disputando, la IA a ambos lados del Atlántico.</p>
+
+  <a class="callback" href="../../ai-act-trilogue-stalled/es/">
+    <strong>Continúa los temas del N.º 03</strong> &nbsp;·&nbsp; El número anterior leyó el trílogo de Bruselas en el que la UE renegociaba los plazos del propio Reglamento de IA. Este lee la impugnación judicial de una ley estatal de EE. UU. que importó esa misma arquitectura.
+  </a>
+
+  <!-- SECCIÓN 1 -->
+  <div class="section-divider">Parte uno</div>
+
+  <span class="section-number">§ 01 — El trasplante</span>
+  <h2 class="section-title">Una norma <em>moldeada</em> sobre Bruselas</h2>
+  <p class="section-standfirst">SB24-205 se lee, estructuralmente, como una norma de estilo Bruselas escrita para un estado de EE. UU. Entender lo que importa es el primer paso para entender lo que está siendo impugnado.</p>
+
+  <p>La ley de Colorado, firmada en mayo de 2024 y prevista para entrar en vigor el 30 de junio de 2026, regula los «sistemas de inteligencia artificial de alto riesgo» — una categoría definida para abarcar todo sistema que constituya «un factor sustancial» en decisiones consecuentes sobre empleo, educación, vivienda, sanidad, servicios financieros, servicios públicos o seguros. Distingue entre dos clases de sujeto regulado: los desarrolladores, que construyen y entrenan los modelos, y los desplegadores, que los aplican en esas decisiones. Ambos tienen deberes. Los desarrolladores deben emplear «cuidado razonable» para proteger frente a «cualquier riesgo conocido o razonablemente previsible de discriminación algorítmica» y deben divulgar información sobre sus prácticas de evaluación y mitigación a los desplegadores, al público y al Fiscal General de Colorado. Los desplegadores deben implantar políticas de gestión de riesgos, realizar evaluaciones de impacto anuales y revisar sus sistemas de IA de manera continua.</p>
+
+  <p>La ley define la «discriminación algorítmica» de forma extensa — como toda condición en que el uso de un sistema de IA produce un «trato o impacto diferencial ilícito» que perjudica a un individuo o grupo por razón de edad, raza, sexo, discapacidad, religión u otras características protegidas. Excluye expresamente de esa definición dos usos: los procedimientos de prueba y el uso de sistemas de IA «para ampliar el conjunto de solicitantes, clientes o participantes con el fin de aumentar la diversidad o reparar la discriminación histórica». La exclusión pesará considerablemente en la sección tres.</p>
+
+  <div class="context-box">
+    <div class="context-box-label">Antecedentes — Por qué esto suena europeo</div>
+    <p>Cinco rasgos de la SB24-205 reproducen el Reglamento de IA europeo casi línea por línea: <strong>(1)</strong> la división entre desarrollador y desplegador, que en el texto europeo aparece como «proveedor» y «desplegador»; <strong>(2)</strong> la categoría de «alto riesgo» basada en el caso de uso, definida por la consecuencia de la decisión y no por la tecnología en sí; <strong>(3)</strong> evaluaciones de impacto obligatorias previas al despliegue; <strong>(4)</strong> obligaciones de transparencia y documentación que recorren la cadena hacia arriba y hacia abajo; y <strong>(5)</strong> un alcance extraterritorial vinculado a la ubicación del individuo afectado.</p>
+    <p>El parecido arquitectónico no es accidental. El proyecto de ley de Colorado se redactó en diálogo con el marco europeo como plantilla. Para los reguladores de la UE, esto es el efecto Bruselas en funcionamiento — la fuerza atractiva de un régimen regulatorio integral que otras jurisdicciones copian. La demanda federal, en el fondo, plantea si esa copia puede sobrevivir al derecho constitucional estadounidense.</p>
+  </div>
+
+  <!-- ILUSTRACIÓN 1 -->
+  <figure class="exhibit">
+    <div class="exhibit-frame">
+      <div class="exhibit-label">Ilustración 01</div>
+      <div class="exhibit-title">La arquitectura, en paralelo</div>
+      <div class="exhibit-subtitle">Colorado SB24-205 y el Reglamento de IA de la UE en cinco rasgos estructurales</div>
+
+      <div class="exhibit-svg-wrapper">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+          <text x="40" y="32" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#5C5C5C" font-weight="600">RASGO</text>
+          <text x="340" y="32" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#5C5C5C" font-weight="600">REGLAMENTO IA UE</text>
+          <text x="560" y="32" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#5C5C5C" font-weight="600">COLORADO SB24-205</text>
+          <line x1="40" y1="48" x2="760" y2="48" stroke="#1A1A1A" stroke-width="1.2"/>
+
+          <g font-family="'Spectral', serif" font-size="14" fill="#1A1A1A">
+            <text x="40" y="80" font-weight="600">Dos niveles de actor</text>
+            <text x="340" y="80">proveedor · desplegador</text>
+            <text x="560" y="80">desarrollador · desplegador</text>
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+            <text x="40" y="130" font-weight="600">Clasificación de riesgo</text>
+            <text x="340" y="130">por caso de uso, «alto riesgo»</text>
+            <text x="560" y="130">por caso de uso, «alto riesgo»</text>
+            <line x1="40" y1="150" x2="760" y2="150" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+            <text x="40" y="180" font-weight="600">Evaluaciones de impacto</text>
+            <text x="340" y="180">obligatorias (FRIA, art. 27)</text>
+            <text x="560" y="180">obligatorias (anuales)</text>
+            <line x1="40" y1="200" x2="760" y2="200" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+            <text x="40" y="230" font-weight="600">Deber de transparencia</text>
+            <text x="340" y="230">arriba y abajo en la cadena</text>
+            <text x="560" y="230">arriba y abajo en la cadena</text>
+            <line x1="40" y1="250" x2="760" y2="250" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+            <text x="40" y="280" font-weight="600">Alcance extraterritorial</text>
+            <text x="340" y="280">vinculado a residentes UE</text>
+            <text x="560" y="280">vinculado a un residente CO</text>
+            <line x1="40" y1="300" x2="760" y2="300" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+            <text x="40" y="330" font-weight="600">Órgano de aplicación</text>
+            <text x="340" y="330">autoridades nac. + AI Office</text>
+            <text x="560" y="330">Fiscal General (único)</text>
+          </g>
+
+          <line x1="40" y1="358" x2="760" y2="358" stroke="#1A1A1A" stroke-width="1.2"/>
+          <text x="40" y="380" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.18em" fill="#7A1F1F" font-weight="700">CINCO RASGOS, UNA ARQUITECTURA</text>
+        </svg>
+      </div>
+
+      <div class="exhibit-source"><strong>Fuentes:</strong> Reglamento (UE) 2024/1689 (Reglamento de IA). Senate Bill 24-205 de Colorado, «Consumer Protections for Artificial Intelligence». Comparación elaborada por el editor; artículos específicos citados cuando aplica.</div>
+    </div>
+  </figure>
+
+  <!-- SECCIÓN 2 -->
+  <div class="section-divider">Parte dos</div>
+
+  <span class="section-number">§ 02 — La demanda</span>
+  <h2 class="section-title">Cuatro banderas, y una alegación de <em>libertad de expresión</em></h2>
+  <p class="section-standfirst">La demanda de xAI plantea cuatro teorías constitucionales. La más ambiciosa es la teoría de la libertad de expresión — que la salida de un modelo de IA es expresión protegida y que exigir su modificación es expresión obligada.</p>
+
+  <p>xAI presentó la demanda en el Tribunal de Distrito de EE. UU. para el Distrito de Colorado el 9 de abril, dirigida contra el Fiscal General del estado, Philip Weiser, y solicitando una declaración de inconstitucionalidad y medidas cautelares. La demanda alega cuatro vulneraciones constitucionales. Tres de ellas son terreno conocido en el litigio relativo a la cláusula de comercio y al derecho administrativo. La cuarta — la alegación de Primera Enmienda — es inusualmente ambiciosa y, de prosperar, reformularía todo el campo de la regulación de la IA.</p>
+
+  <p>La <strong>alegación de Primera Enmienda</strong> sostiene que las normas antidiscriminatorias de la SB24-205 son regulaciones del contenido y del punto de vista de las salidas de un sistema de IA, y que las obligaciones de divulgación obligan al desarrollador a expresarse. El cumplimiento, alega xAI, requeriría «rediseñar, reentrenar o restringir el modelo Grok» — recalibrar cómo decide qué información incluir, codificar nuevas barreras o reponderar los conjuntos de datos de entrenamiento. Si esa actividad es expresión constitucionalmente protegida, el estado no puede obligarla sin superar el escrutinio estricto. El argumento extiende la doctrina reciente sobre el juicio editorial algorítmico al modelo en sí.</p>
+
+  <p>La <strong>alegación de cláusula latente de comercio</strong> sostiene que la SB24-205 regula conducta extraterritorial, dado que se aplica a cualquier sistema de IA que afecte aunque sea a un solo residente de Colorado, con independencia de dónde se construya o se aloje el sistema. La demanda invoca también el test de equilibrio Pike, alegando que la carga del reentrenamiento a escala nacional excede de manera desproporcionada los beneficios locales de la norma. La <strong>alegación de debido proceso por indeterminación</strong> sostiene que términos esenciales — «discriminación algorítmica», «alto riesgo», «cuidado razonable» — están definidos de forma insuficiente, y que ello deja a los desarrolladores sin aviso justo de sus obligaciones y al Fiscal General con una discrecionalidad de aplicación prácticamente ilimitada. La <strong>alegación de igualdad ante la ley</strong>, la cuarta bandera, ataca la exclusión por diversidad de la norma: al eximir de la prohibición de discriminación algorítmica a los sistemas de IA usados «para aumentar la diversidad o reparar la discriminación histórica», la ley (sostiene xAI) codifica clasificaciones por raza y otras características sin justificación apremiante.</p>
+
+  <!-- ILUSTRACIÓN 2 -->
+  <figure class="exhibit">
+    <div class="exhibit-frame">
+      <div class="exhibit-label">Ilustración 02</div>
+      <div class="exhibit-title">La demanda de xAI, en cuatro cargos</div>
+      <div class="exhibit-subtitle">Presentada el 9 de abril de 2026 · Tribunal de Distrito de EE. UU. para el Distrito de Colorado</div>
+
+      <div class="exhibit-svg-wrapper">
+        <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <rect x="20" y="20" width="760" height="440" fill="#FAF4E8" stroke="#1A1A1A" stroke-width="1"/>
+          <rect x="32" y="32" width="736" height="416" fill="none" stroke="#1A1A1A" stroke-width="0.4" opacity="0.4"/>
+
+          <text x="50" y="68" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="0.18em" fill="#7A1F1F" font-weight="600">CASO N.º ___  ·  D. COLO.  ·  PRESENTADO 09 ABR 2026</text>
+          <line x1="50" y1="80" x2="430" y2="80" stroke="#7A1F1F" stroke-width="1"/>
+
+          <text x="50" y="116" font-family="'Spectral', serif" font-size="22" font-weight="700" fill="#1A1A1A">xAI Corp. v. Weiser</text>
+          <text x="50" y="138" font-family="'Spectral', serif" font-size="14" font-style="italic" fill="#5C5C5C">Demanda declarativa y de medidas cautelares — cuatro cargos</text>
+
+          <g transform="translate(50, 175)">
+            <text font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" fill="#7A1F1F" letter-spacing="0.1em">CARGO I  ·  PRIMERA ENMIENDA</text>
+            <text font-family="'Spectral', serif" font-size="14" fill="#1A1A1A">
+              <tspan x="0" y="22">Expresión obligada y regulación del punto de vista. Cumplir</tspan>
+              <tspan x="0" y="42">requiere «rediseñar, reentrenar o restringir» la salida del modelo.</tspan>
+            </text>
+          </g>
+
+          <g transform="translate(420, 175)">
+            <text font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" fill="#7A1F1F" letter-spacing="0.1em">CARGO II  ·  CLÁUSULA DE COMERCIO</text>
+            <text font-family="'Spectral', serif" font-size="14" fill="#1A1A1A">
+              <tspan x="0" y="22">Alcance extraterritorial: aplica a cualquier sistema que</tspan>
+              <tspan x="0" y="42">afecte a un residente de Colorado. El test Pike falla.</tspan>
+            </text>
+          </g>
+
+          <line x1="50" y1="265" x2="750" y2="265" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+          <g transform="translate(50, 295)">
+            <text font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" fill="#7A1F1F" letter-spacing="0.1em">CARGO III  ·  DEBIDO PROCESO</text>
+            <text font-family="'Spectral', serif" font-size="14" fill="#1A1A1A">
+              <tspan x="0" y="22">Indeterminación: «discriminación algorítmica», «alto riesgo»,</tspan>
+              <tspan x="0" y="42">«cuidado razonable» insuficientemente definidos. Sin aviso justo.</tspan>
+            </text>
+          </g>
+
+          <g transform="translate(420, 295)">
+            <text font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" fill="#7A1F1F" letter-spacing="0.1em">CARGO IV  ·  IGUALDAD ANTE LA LEY</text>
+            <text font-family="'Spectral', serif" font-size="14" fill="#1A1A1A">
+              <tspan x="0" y="22">La exclusión por diversidad codifica clasificaciones</tspan>
+              <tspan x="0" y="42">por raza y otras características.</tspan>
+            </text>
+          </g>
+
+          <g transform="translate(660, 380)">
+            <circle cx="40" cy="40" r="40" fill="none" stroke="#7A1F1F" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="40" cy="40" r="34" fill="none" stroke="#7A1F1F" stroke-width="0.6" opacity="0.5"/>
+            <text x="40" y="35" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" fill="#7A1F1F" letter-spacing="0.2em" opacity="0.7">xAI</text>
+            <text x="40" y="50" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#7A1F1F" letter-spacing="0.15em" opacity="0.7">DEMANDANTE · 2026</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="exhibit-source"><strong>Fuente:</strong> Demanda de xAI, según el resumen de Stone, Carlucci y Castro en el National Law Review, 1 de mayo de 2026. Tratamiento visual del editor.</div>
+    </div>
+  </figure>
+
+  <p>De los cuatro, la alegación de libertad de expresión es la palanca conceptual. Si un tribunal acepta que las salidas de un sistema de IA son expresión constitucionalmente protegida, entonces toda norma que obligue al desarrollador a alterar lo que dice el modelo — incluida una norma contra la producción de resultados dispares entre grupos protegidos — queda presuntamente bajo sospecha. Las implicaciones se extienden mucho más allá de Colorado: las normas federales de IA, las leyes estatales de auditoría de sesgos, los requisitos de transparencia, incluso los estándares de contratación pública condicionados al comportamiento del modelo, se enfrentarían todas al escrutinio estricto. La demanda del Departamento de Justicia no avala esa tesis. Persigue una propia, más estrecha y, en algunos sentidos, más consecuente.</p>
+
+  <!-- SECCIÓN 3 -->
+  <div class="section-divider">Parte tres</div>
+
+  <span class="section-number">§ 03 — La intervención</span>
+  <h2 class="section-title">Cómo la equidad se convirtió en <em>discriminación</em></h2>
+  <p class="section-standfirst">La intervención del Departamento de Justicia es más estrecha que la demanda de xAI — solo igualdad ante la ley — pero conceptualmente más consecuente. El argumento convierte la metodología del impacto dispar en la lesión constitucional misma.</p>
+
+  <p>El 24 de abril, el Fiscal General en funciones certificó <em>xAI v. Weiser</em> como caso de «importancia pública general» y el Departamento de Justicia presentó su Demanda de Intervención bajo 42 U.S.C. § 2000h-2 — la sección de la Ley de Derechos Civiles de 1964 que autoriza la intervención federal en demandas privadas que planteen cuestiones de igualdad ante la ley o de no discriminación. La demanda alega dos cargos. Ambos son de igualdad ante la ley. Ambos reformulan la relación entre el derecho antidiscriminatorio y la regulación algorítmica.</p>
+
+  <p>El primer cargo — <strong>discriminación obligada</strong> — sostiene que la SB24-205 fuerza, en la práctica, a desarrolladores y desplegadores a discriminar. El mecanismo, en la lectura del gobierno, es la incorporación por la norma de la metodología del impacto dispar. Al imponer responsabilidad a los sistemas de IA cuyo uso produzca un «impacto diferencial» que perjudique a un grupo protegido — esto es, en función de la estadística del resultado y no de la intención del diseño — la ley (sostiene el DOJ) obliga a las entidades reguladas a una «ingeniería con consciencia demográfica» de sus modelos: recalibrar los algoritmos para eliminar disparidades estadísticas no intencionales. En contextos de asignación de suma cero — contratar a uno entre diez candidatos, admitir a uno entre cien — eliminar una disparidad para un grupo protegido implica necesariamente tratar de manera distinta a individuos de otro grupo. Eso, concluye el gobierno, es discriminación intencional sobre una base protegida. La cláusula de igualdad ante la ley lo prohíbe.</p>
+
+  <div class="context-box">
+    <div class="context-box-label">Antecedentes — El impacto dispar, en un párrafo</div>
+    <p>La <strong>metodología del impacto dispar</strong> es un modo de aplicación del derecho antidiscriminatorio que se centra en el efecto estadístico de una política antes que en la intención que la motiva. Una regla de contratación neutra que excluya desproporcionadamente a miembros de un grupo protegido puede ser ilegal aun sin prueba de que el empleador pretendiera excluirlos. La metodología es una pieza estructural de la aplicación del derecho civil estadounidense bajo el Título VII desde <em>Griggs v. Duke Power</em> (1971), y una lógica similar sostiene partes de la Fair Housing Act y de la Equal Credit Opportunity Act.</p>
+    <p>Lo que hace la demanda del DOJ es invertir esa historia. El argumento es que las normas de impacto dispar, cuando se aplican a sistemas de IA, fuerzan a la parte regulada a tomar decisiones de diseño conscientes de la raza y del sexo — y que esas decisiones forzadas son, en sí mismas, la vulneración constitucional. Si la inversión prospera o no es la cuestión jurídica abierta. Que haya sido alegada formalmente por el gobierno federal es la noticia.</p>
+  </div>
+
+  <p>El segundo cargo — <strong>discriminación autorizada</strong> — ataca la exclusión por diversidad de la norma desde el ángulo opuesto. La SB24-205 exime de la definición de discriminación algorítmica todo uso de un sistema de IA «para ampliar el conjunto de solicitantes, clientes o participantes con el fin de aumentar la diversidad o reparar la discriminación histórica». El DOJ sostiene que esta exclusión autoriza una toma de decisiones consciente de la raza y del sexo que la cláusula de igualdad ante la ley prohíbe, sin que se ofrezca justificación apremiante. La sentencia del Tribunal Supremo de 2023 en <em>Students for Fair Admissions v. Harvard</em> es el apoyo doctrinal: si las admisiones universitarias conscientes de la raza son inconstitucionales, una ley estatal que permita expresamente un diseño de IA consciente de la raza es, en la misma lógica, igualmente inconstitucional.</p>
+
+  <div class="pull-quote">
+    La cláusula que históricamente protegió a los grupos frente a la discriminación se invoca ahora contra la ley que pretendía protegerlos.
+    <span class="pull-quote-attribution">— Sobre el giro doctrinal</span>
+  </div>
+
+  <p>Dos movimientos doctrinales operan a la vez. El primero es el desplazamiento del impacto a la intención: una norma que vigila resultados estadísticos se recaracteriza como una norma que obliga a una ingeniería de base demográfica. El segundo es el desplazamiento del beneficiario al perpetrador: la exclusión por diversidad, redactada para preservar las prácticas remediales de la era de los derechos civiles, se recaracteriza como una clasificación racial sancionada por el estado. El gobierno no sostiene que la equidad algorítmica sea mala política. Sostiene que la constitución, leída correctamente tras <em>Students for Fair Admissions</em>, no la admitirá como derecho.</p>
+
+  <!-- SECCIÓN 4 -->
+  <div class="section-divider">Parte cuatro</div>
+
+  <span class="section-number">§ 04 — La arquitectura sobre el caso</span>
+  <h2 class="section-title">El litigio como <em>política</em></h2>
+  <p class="section-standfirst">La intervención forma parte de una postura deliberada. Como el Congreso no ha legislado sobre la IA, la política federal en la materia se está haciendo a través de órdenes ejecutivas y de litigios contra los estados.</p>
+
+  <p>La demanda del DOJ cita, en su propio texto, dos documentos de política de los últimos cinco meses. El primero es la Orden Ejecutiva del 11 de diciembre de 2025, «Ensuring a National Policy Framework for Artificial Intelligence», que señaló «una nueva ley de Colorado» como ejemplo de regulación estatal que «puede incluso obligar a los modelos de IA a producir resultados falsos para evitar un "trato o impacto diferencial" sobre grupos protegidos». La misma orden creó un «Grupo de Trabajo de Litigación sobre IA […] cuya única responsabilidad será impugnar las leyes estatales sobre IA incompatibles con la política expuesta en la presente Orden Ejecutiva». El segundo documento es el Marco Legislativo Nacional de IA de marzo de 2026, que articuló la postura de la Administración de prelación por vía ejecutiva sobre la regulación estatal de la IA.</p>
+
+  <p>La intervención en <em>xAI v. Weiser</em> es la primera operacionalización de envergadura de esa postura. No propone derecho federal nuevo. No prela el estatuto de Colorado mediante una ley federal. En su lugar, recurre a la autoridad federal preexistente para intervenir en litigios privados al amparo del § 2000h-2, adhiere a esa intervención una teoría constitucional, y solicita a un tribunal federal que prohíba la aplicación de una ley estatal por inconstitucional. La estructura es llamativa: la política federal de IA en 2026 se expresa como estrategia de litigación porque el poder legislativo no produce derecho de IA y el ejecutivo ha elegido los tribunales como instrumento.</p>
+
+  <div class="inline-note">
+    <strong>Qué hace en realidad el § 2000h-2.</strong> La sección 902 de la Ley de Derechos Civiles de 1964 permite al Fiscal General intervenir en un caso privado «de importancia pública general» que reclame protección frente a la denegación de la igualdad ante la ley por motivos de raza, color, religión, sexo u origen nacional. La certificación corresponde al Fiscal General; el tribunal suele aceptar la solicitud. La disposición es breve — tres párrafos — y se ha utilizado históricamente para apoyar a demandantes en casos de desegregación escolar y de derechos electorales. Su uso aquí, a favor de una desarrolladora de IA que impugna una ley estatal de equidad, queda en un ángulo inusual respecto a esa historia.
+  </div>
+
+  <!-- ILUSTRACIÓN 3 -->
+  <figure class="exhibit">
+    <div class="exhibit-frame">
+      <div class="exhibit-label">Ilustración 03</div>
+      <div class="exhibit-title">De la orden ejecutiva a la intervención</div>
+      <div class="exhibit-subtitle">La secuencia federal previa a la entrada en vigor de la ley de Colorado</div>
+
+      <div class="exhibit-svg-wrapper">
+        <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+          <line x1="60" y1="180" x2="740" y2="180" stroke="#1A1A1A" stroke-width="1.5"/>
+          <polygon points="740,180 728,174 728,186" fill="#1A1A1A"/>
+
+          <g font-family="'IBM Plex Sans', sans-serif" font-size="10" letter-spacing="0.18em" fill="#5C5C5C" font-weight="600">
+            <line x1="100" y1="170" x2="100" y2="190" stroke="#1A1A1A" stroke-width="1"/>
+            <text x="100" y="210" text-anchor="middle">11 DIC 2025</text>
+
+            <line x1="280" y1="170" x2="280" y2="190" stroke="#1A1A1A" stroke-width="0.6"/>
+            <text x="280" y="210" text-anchor="middle">MAR 2026</text>
+
+            <line x1="430" y1="170" x2="430" y2="190" stroke="#1A1A1A" stroke-width="0.6"/>
+            <text x="430" y="210" text-anchor="middle">9 ABR 2026</text>
+
+            <line x1="540" y1="170" x2="540" y2="190" stroke="#1A1A1A" stroke-width="0.6"/>
+            <text x="540" y="210" text-anchor="middle">24 ABR 2026</text>
+
+            <line x1="700" y1="170" x2="700" y2="190" stroke="#1A1A1A" stroke-width="1.2"/>
+            <text x="700" y="210" text-anchor="middle">30 JUN 2026</text>
+            <text x="700" y="226" text-anchor="middle" fill="#7A1F1F" font-weight="700">EN VIGOR</text>
+          </g>
+
+          <g font-family="'Spectral', serif" font-size="13" fill="#1A1A1A">
+            <line x1="100" y1="170" x2="100" y2="120" stroke="#7A1F1F" stroke-width="0.8"/>
+            <text x="100" y="108" text-anchor="middle" font-style="italic">Orden Ejecutiva sobre IA</text>
+            <text x="100" y="92" text-anchor="middle" font-style="italic" fill="#5C5C5C" font-size="12">menciona «una nueva ley de Colorado»; se crea el Grupo de Trabajo</text>
+
+            <line x1="280" y1="170" x2="280" y2="80" stroke="#7A1F1F" stroke-width="0.8"/>
+            <text x="280" y="68" text-anchor="middle" font-style="italic">Marco Legislativo Nacional de IA</text>
+            <text x="280" y="52" text-anchor="middle" font-style="italic" fill="#5C5C5C" font-size="12">articula la postura federal frente a las leyes estatales de IA</text>
+
+            <line x1="430" y1="170" x2="430" y2="120" stroke="#7A1F1F" stroke-width="0.8"/>
+            <text x="430" y="108" text-anchor="middle" font-style="italic">xAI presenta demanda</text>
+            <text x="430" y="92" text-anchor="middle" font-style="italic" fill="#5C5C5C" font-size="12">cuatro cargos constitucionales; D. Colo.</text>
+
+            <line x1="540" y1="170" x2="540" y2="80" stroke="#7A1F1F" stroke-width="0.8"/>
+            <text x="540" y="68" text-anchor="middle" font-style="italic">El DOJ interviene</text>
+            <text x="540" y="52" text-anchor="middle" font-style="italic" fill="#5C5C5C" font-size="12">dos cargos de igualdad ante la ley; § 2000h-2</text>
+          </g>
+
+          <g transform="translate(60, 270)" font-family="'IBM Plex Sans', sans-serif" font-size="11" fill="#5C5C5C">
+            <text x="0" y="0" font-weight="600" fill="#7A1F1F" letter-spacing="0.18em">HOY · 8 DE MAYO DE 2026</text>
+            <text x="0" y="22" font-family="'Spectral', serif" font-style="italic" font-size="14" fill="#1A1A1A">Quedan ~7 semanas para la entrada en vigor de la SB24-205. No se ha dictado medida cautelar.</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="exhibit-source"><strong>Fuentes:</strong> Orden Ejecutiva «Ensuring a National Policy Framework for Artificial Intelligence», 11 de diciembre de 2025. Marco Legislativo Nacional de IA, marzo de 2026. <em>xAI v. Weiser</em>, demanda y Demanda de Intervención del DOJ. Cobertura del National Law Review.</div>
+    </div>
+  </figure>
+
+  <!-- SECCIÓN 5 -->
+  <div class="section-divider">Parte cinco</div>
+
+  <span class="section-number">§ 05 — La travesía</span>
+  <h2 class="section-title">El efecto Bruselas, <em>impugnado</em></h2>
+  <p class="section-standfirst">La SB24-205 es un espécimen del efecto Bruselas — una ley estatal de EE. UU. que importó una arquitectura regulatoria europea. La impugnación federal pone a prueba si ese trasplante puede sobrevivir al derecho constitucional estadounidense.</p>
+
+  <p>El efecto Bruselas, según lo nombró Anu Bradford, es la atracción gravitatoria que un régimen regulatorio integral de la UE ejerce sobre jurisdicciones fuera de la Unión. Opera por dos canales. El canal de hecho es el mercado: las empresas con tamaño suficiente para operar de forma transatlántica suelen encontrar más barato aplicar las normas europeas a escala global que mantener sistemas duales. El canal de derecho es político: otros legisladores copian los marcos europeos como plantilla porque la UE ya ha hecho el trabajo de redacción. La SB24-205 es un espécimen claro del canal de derecho. Los solapamientos estructurales catalogados en la sección uno — desarrollador/desplegador, gradación de riesgos, evaluaciones de impacto, alcance extraterritorial — no son casualidades. Son la adopción deliberada de una gramática regulatoria europea por parte de un estado de EE. UU.</p>
+
+  <p>Lo que la intervención del Departamento de Justicia argumenta, en el fondo, es que esa gramática no sobrevivirá intacta al cruce del Atlántico. El marco constitucional estadounidense — y en particular la lectura de la igualdad ante la ley posterior a <em>Students for Fair Admissions</em> — no admite la metodología del impacto dispar que se sitúa en el núcleo de las disposiciones de equidad del Reglamento de IA europeo. Si la ley de Colorado es prohibida por estos motivos, entonces la arquitectura misma, no solo la implementación de Colorado, falla el test constitucional para cualquier futura adopción estadounidense.</p>
+
+  <div class="context-box">
+    <div class="context-box-label">Antecedentes — El efecto Bruselas</div>
+    <p>El libro de <strong>Anu Bradford de 2020, <em>The Brussels Effect: How the European Union Rules the World</em></strong>, sostuvo que el tamaño del mercado de la UE, su capacidad regulatoria y su disposición a imponer reglas estrictas en ámbitos como la privacidad, el derecho de la competencia y la seguridad de los productos producen una hegemonía regulatoria — una «carrera al alza» en lugar de una carrera a la baja — que otras jurisdicciones siguen incluso sin coordinación.</p>
+    <p>El Reglamento de IA ha sido tratado como el siguiente gran candidato del efecto Bruselas. Si efectivamente viaja — a estados de EE. UU., a otras democracias industrializadas, a los regímenes globales de cumplimiento corporativo — ha sido la pregunta. El litigio de Colorado es la primera prueba formal de ese viaje dentro de Estados Unidos. La asimetría es clara: la UE renegocia los plazos de su propio Reglamento de IA, como leyó el N.º 03 en el trílogo de Bruselas, mientras el gobierno federal litiga contra la aparición de la misma arquitectura en un estado de EE. UU.</p>
+  </div>
+
+  <!-- ILUSTRACIÓN 4 -->
+  <figure class="exhibit">
+    <div class="exhibit-frame">
+      <div class="exhibit-label">Ilustración 04</div>
+      <div class="exhibit-title">Tres posiciones sobre la misma cuestión</div>
+      <div class="exhibit-subtitle">La metodología del impacto dispar en la regulación algorítmica, leída por tres regímenes</div>
+
+      <div class="exhibit-svg-wrapper">
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+          <line x1="280" y1="40" x2="280" y2="340" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="540" y1="40" x2="540" y2="340" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+          <text x="140" y="68" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#7A1F1F" font-weight="600">REGLAMENTO IA UE</text>
+          <text x="400" y="68" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#7A1F1F" font-weight="600">COLORADO SB24-205</text>
+          <text x="660" y="68" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.22em" fill="#7A1F1F" font-weight="600">DEMANDA DEL DOJ</text>
+
+          <text x="140" y="118" text-anchor="middle" font-family="'Spectral', serif" font-size="34" font-weight="700" fill="#1A1A1A">Exigida</text>
+          <text x="400" y="118" text-anchor="middle" font-family="'Spectral', serif" font-size="34" font-weight="700" fill="#1A1A1A">Exigida</text>
+          <text x="660" y="118" text-anchor="middle" font-family="'Spectral', serif" font-size="34" font-weight="700" fill="#7A1F1F">Prohibida</text>
+
+          <g font-family="'Spectral', serif" font-style="italic" font-size="13" fill="#5C5C5C">
+            <text x="140" y="160" text-anchor="middle">Mitigación de sesgos como obligación</text>
+            <text x="140" y="180" text-anchor="middle">de los proveedores de sistemas</text>
+            <text x="140" y="200" text-anchor="middle">de alto riesgo (arts. 10, 15)</text>
+
+            <text x="400" y="160" text-anchor="middle">Cuidado razonable para prevenir</text>
+            <text x="400" y="180" text-anchor="middle">«impacto diferencial» que perjudique</text>
+            <text x="400" y="200" text-anchor="middle">a grupos protegidos</text>
+
+            <text x="660" y="160" text-anchor="middle">Tales exigencias obligan a una</text>
+            <text x="660" y="180" text-anchor="middle">«ingeniería con consciencia demográfica»</text>
+            <text x="660" y="200" text-anchor="middle">— discriminación intencional</text>
+          </g>
+
+          <line x1="60" y1="240" x2="740" y2="240" stroke="#1A1A1A" stroke-width="0.4" opacity="0.3"/>
+
+          <g font-family="'Spectral', serif" font-size="13" fill="#1A1A1A">
+            <text x="140" y="270" text-anchor="middle" font-weight="600">Remedios de diversidad</text>
+            <text x="140" y="290" text-anchor="middle" font-style="italic" fill="#5C5C5C">permitidos; el Reglamento calla</text>
+
+            <text x="400" y="270" text-anchor="middle" font-weight="600">Exclusión por diversidad</text>
+            <text x="400" y="290" text-anchor="middle" font-style="italic" fill="#5C5C5C">expresamente eximida</text>
+
+            <text x="660" y="270" text-anchor="middle" font-weight="600">Exclusión por diversidad</text>
+            <text x="660" y="290" text-anchor="middle" font-style="italic" fill="#7A1F1F">discriminación autorizada</text>
+          </g>
+
+          <line x1="60" y1="320" x2="740" y2="320" stroke="#1A1A1A" stroke-width="1.2"/>
+          <text x="60" y="340" font-family="'IBM Plex Sans', sans-serif" font-size="11" letter-spacing="0.18em" fill="#7A1F1F" font-weight="700">UNA METODOLOGÍA · TRES LECTURAS</text>
+        </svg>
+      </div>
+
+      <div class="exhibit-source"><strong>Fuentes:</strong> Reglamento (UE) 2024/1689, artículos 10 y 15. Colorado SB24-205, definiciones y § 6-1-1701 y siguientes. Demanda de Intervención del DOJ, <em>xAI v. Weiser</em>, 24 de abril de 2026. Comparación elaborada por el editor.</div>
+    </div>
+  </figure>
+
+  <p>La dirección inversa también importa. Los reguladores de la UE leen con atención la litigación estadounidense. Si la teoría de igualdad ante la ley del Departamento de Justicia prospera — incluso en un solo tribunal de distrito — pasa a ser un dato en el debate europeo sobre cómo deben interpretarse, aplicarse y (cuando se cruzan con empresas estadounidenses) defenderse las obligaciones de mitigación de sesgos del Reglamento de IA. El efecto Bruselas rara vez es unidireccional. La doctrina constitucional estadounidense también ha viajado, históricamente, hacia afuera, y un fallo de un tribunal federal según el cual las normas de equidad algorítmica obligan a discriminar sería citado en Bruselas y en Berlín tanto como en Boulder.</p>
+
+  <!-- CODA -->
+  <div class="section-divider">Coda</div>
+
+  <p>Lo incierto. Si se dictará una medida cautelar antes del 30 de junio, fecha en que entra en vigor la SB24-205. Si la teoría de igualdad ante la ley resistirá ante el Tribunal de Apelaciones del Décimo Circuito y, eventualmente, ante el Tribunal Supremo. Si la teoría de la libertad de expresión de la demanda de xAI, sobre la cual el DOJ ha guardado silencio, será reactivada por el tribunal por iniciativa propia. Si otras leyes estatales — la regla de auditoría de sesgos de la ciudad de Nueva York, la AI Video Interview Act de Illinois, las regulaciones de California ahora en redacción — serán los próximos frentes.</p>
+
+  <p>Lo no incierto. La regulación de la IA en los Estados Unidos bajo esta Administración no llegará a través del Congreso. Será disputada en los tribunales, con el ejecutivo federal interviniendo a favor de demandantes cuyas teorías constitucionales coinciden con sus preferencias políticas. El terreno doctrinal se ha desplazado: la lectura de la igualdad ante la ley posterior a <em>Students for Fair Admissions</em> se está aplicando por primera vez a la gobernanza algorítmica, y el resultado fijará el techo constitucional para hasta dónde puede llegar la metodología del impacto dispar en cualquier futura regulación, estatal o federal.</p>
+
+  <p>Al lector le queda una disputa que es constitucional en la forma y filosófico-regulatoria en el fondo. Colorado respondió a la pregunta de cómo gobernar la IA de alto riesgo adoptando una arquitectura de estilo Bruselas. El Departamento de Justicia ha tomado formalmente la posición de que esa respuesta es, en sí misma, inconstitucional. Quien prevalezca fijará los términos no solo para la SB24-205, sino para si la gramática regulatoria construida en Bruselas puede viajar a Estados Unidos en absoluto — y, por extensión, para el tipo de interoperabilidad transatlántica con la que cualquier relato serio sobre la gobernanza de la IA tiene ya que lidiar.</p>
+
+</article>
+
+</body>
+</html>
