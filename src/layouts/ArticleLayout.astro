@@ -1,9 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ArticleMasthead from '../components/ArticleMasthead.astro';
-const { entry, lang } = Astro.props;
+const { entry, slug, lang } = Astro.props;
 const { data } = entry;
-const slug = data.slug;
 ---
 <BaseLayout title={`${data.title} · Lecturas`} description={data.dek}>
   <ArticleMasthead lang={lang} slug={slug} sourceLabel={data.sourceLabel} />
