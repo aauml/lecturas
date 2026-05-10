@@ -1,0 +1,145 @@
+---
+issue: "N° 11"
+date: "10 de mayo de 2026"
+sortDate: "2026-05-10b"
+language: es
+kicker: "La orden ejecutiva, anotada"
+track: ai-policy
+title: "El mosaico, la preempción y el vacío"
+titleHTML: "El mosaico, la preempción y el <em>vacío</em>"
+dek: "La orden ejecutiva de Trump de diciembre de 2025 anuncia un marco nacional de política para la IA combatiendo lo que no es nacional — y reconociendo, en su propio texto, que el marco depende de un Congreso que ha rehusado actuar dos veces."
+dekHTML: "La orden ejecutiva de Trump de diciembre de 2025 anuncia un marco nacional de política para la IA combatiendo lo que no es nacional — y reconociendo, en su propio texto, que el marco depende de un Congreso que ha rehusado actuar <em>dos veces</em>."
+coverDek: "Una orden ejecutiva para desmantelar la regulación estatal de la IA que aplaza explícitamente el marco que dice ofrecer. Una lectura guiada de lo que la orden realmente dispone, lo que sus mecanismos pueden y no pueden hacer, y la distancia entre el anuncio y la arquitectura."
+source: "Basado en la ficha informativa de la Casa Blanca del 11 de diciembre de 2025 y en la Orden Ejecutiva 14365"
+sourceLabel: "N.º 11 · De la Casa Blanca"
+topics:
+  - "Orden Ejecutiva 14365"
+  - "Preempción federal"
+  - "Leyes estatales de IA"
+  - "Financiación BEAD"
+  - "NIST AI RMF"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+import Callback from '../../../components/Callback.astro';
+import Timeline from '../../../components/exhibits/Timeline.astro';
+import Comparison from '../../../components/exhibits/Comparison.astro';
+
+<Lede>En las últimas semanas de 2025 la administración Trump promulgó una orden ejecutiva cuyo título insiste en lo que el documento, acto seguido, reconoce que aún no es así. *Garantizar un Marco Nacional de Política para la Inteligencia Artificial*, firmada el 11 de diciembre, abre con la declaración de que el dominio estadounidense en IA exige un único estándar nacional mínimamente gravoso en lugar de los cincuenta regímenes discordantes que, según la orden, están emergiendo de las legislaturas estatales. La sección 8 del mismo texto encarga después a altos asesores de la Casa Blanca *preparar* ese marco como recomendación legislativa — lo que significa que el marco depende de un Congreso que, en los doce meses anteriores, dos veces ha rehusado promulgar uno. Lo que la orden produce mientras tanto no es una estructura sino una campaña: un grupo de litigación del Departamento de Justicia, una evaluación del Departamento de Comercio sobre leyes estatales para impugnar o privar de financiación federal, un procedimiento de la FCC sobre un posible estándar federal de divulgación, y una declaración de política de la FTC sobre si determinadas leyes estatales quedan preemptadas por la prohibición de prácticas engañosas. Se anuncia el marco. Los mecanismos atacan lo que no es marco.</Lede>
+
+<Callback issue="N° 04" slug="colorado-ai-intervention" lang="es">Continúa los temas del N.º 04. La Ley de IA de Colorado — la única ley estatal mencionada, en todo salvo en su número, en la orden ejecutiva — se encuentra ya ante un juez federal en *xAI v. Weiser*. Esta lectura aborda el marco político que el litigio invoca.</Callback>
+
+<Section number="01" title="El argumento de la <em>administración</em>">
+
+<Standfirst>El argumento de la ficha informativa avanza en tres movimientos: hay demasiadas leyes estatales, algunas obligan a la IA a incrustar ideología de izquierdas, y el resultado es que China alcanzará a Estados Unidos en la carrera por la IA. Cada uno merece examinarse como afirmación sobre el mundo.</Standfirst>
+
+La afirmación numérica es fácil de verificar y fácil de leer mal. Las legislaturas estatales presentaron más de 1.000 proyectos de ley relacionados con la IA en 2025, una cifra coherente con el recuento de la National Conference of State Legislatures y reproducida por los análisis de la industria jurídica. *Presentaron* es la palabra operativa. El Future of Privacy Forum y el Council of State Governments informan de que entre 100 y 145 de esas medidas se promulgaron a lo largo de unas 38 jurisdicciones, en su mayoría de alcance estrecho — *deepfakes* en publicidad política, decisiones automatizadas de empleo, marcas de agua para IA generativa, disposiciones de protección a menores en la línea de la *Take It Down Act*. El encuadre de cincuenta regímenes regulatorios colapsa esta distribución en un mosaico agregado al que, en términos de carga de cumplimiento, sólo un pequeño subconjunto de empresas se enfrenta realmente.
+
+La acusación de censura se estrecha sobre un único objetivo nombrado. El texto de la orden identifica «una nueva ley de Colorado que prohíbe la *discriminación algorítmica*» como ejemplo de regulación estatal que «puede incluso obligar a los modelos de IA a producir resultados falsos para evitar un *trato o impacto diferencial* sobre grupos protegidos». La ley en cuestión es el Senate Bill 24-205, la Ley de IA de Colorado, firmada por el gobernador Jared Polis en mayo de 2024 y prevista ahora para entrar en vigor el 30 de junio de 2026. La ley se aplica a sistemas de IA «de alto riesgo» utilizados en decisiones consecuenciales sobre empleo, vivienda, crédito, sanidad, educación y ámbitos análogos. No regula los resultados verídicos de modelos generativos de propósito general, que es lo que el encuadre de la ficha sugiere. La lectura de la administración convierte un deber de cuidado de derechos civiles para sistemas predictivos en una obligación de mentir.
+
+<ContextBox label="Antecedentes — qué hace realmente la Ley de IA de Colorado">
+SB24-205 impone un deber de cuidado razonable a desarrolladores y desplegadores de sistemas de IA de alto riesgo para evitar la discriminación algorítmica — definida como trato diferencial ilícito en decisiones consecuenciales sobre la base de características protegidas. Exige evaluaciones de impacto, programas de gestión de riesgos y revelaciones a los consumidores, y otorga la autoridad de cumplimiento al Fiscal General de Colorado. Arquitectónicamente, es una traducción cercana del Reglamento europeo de IA, con el mismo desdoblamiento desarrollador/desplegador y la misma lógica de niveles de riesgo. No regula los resultados de texto de la IA generativa; los únicos «resultados» dentro de su ámbito son las decisiones consecuenciales que produce un sistema de alto riesgo.
+</ContextBox>
+
+La afirmación de la carrera con China se sitúa por debajo de las otras dos. El marco mayor de la administración — expuesto en *Winning the Race: America's AI Action Plan* del 23 de julio de 2025 — trata cada fricción regulatoria como una concesión competitiva. La declaración del propio presidente añadida a la ficha traza la línea explícitamente: «DEBEMOS tener un único estándar federal en lugar de un mosaico de 50 regímenes regulatorios estatales. Si no lo hacemos, China nos alcanzará fácilmente en la carrera de la IA». El paréntesis que sigue en la misma declaración — «¿Recuerdan al George Washington negro?» — alude al episodio de febrero de 2024 en el que el generador de imágenes Gemini de Google produjo representaciones racialmente diversificadas de figuras históricas, incluidos los Padres Fundadores, lo que llevó a Sundar Pichai a calificar el resultado de «completamente inaceptable» y a Google a suspender la función. Ese episodio es el ancla retórica de lo que la orden llama «*Woke AI*». No aparece en ninguna parte del texto operativo de la Orden Ejecutiva 14365.
+
+</Section>
+
+<Section number="02" title="El mosaico que la orden <em>combate</em>">
+
+<Standfirst>Las leyes estatales que la orden persigue no son, en su mayoría, lo que la orden describe. El marco de Texas reconoce explícitamente al NIST como defensa afirmativa. La traducción casi literal del Reglamento europeo de IA en Colorado se ha pospuesto y está en litigio. El encuadre de «desmesura demócrata» no resiste el mapa político.</Standfirst>
+
+Texas firmó la Texas Responsible AI Governance Act, HB 149, el 22 de junio de 2025 — bajo gobernador republicano y supermayoría republicana. La ley tejana prohíbe los sistemas de IA diseñados para «fines restringidos», incluidos la incitación al daño autoinfligido, la discriminación ilícita, la vulneración de derechos constitucionales y la generación de material de abuso sexual infantil. Crucialmente, ofrece una defensa afirmativa para las organizaciones que cumplan el AI Risk Management Framework del National Institute of Standards and Technology. Las sanciones escalan desde infracciones subsanables de 10.000 dólares hasta infracciones no subsanables de hasta 200.000 dólares, con multas diarias por infracciones continuadas. No hay acción privada.
+
+El catálogo de California es más amplio pero más estrecho en cada medida individual: una AI Transparency Act que exige marcas de agua y herramientas de detección para contenido sintético (en vigor desde agosto de 2026), disposiciones sobre *deepfakes* políticos, y una Take It Down Act federal que la primera dama promovió y el presidente firmó en mayo de 2025 para combatir las imágenes íntimas no consentidas y la explotación mediante *deepfakes*. Nevada cuenta con normas de divulgación de medios sintéticos en publicidad política. Montana tiene protecciones de derecho de imagen. Rhode Island, Nebraska, Indiana y Kentucky han añadido derechos de exclusión voluntaria frente a decisiones automatizadas a sus leyes de privacidad del consumidor. La imagen no es tanto un «mosaico de 50 regímenes regulatorios distintos» como un estrato de disposiciones específicas por daño superpuestas a dos estatutos genuinamente integrales — el de Colorado y el de Texas — ambos de los cuales remiten ahora, por referencia o por defensa afirmativa, al mismo marco federal voluntario.
+
+La coalición política detrás de la acción estatal es el hecho más incómodo para la orden. Cuarenta y dos fiscales generales estatales — bipartidistas — firmaron una carta del 9 de diciembre de 2025 a líderes de la industria de la IA expresando preocupación por respuestas «aduladoras y delirantes». Treinta y seis fiscales generales habían escrito antes al Speaker Johnson oponiéndose a la cláusula de preempción que se barajaba entonces en la National Defense Authorization Act. Veintitrés fiscales generales de estados como Arizona, Tennessee, Utah y Wisconsin presentaron un escrito ante la Federal Communications Commission el 17 de diciembre de 2025 oponiéndose a la preempción federal de las leyes estatales de IA. Los estados que la administración combate no son los que su retórica describe.
+
+</Section>
+
+<Section number="03" title="Los mecanismos, y sus <em>límites</em>">
+
+<Standfirst>Tres de los instrumentos de la orden — el grupo de litigación, la restricción de fondos BEAD y los procedimientos de preempción de las agencias — afrontan dificultades jurídicas considerables que sus propios redactores parecen conocer.</Standfirst>
+
+El Departamento de Justicia constituyó formalmente el AI Litigation Task Force el 9 de enero de 2026, mediante memorando del Fiscal General. Su mandato es impugnar leyes estatales de IA por regular inconstitucionalmente el comercio interestatal, por estar preemptadas por regulaciones federales existentes o por ser de otro modo ilícitas. A día de hoy el grupo no ha iniciado litigios en su propio nombre, pero el Departamento de Justicia ya se ha personado contra la Ley de IA de Colorado en *xAI Corp. v. Weiser*, donde xAI impugna SB24-205 sobre la base de la cláusula de Igual Protección — el giro doctrinal que trata el deber de evitar la discriminación en sistemas de IA como una forma de discriminación inconstitucional en sí misma.
+
+La restricción de BEAD es el resorte más agresivo de la orden y el más expuesto jurídicamente. El Broadband Equity, Access, and Deployment Program, establecido por la Bipartisan Infrastructure Law de 2021, dispone de 42.450 millones de dólares para extender el acceso a internet de alta velocidad en localidades sin servicio o infraservicio en los 50 estados y los territorios. Como los estados han venido ajustando los costes por debajo de lo previsto, restan unos 21.000 millones de dólares en fondos «de no despliegue» destinados a planificación, formación de mano de obra e iniciativas de adopción. La sección 5 de la orden ejecutiva condiciona la elegibilidad de un estado para esos fondos a la ausencia de leyes de IA «gravosas» según la evaluación del Departamento de Comercio.
+
+<ContextBox label="Antecedentes — por qué la condición BEAD es jurídicamente frágil">
+Bajo *South Dakota v. Dole*, las condiciones a las subvenciones federales deben formularse de modo inequívoco en el estatuto que las autoriza, guardar relación con la finalidad del programa, no ser coercitivas y no infringir otras reglas constitucionales. El estatuto BEAD (47 U.S.C. § 1702) no menciona la IA; trata de conectar localidades a la banda ancha. El Tribunal Supremo ha sostenido además — en casos que desplazan la autoridad estatal tradicional — que el Congreso debe «hacer su intención inequívocamente clara en el lenguaje del estatuto». La regulación comercial de la IA es un ejercicio clásico del *police power* estatal. *Lawfare* y el Benton Institute for Broadband &amp; Society han argumentado que la estrategia BEAD incumple la regla de declaración clara de la Cláusula de Gastos, la doctrina de cuestiones mayores y el canon federalista — tres obstáculos independientes, cualquiera de los cuales un tribunal podría usar para anular la condición.
+</ContextBox>
+
+El procedimiento de la Federal Communications Commission descansa sobre una autoridad similarmente delgada. La Communications Act de 1934 otorga a la FCC jurisdicción sobre los servicios de telecomunicaciones y autoridad limitada sobre los servicios de información. Los sistemas de IA se sitúan más cerca de la categoría de servicios de información — el Sexto Circuito sostuvo a comienzos de 2025 que la propia banda ancha es un servicio de información — y la regulación de los servicios de información bajo la Ley de 1934 está estatutariamente acotada. Veintitrés fiscales generales estatales se lo dijeron a la FCC en su escrito del 19 de diciembre. La declaración de política de la FTC ordenada por la sección 7, que trata las leyes estatales que exigen alterar resultados de la IA como preemptadas en virtud de la prohibición de prácticas engañosas de la sección 5, intenta fabricar preempción mediante interpretación administrativa en lugar de actuación congresual — una teoría que la jurisprudencia administrativa reciente del Tribunal Supremo trata con notorio escepticismo.
+
+<Comparison
+  title="Lo que la orden dispone y lo que la orden concede"
+  leftLabel="Lo que la EO dispone (secciones 3–7)"
+  rightLabel="Lo que la EO concede (sección 8)"
+  rows={[
+    { left: "Grupo de Litigación del DOJ para impugnar leyes estatales de IA", right: "Un marco nacional exige una recomendación legislativa al Congreso" },
+    { left: "Evaluación del Departamento de Comercio sobre leyes estatales «gravosas»", right: "Excepciones para protección infantil, infraestructura y contratación pública estatal" },
+    { left: "Retención de fondos BEAD de no despliegue a estados no conformes", right: "Excepción para «otros temas según se determinen»" },
+    { left: "Procedimiento de la FCC sobre un estándar federal de divulgación", right: "Implementación «conforme al derecho aplicable»" },
+    { left: "Declaración de la FTC sobre preempción por la sección 5 de las normas estatales sobre resultados", right: "No se crea acción privada de cumplimiento" },
+  ]}
+/>
+
+</Section>
+
+<Section number="04" title="Lo que la orden <em>concede</em>">
+
+<Standfirst>La sección 8 es el pasaje más sincero del documento. Ordena la elaboración de una recomendación legislativa. El marco que el título anuncia es, en términos operativos, una solicitud al Congreso.</Standfirst>
+
+El Asesor Especial para IA y Cripto y el Asistente del Presidente para Ciencia y Tecnología se encargan conjuntamente, en virtud de la sección 8(a), de preparar la legislación que establecería un marco federal uniforme de política para la IA y preemptaría las leyes estatales incompatibles con la política de la orden. La sección 8(b) enumera lo que esa legislación *no debe* preemptar: las leyes estatales sobre protección infantil; sobre infraestructura de cómputo de IA y centros de datos (salvo reformas de licenciamiento de aplicación general); sobre contratación pública y uso estatal de la IA; y sobre «otros temas según se determinen».
+
+Las excepciones no son decorativas. Cada una nombra un terreno donde la coalición preempción de la administración ya ha fracasado. La versión original de la One Big Beautiful Bill Act de la Cámara, en julio de 2025, contenía una moratoria de diez años sobre leyes estatales de IA. Tras una oposición bipartidista de cuarenta fiscales generales estatales, 260 legisladores estatales y miembros conservadores de la Cámara, incluida la representante Marjorie Taylor Greene, que afirmó que no habría votado a favor del proyecto de haber sabido que la moratoria estaba dentro, los senadores Marsha Blackburn y Ted Cruz intentaron un compromiso revisado vinculando la moratoria a la elegibilidad BEAD. También se vino abajo. El Senado retiró la moratoria por 99 a 1 el 1 de julio de 2025 — el senador Thom Tillis fue el único voto a favor de mantenerla. La ley se promulgó sin ella.
+
+<PullQuote attribution="— Sección 8(b), Orden Ejecutiva 14365">
+La recomendación legislativa prevista en la subsección (a) de esta sección no propondrá preemptar leyes estatales por lo demás lícitas relativas a la protección de menores.
+</PullQuote>
+
+El intento de noviembre de 2025 de insertar la preempción en la National Defense Authorization Act del año fiscal 2026 murió sobre el mismo terreno político. Un borrador de la propia orden ejecutiva, filtrado el 19 de noviembre, quedó retenido durante el resto de noviembre mientras los legisladores republicanos discutían su alcance. La versión firmada el 11 de diciembre es más contenida que el borrador — pero sólo porque la administración ha leído el ambiente. Dos veces en doce meses, el Congreso ha rehusado promulgar lo que la sección 8 le pide ahora promulgar.
+
+<Timeline
+  title="El año del federalismo de la IA"
+  events={[
+    { year: "Ene 2025", label: "EO 14179 revoca la orden de seguridad de IA de Biden" },
+    { year: "May 2025", label: "Se firma la Take It Down Act (explotación por deepfake)" },
+    { year: "Jul 2025", label: "El Senado retira la moratoria de la OBBB por 99–1" },
+    { year: "Jul 2025", label: "AI Action Plan + EO de procuración «Woke AI»" },
+    { year: "Nov 2025", label: "Se cae la cláusula de preempción del NDAA tras oposición de fiscales generales" },
+    { year: "Dic 2025", label: "Se firma la EO 14365; sigue carta de fiscales a la FCC" },
+    { year: "Ene 2026", label: "Se constituye el Grupo de Litigación del DOJ por memorando del Fiscal" },
+    { year: "Abr 2026", label: "El DOJ se persona en xAI v. Weiser" },
+  ]}
+/>
+
+</Section>
+
+<Section number="05" title="La cuestión de la interoperabilidad, <em>no mencionada</em>">
+
+<Standfirst>La orden es ruidosa sobre Colorado y silenciosa sobre el NIST. El marco federal voluntario que ya funciona como base de cumplimiento *de facto* es la única estructura que la orden no aborda — y la que con más probabilidad determinará cómo es realmente el gobierno nacional de la IA.</Standfirst>
+
+El National Institute of Standards and Technology publicó la versión 1.0 del AI Risk Management Framework el 26 de enero de 2023. Es voluntario, no vinculante y agnóstico al caso de uso. Organiza las obligaciones de IA fiable en cuatro funciones — *gobernar, mapear, medir, gestionar* — y se ha convertido en el documento de referencia más citado sobre gobierno organizativo de la IA en Estados Unidos. Las agencias federales lo emplean. Las leyes estatales lo citan. La TRAIGA tejana otorga al cumplimiento del marco una defensa afirmativa. La Ley de IA de Colorado permite a un desarrollador o desplegador acreditar el cuidado razonable mediante alineación con un «marco reconocido nacional o internacionalmente», siendo el NIST AI RMF e ISO/IEC 42001 los candidatos nombrados.
+
+El AI Action Plan de julio de 2025 ordenó al NIST revisar el marco para «eliminar las referencias a desinformación, Diversidad, Equidad e Inclusión y cambio climático». Esa revisión es la decisión más consecuente del año en política de IA que la orden ejecutiva del 11 de diciembre no menciona. El marco sigue siendo voluntario; las obligaciones jurídicas subyacentes del Title VII y de otras leyes federales de derechos civiles no cambian porque el NIST haya dejado de nombrarlas. Pero la limpieza del vocabulario federal cambia lo que las leyes estatales pueden citar por remisión. La presunción de Colorado de «marco nacionalmente reconocido» apunta ahora a un documento que ha sido editado para retirar precisamente los conceptos que la ley de Colorado fue escrita para abordar.
+
+Aquí es donde los silencios de la orden empiezan a hablar. Un genuino marco nacional para la IA en Estados Unidos ya existe en forma esquelética: un documento federal voluntario que los estados están incorporando a sus estatutos y que las empresas tratan como base práctica de cumplimiento. La arquitectura de lo que la Unión Europea está construyendo a través del Reglamento de IA y de lo que la doctrina hispanohablante describe como *interoperabilidad regulatoria* es, en el caso estadounidense, orientación federal voluntaria más implementación estatal más adopción industrial. La postura *jurídica* de la orden es atacar la implementación estatal. Su postura *política* es mantener viva la orientación federal voluntaria pero ideológicamente depurada. El resultado es debilitar al mismo tiempo el único mecanismo de coordinación federal existente y las leyes estatales que le darían filo, sin poner nada en su lugar.
+
+Un marco federal que preempte la ley estatal, en la forma que la sección 8 pide al Congreso redactar, tendría que especificar qué riesgos de IA se gobiernan federalmente, según qué estándar, con qué prueba y con qué exigibilidad. Nada de eso está en la orden. La pregunta para el año que viene es si el Congreso se toma en serio la sección 8(a), qué excepciones sobreviven y si lo que emerge se parece a la estructura que ya medio existe o a otra distinta.
+
+</Section>
+
+<Section number="06" title="Coda">
+
+Lo incierto es si los tres mecanismos principales de la orden — las teorías del Grupo de Litigación basadas en la cláusula de comercio y en la Primera Enmienda, la condición de no despliegue de BEAD y los procedimientos de preempción de la FCC y la FTC — sobreviven a las impugnaciones jurídicas que ya se acumulan. Veintitrés fiscales generales estatales han escrito a la FCC. Los análisis del lado de la industria, de Goodwin, Latham &amp; Watkins, Skadden y Morrison Foerster, señalan todos una exposición constitucional considerable. La jurisprudencia administrativa reciente del Tribunal Supremo se opone a la preempción mediante interpretación administrativa. Los plazos de la propia orden han comenzado a deslizarse; la evaluación del Departamento de Comercio, prevista para el 11 de marzo de 2026, no se entregó en plazo.
+
+Lo que no es incierto es que los estados continuarán legislando, que las empresas continuarán apoyándose en el marco del NIST como base operativa al margen de sus revisiones, y que la arquitectura del gobierno *de facto* estadounidense de la IA — orientación federal voluntaria, implementación estatal, adopción industrial, litigio federal — ya estaba en pie antes del 11 de diciembre de 2025. La orden ejecutiva formaliza la confrontación más de lo que cambia la topografía subyacente.
+
+Lo que el lector se lleva es un momento de política pública en el que la retórica del «marco» describe un combate, no una estructura. Las preguntas que conviene seguir no son si caerán algunas leyes estatales — caerán algunas — sino si la administración consigue desplazar el único mecanismo de coordinación federal que Estados Unidos ha producido hasta ahora. Si lo logra, lo que ocupe su lugar no provendrá de esta orden ejecutiva. Provendrá del Congreso, de los tribunales o de la lenta acumulación de práctica entre empresas que operan en jurisdicciones cuyas reglas convergen sin que nadie haya autorizado la convergencia.
+
+</Section>
