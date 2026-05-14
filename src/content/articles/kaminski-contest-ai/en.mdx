@@ -1,0 +1,176 @@
+---
+issue: "N° 16"
+date: "14 May 2026"
+sortDate: "2026-05-14"
+language: en
+track: ai-policy
+title: "The right to contest, missing from American AI law"
+titleHTML: "The right to <em>contest</em>, missing from American AI law"
+dek: "Margot Kaminski and Jennifer Urban argue that the United States has built its algorithmic accountability around audits and impact assessments while ignoring an older tool the rest of the world is reaching for — and that the country's own 1973 due-process tradition shows the gap was a choice, not an absence."
+dekHTML: "Margot Kaminski and Jennifer Urban argue that the United States has built its algorithmic accountability around audits and impact assessments while ignoring an older tool the rest of the world is reaching for — and that the country's own 1973 due-process tradition shows the gap was a <em>choice</em>, not an absence."
+coverDek: "A 90-page article in the Columbia Law Review maps four ways a right to contest AI can be designed, finds that every major instance fails differently, and argues the United States has missed something the GDPR, Brazil, Canada, and the OECD have all reached for. Four archetypes, four case studies, one diagnostic for American algorithmic law."
+source: "Based on 'The Right to Contest AI' by Margot E. Kaminski & Jennifer M. Urban · Columbia Law Review, Vol. 121, No. 7 (November 2021)"
+sourceLabel: "No. 16 · From Columbia Law Review · Kaminski & Urban"
+topics:
+  - "Algorithmic due process"
+  - "GDPR Article 22"
+  - "Right to contestation"
+  - "Regulatory interoperability"
+  - "AI accountability design"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+import Callback from '../../../components/Callback.astro';
+import Timeline from '../../../components/exhibits/Timeline.astro';
+import Scorecard from '../../../components/exhibits/Scorecard.astro';
+
+<Lede>In July 2020, the International Baccalaureate Organization gave more than 170,000 students final grades produced by an algorithm. Spring exams had been cancelled; the IBO substituted a model that combined coursework, predicted grades, and what it called "school context." Students from historically lower-performing schools were systematically downgraded. A native Spanish speaker in Colorado failed her high-level Spanish exam. The IBO refused to disclose the model's logic, refused to call it an algorithm, and offered, as recourse, only the standard appeals route — which required paying a fee. Margot Kaminski and Jennifer Urban open their ninety-page article in the *Columbia Law Review* with this case because it crystallizes the structural problem their article exists to name: American algorithmic regulation, almost alone among major jurisdictions, has decided that individuals subject to AI decisions do not need an enforceable right to contest them.</Lede>
+
+<Callback issue="N° 07" slug="risse-trilemma" lang="en">What Mathias Risse names as the "rights commitment" missing from China and partly missing from the United States, Kaminski and Urban name at the operational level: the absence of an individual right to challenge an algorithmic decision is a missing condition for AI governance that is genuinely rights-respecting.</Callback>
+
+<Section number="01" title="The gap the United States <em>chose</em>">
+
+<Standfirst>The contrast is no longer between Brussels and Washington. It is between the United States and everywhere else that has taken AI regulation seriously enough to draft a comprehensive instrument.</Standfirst>
+
+The European Union's General Data Protection Regulation, which entered into force in May 2018, gives individuals subject to certain automated decisions the right to obtain human intervention, to express their point of view, and "to contest the decision." The provision is Article 22(3). It applies to public and private actors alike. The Council of Europe's amended Convention 108, adopted in 2018 and now ratified by twelve states, includes the same right. The OECD's 2019 Recommendation on Artificial Intelligence — a soft-law instrument that has historically shaped data protection regimes around the world — recommends that those affected by an AI system be able to "challenge its outcome." Brazil's 2018 data protection law, the LGPD, includes a right to request review of decisions taken by algorithms. The Office of the Privacy Commissioner of Canada recommended in 2020 that the federal privacy statute be amended to include the right to contest. Quebec's Bill 64 followed. In April 2020 the Council of Europe issued a recommendation on the human-rights impacts of algorithmic systems explicitly calling for "effective means to contest relevant determinations and decisions."
+
+In the United States, none of the leading proposals contains anything comparable. The 2019 Algorithmic Accountability Act would have required impact assessments. The Washington Privacy Act proposed risk evaluations. The California Privacy Rights Act delegates rule-making to the new state agency for some form of opt-out and access. None establishes an enforceable individual right to contest an AI decision. The convergence in American AI policy has been on ex ante, system-wide governance — audits, documentation requirements, impact assessments — and against individual remedies. Kaminski and Urban call this convergence by name and treat it as the diagnostic problem of their article.
+
+<ContextBox label="Background — what is GDPR Article 22?">
+Article 22 of the GDPR is the EU's general regulation of automated decision-making. Paragraph 1 establishes a default prohibition on decisions "based solely on automated processing, including profiling" that produce legal or similarly significant effects on a person. Paragraph 2 carves out three exceptions: contractual necessity, authorization by Union or Member State law, and explicit consent. Paragraph 3 then requires that, where one of those exceptions applies, the data controller implement "suitable measures to safeguard the data subject's rights and freedoms and legitimate interests, at least the right to obtain human intervention on the part of the controller, to express his or her point of view and to contest the decision." The right to contest is the operative phrase. The EU AI Act, which entered force in August 2024, leaves Article 22 in place as the horizontal regime for individual remedies and overlays its own risk-based system on top.
+</ContextBox>
+
+The article's first move is to insist that this is not, on its face, a technocratic disagreement about regulatory instruments. It is a disagreement about whether the people on the receiving end of consequential algorithmic decisions are owed a procedural relationship to those decisions at all. The American answer, by default, has been no. The article is an argument that the American answer should be yes, and a sustained engagement with the design problem that follows.
+
+<Timeline
+  label="Regulatory adoption of the right to contest"
+  events={[
+    { year: "1973", label: "HEW Report frames automated data processing as a due-process problem" },
+    { year: "1978", label: "French data-protection law establishes an early right to dispute automated decisions" },
+    { year: "1995", label: "EU Data Protection Directive Article 15 — the GDPR's direct precursor" },
+    { year: "2014", label: "Google Spain decision crystallizes the Right to Be Forgotten" },
+    { year: "2016", label: "GDPR adopted with Article 22 right to contest" },
+    { year: "2018", label: "GDPR enters force; Brazil's LGPD adopts the right" },
+    { year: "2019", label: "OECD AI Recommendation includes the right to contest" },
+    { year: "2020", label: "Council of Europe Recommendation; Canada Privacy Commissioner reform proposal" },
+    { year: "2021", label: "Quebec Bill 64 includes a limited right to contest" },
+    { year: "2024", label: "EU AI Act enters force, preserving Article 22 horizontally" }
+  ]}
+  source="Adapted from Kaminski & Urban, with the EU AI Act timeline added for 2024."
+/>
+
+</Section>
+
+<Section number="02" title="Due process, <em>remembered</em>">
+
+<Standfirst>The standard objection to individualized algorithmic due process is that dignitary theory is a European import. The historical record says otherwise.</Standfirst>
+
+The case against individual contestation rights in the recent American AI scholarship runs roughly as follows. Individual rights are paternalistic and presume an unrealistic capacity to engage. Notice-and-choice has failed in privacy law and would fail again here. Dignity is an "ambiguous and contested" concept that cannot do the normative work asked of it. Aziz Huq, the most explicit recent critic, argues for a "right to a well-calibrated machine decision" — that is, a right to a systemically functioning algorithm, vindicated through aggregate litigation rather than individual challenge. The implicit corollary is that ex ante and systemic measures are the entire toolkit; individual remedies are an indulgence the regulatory state should resist.
+
+Kaminski and Urban do not deny that systemic measures are necessary. They argue that they are insufficient, and that the asymmetric attention to systemic governance has produced an analytical blind spot. The most striking move in the article is the historical one. In 1973, then-Secretary of Health, Education, and Welfare Elliot Richardson commissioned a report on automated personal-data systems. The report — known as the HEW Report and now widely treated as the foundational text of American data-privacy law — framed automated data processing explicitly as a due-process problem. Its core concept was "mutuality" between record-keepers and record-subjects. Its safeguards, later codified as the Fair Information Practice Principles, were procedural: notice, access, correction, ways for an individual "to participate in a meaningful way in decisions about what goes into records about him and how that information shall be used."
+
+<ContextBox label="Background — what is the 1973 HEW Report?">
+The Department of Health, Education and Welfare's *Records, Computers and the Rights of Citizens* was the report of an advisory committee on automated personal-data systems, published in July 1973. It is the document from which the Fair Information Practice Principles descend — the principles that, in various forms, sit underneath HIPAA, COPPA, the Privacy Act of 1974, the OECD Privacy Guidelines, and indirectly the GDPR itself. The Report's reasoning is procedural and dignitary in roughly equal measure. It worried about inaccuracy and "statistical stereotyping," but it also worried about what it called the "dehumanizing" image of computerization and the loss of individual agency over records that organizations held about people. The Report's response to those worries was a system of procedural rights, not an abstract appeal to dignity.
+</ContextBox>
+
+This matters because the most common framing of the American privacy debate — that Europe cares about dignity and the United States cares about market freedom — turns out to be a misreading of American history. The HEW Report makes the dignitary case directly. It identifies a private sphere of individual autonomy in which the data-processing organization should not act without procedural constraint. It worries that record subjects will be reduced to "data shadows" if they have no way to participate in the records held about them. These are recognizably the concerns that thirty years later produced Article 22 of the GDPR. The American refusal to write them into AI law in 2019 or 2021 is not the absence of a tradition. It is the active forgetting of one.
+
+The theoretical case for due process, Kaminski and Urban argue, runs along three tracks that map onto algorithmic decision-making with little forcing. The first is accuracy: individual contestation is how errors surface in a system the operator cannot fully see from the inside. The Idaho home-care algorithm that miscoded cerebral palsy was identified through individual administrative appeals, not through any audit the state had budgeted. The second is rule-of-law: contestation reveals whether a decision-making system is fair, consistent, predictable, and rational across cases. An algorithm that correlates creditworthiness with sock color may be mathematically defensible and substantively arbitrary; only individual challenge surfaces the second judgment. The third is liberal-theoretical: utilitarian, Lockean, and Kantian arguments all converge on the proposition that decisions which significantly affect a person warrant procedural participation by that person. The Kantian version — that treating people as objects of categorization without procedural recourse violates their dignity — is the strongest and the one most often dismissed in American scholarship. Kaminski and Urban argue it should not be dismissed.
+
+</Section>
+
+<Section number="03" title="Four ways to <em>design</em> the right">
+
+<Standfirst>Granting that there should be a right to contest AI, the harder question is how to build one that works at the speed and scale at which algorithmic decisions are made.</Standfirst>
+
+The article's central theoretical contribution is a two-axis typology of contestation rights. The first axis runs from rules to standards: how much procedural detail does the law itself supply? A contestation *rule* spells out the procedure ex ante — notice within five days, response within ten, formal requirements for filings. A contestation *standard* says only that there must be a right to contest and leaves the procedural details to the implementing entity or to later interpretation. The second axis runs from procedure to substance: does the law specify the grounds on which a decision can be contested? A *procedurally* focused right establishes how contestation happens but is silent on why. A *substantively* focused right specifies that decisions can be challenged for, say, being based on erroneous data, or on prohibited categories, or for producing discriminatory effects.
+
+The two axes generate four archetypes. Kaminski and Urban illustrate each with an existing legal regime.
+
+<Scorecard
+  label="The four contestation archetypes"
+  columns={["Detailed procedural rules?", "Substantive grounds defined?", "Illustrated by"]}
+  rows={[
+    { label: "Archetype 1 — standard + procedural", values: [false, false, "GDPR Article 22 (as written)"] },
+    { label: "Archetype 2 — rule + procedural", values: [true, false, "DMCA §512; UK implementation of Article 22"] },
+    { label: "Archetype 3 — standard + substantive", values: [false, true, "EU Right to Be Forgotten; Slovenia's implementation"] },
+    { label: "Archetype 4 — rule + substantive", values: [true, true, "Fair Credit Billing Act; France & Hungary"] }
+  ]}
+  source="Adapted from Kaminski & Urban, Section III.A. The matrix is theirs; the examples in each cell are theirs as well."
+/>
+
+The matrix does several things at once. It clarifies what the GDPR's Article 22 actually is — a standard with a procedural focus, which is to say: open at both axes. It identifies the DMCA's notice-and-takedown regime, the most influential American privatized-process scheme in the digital age, as something quite different from Article 22 despite their surface resemblance. It locates the Right to Be Forgotten — usually discussed as a free-speech problem — within a typology that makes its design choices legible. And it surfaces, in the bottom-right corner, the one example in American law of a working, well-regarded contestation scheme: the Fair Credit Billing Act's chargeback process.
+
+Each design choice carries costs and benefits. Rules are clearer, lower-cost to comply with, more predictable, and less hospitable to self-serving interpretation. They are also more brittle, more vulnerable to obsolescence, and more likely to under- or over-cover. Standards are flexible, future-proof, and able to absorb technological change, but they delegate substantive interpretation to whoever has to apply them — which, in the algorithmic case, is often the very entity whose decision is being contested. Procedural focus protects the form of participation and lowers information costs for the person contesting; substantive focus anchors the challenge to a determinate basis and prevents the right from being defanged through procedural compliance.
+
+The matrix matters not because one cell is right and the others wrong, but because the design choice has been made — somewhere, by someone — for every existing contestation regime, and the choice determines whether the regime can do what it purports to do. The article's diagnostic claim is that most American discussions of algorithmic accountability have proceeded without recognizing that this choice exists at all.
+
+</Section>
+
+<Section number="04" title="When archetypes <em>meet</em> practice">
+
+<Standfirst>None of the four archetypes is intrinsically successful. The article spends a third of its length on four case studies that show what each can become when the incentives are wrong.</Standfirst>
+
+The DMCA's section 512 notice-and-takedown regime is, on paper, a contestation rule with a procedural focus. A copyright holder sends a takedown notice with statutorily specified elements; the online service provider removes the material expeditiously; the target may send a counter-notice; if no lawsuit is filed in ten to fourteen days, the material goes back up. In practice, it has decayed into something less than that. Empirical work has found that 29% to 70% of takedown notices in various samples were flawed or improper. Counter-notices are vanishingly rare; service providers describe them as a dead letter. Statutory damages of up to $150,000 per infringed work create asymmetric risk that pushes platforms toward removal at scale. For platforms receiving millions of notices, the substantive copyright question disappears entirely; algorithms remove material on the strength of facially-conforming notices, and counter-notice senders accept perjury exposure and federal-court jurisdiction in exchange for the chance to put their content back. The contestation right exists; almost no one uses it.
+
+The EU's Right to Be Forgotten is, by contrast, a contestation standard with a substantive focus. The Court of Justice's 2014 *Google Spain* decision established that search engines, as data controllers, must respond to individual requests to delist personal data from search results — and articulated a substantive balancing test between the individual's interest in privacy and the public's interest in access to information. It did not specify a procedure. Google built its own: a webform, a small team of reviewers, an internal senior panel for harder cases, a notification to the requester with reasons if the request is rejected. Regulators have filled in some of the substantive criteria over time. The system processes claims; roughly fifty-eight percent of targeted content stays up. The deeper criticism is that the substantive balancing — between two fundamental rights — happens inside a private company, with no public participation in the public-interest side of the balance and no consistent transparency about how decisions are made.
+
+The Fair Credit Billing Act, finally, is a contestation rule with a substantive focus. The 1974 statute defines a "billing error" with operational precision (a charge not made by the cardholder; a charge in the wrong amount; a charge for goods not delivered; and a closed list of further categories). It prescribes notice timelines, response timelines, and reason-giving requirements. It runs through credit card companies, which are not neutral arbiters, but the incentive structure is calibrated such that companies generally find it cheaper to reverse the charge than to investigate. Credit card companies rule for consumers in 80 to 90 percent of disputes. Consumers, by all available evidence, regard the system as broadly fair. The FCBA is the closest thing American law has to a successful privatized contestation scheme, and it operates on a substance — "did this charge happen as represented?" — that is unusually easy to specify.
+
+The GDPR's Article 22, the article's first archetype, is the youngest of the four and the most uncertain. The right is written as a standard. The Guidelines from the European Data Protection Board treat it as central — "the backbone" of Article 22's safeguards, in Emre Bayamlıoğlu's formulation — but spell out little of its substance. Member States have implemented it in dramatically different ways: the United Kingdom turned it into a heavily proceduralized regime with no substantive backstop; Slovenia and Hungary added substantive prohibitions on automated decisions that violate equal treatment or use sensitive data; France grafted it onto its administrative-law tradition with strong reason-giving requirements. In the first Dutch court decisions applying the right, in 2021, the Court of Amsterdam found that Ola and Uber owed their drivers explanations sufficient to support meaningful contestation. The shape of the right is being filled in by courts and regulators in real time. Whether it ends up as a working right or as a dead letter — the fate of its predecessor in the 1995 Directive — is not yet settled.
+
+<PullQuote attribution="— Kaminski & Urban">
+The point is not that process alone matters. The point is that it matters, too.
+</PullQuote>
+
+The lesson Kaminski and Urban draw from these case studies is not that one archetype is better than another. It is that every contestation scheme depends on a cluster of design choices — incentive structures, judicial backstops, transparency requirements, the identity and capacity of the decision-maker — that determine whether the right works in practice. The DMCA fails not because it is a rule rather than a standard but because its risk asymmetries make over-removal rational. The RTBF works imperfectly not because it is a standard but because the public-interest side of the balance has no institutional voice. The FCBA works because the substance is clean, the incentives are right, and the credit-card industry depends on consumer trust. Architecture is destiny only insofar as the architect knows what they are choosing.
+
+</Section>
+
+<Section number="05" title="Notice, reasons, and a <em>legitimate</em> decision-maker">
+
+<Standfirst>The article's final move is to translate the design analysis into a set of conditions a working right to contest AI would have to meet, regardless of which archetype legislators chose.</Standfirst>
+
+Five conditions emerge. The first is notice and reason-giving. Contestation without an explanation of the decision being contested is, in the article's phrase, "largely meaningless." Henry Friendly's classic enumeration of due-process elements puts reason-giving at the center; Frederick Schauer's defense of reason-giving as a sign of respect for the subject of a decision is even more pointed. The GDPR's much-debated "right to explanation" — the requirement, in Articles 13 through 15, that individuals receive "meaningful information about the logic involved" in automated decision-making — is, on Kaminski's reading elsewhere, in service of the contestation right. Reason-giving is the precondition. Without it, the right collapses into the bare opportunity to file a complaint into an opaque process.
+
+The second is a real opportunity to be heard. Article 22 establishes a right to "express his or her point of view"; whether this means anything in practice depends on how the controller treats the input. The UK implementation requires the data controller to "consider the request, including any information provided by the data subject" — but without substantive standards for what it means to consider, this can be a rubber stamp. The French administrative-law tradition imposes stronger participation requirements on public-sector algorithmic decisions; the private-sector case is less clear. A right to be heard that is not coupled to a duty to engage with what is said is process-giving, not participation.
+
+<ContextBox label="Background — what is the right to explanation?">
+The phrase refers to a cluster of GDPR provisions that, together, require those who make automated decisions about individuals to disclose something about how the system works. Article 13 and Article 14 impose notice obligations at collection. Article 15 establishes a right of access that includes "meaningful information about the logic involved" and the "significance and envisaged consequences" of automated processing. Recital 71 — non-binding but interpretively important — refers to the data subject's right to "obtain an explanation of the decision reached." Whether these provisions amount to a true right to ex post explanation of individual decisions, or only to ex ante system-level disclosure, has been the subject of a sizable scholarly debate (the Wachter–Mittelstadt–Floridi position is more deflationary; the Selbst–Powles and Kaminski positions more expansive). The European Data Protection Board's guidance treats the explanation as in service of the right to contest.
+</ContextBox>
+
+The third is a legitimate, if not strictly neutral, decision-maker. The ideal of due process is adjudication by an uninvolved third party; the practical reality of privatized algorithmic contestation almost never delivers that. The choice is then between accepting a non-neutral arbiter and structuring the system to discipline that arbiter's discretion. Three tools matter here. Regulatory oversight — what the GDPR provides through data protection authorities, and what the FCBA partially provides through the Consumer Financial Protection Bureau — gives a non-judicial backstop. Judicial appeal — what Rory Van Loo has proposed for platform decisions, and what existing U.S. administrative law provides for some government uses of AI — gives a substantive backstop. Internal organizational design — independent officers, conflict-of-interest rules, whistleblower protections — gives a structural backstop. Some combination is required. None is sufficient alone.
+
+The fourth is calibrated incentives. The DMCA case study is the warning. When the cost of refusing a request is higher than the cost of granting it, the privatized arbiter will grant. The FCBA case study is the model. When the substantive question is clean enough that the arbiter can resolve it cheaply and the long-run business interest favors fair adjudication, the system can work without a neutral judge. A right to contest AI that does not think through the asymmetries of cost and risk between the decision-maker and the affected individual will replicate the DMCA's failures.
+
+The fifth is systemic embedding. An individual right to contest is, on its own, a thin instrument. The valuable individual rights in the GDPR are not standing alone; they are embedded in a system of impact assessments, documentation requirements, design obligations, and regulatory oversight that operates on the algorithmic system from above while the individual right operates on the individual decision from below. The article's normative recommendation is that a U.S. right to contest AI should operate as a floor across sectors, augmented by sector-specific obligations in domains — criminal justice, housing, employment, credit — where the stakes warrant more. It should be embedded in a regulatory environment that uses ex ante and systemic tools as well, not as a substitute for them. The right matters; it matters too.
+
+</Section>
+
+<Section number="06" title="A diagnostic for <em>interoperability</em>">
+
+<Standfirst>What the article hands a researcher working on transatlantic regulatory comparison is more than a doctrinal claim. It is a typology that makes comparison possible.</Standfirst>
+
+The article's most useful gift to anyone studying whether American AI regulation can claim equivalence with European AI regulation is the four-archetype matrix. The matrix lets a comparison move past the question of whether two regimes "have" a right to contest and toward the question of where each regime sits on the design axes, what substantive grounds for challenge each makes available, and what incentive and oversight structures the regime depends on. Two regimes that nominally include a right to contest can still differ structurally — as the GDPR's standard-based Article 22 differs from the FCBA's rule-based regime — and the differences may matter more than the surface presence or absence of the right.
+
+The deeper structural point is that the right to contest is not separable from the regulatory architecture in which it sits. The NIST AI Risk Management Framework, which has organized federal-agency AI governance in the United States since 2023, is a voluntary risk-management instrument oriented entirely toward systemic questions: govern, map, measure, manage. It does not contain — and does not pretend to contain — an individual contestation right. Whatever its merits as a risk-management tool, it cannot be a vehicle through which an entity demonstrates substantial compliance with the operative provision of Article 22, because the provision is irreducibly individual. The question for an interoperability researcher is then whether the gap can be filled by something else in the American regulatory environment — sectoral statutes, administrative due-process doctrine, constitutional process where state action is involved, contractual remedies, the FCBA-style schemes that exist in particular markets — and whether that something-else collectively performs the function Article 22 is meant to perform. Kaminski and Urban do not answer that question. They sharpen it.
+
+The article also provides the historical resource for an argument that the gap in American law is not a feature of American constitutional culture. The HEW Report is American; the dignitary tradition in American due-process theory is American; the FCBA, with its quietly successful contestation scheme, is American. The reasons for the gap are political and intellectual rather than constitutional, and the gap can in principle be closed.
+
+</Section>
+
+<Section number="07" title="Coda — <em>what</em> the piece is for">
+
+<Standfirst>Three things the article establishes and one it leaves open.</Standfirst>
+
+What the article establishes is, first, that the United States is now an outlier among major jurisdictions in declining to recognize an individual right to contest AI decisions. The outlier status is recent. It is the product of a particular choice in the late 2010s — to treat algorithmic accountability as a problem of systemic governance — and the choice was made without much attention to the alternative. Second, the article establishes that the alternative is not a foreign import. The American tradition of due process applied to automated systems is older than the GDPR and was articulated in terms that the GDPR's drafters would have recognized. Third, the article establishes that the design problem is real and that simply legislating a right to contest, without thinking through which of the four archetypes the right belongs to and what supporting structures it requires, is likely to produce something that looks like the DMCA — present on paper, defanged in practice.
+
+What the article leaves open is the harder political question of why the American gap exists. The article gestures at it — the asymmetric attention of the post-2017 algorithmic-accountability literature, the influence of particular scholars who explicitly rejected individual remedies — but does not press it. The political economy of why American algorithmic regulation has converged on impact assessments and audits rather than on individual rights, and what would change that convergence, is the next research problem. The doctrinal scaffolding the article supplies is the precondition for that work, not a substitute for it.
+
+For a reader engaged in transatlantic regulatory comparison, the article is unusual in that it is a tool first and a polemic second. The polemical thread — that the United States should have a right to contest AI — is sustained throughout, but it is not what the article is mainly *for*. What the article is for is the matrix, the case studies, and the conditions a working right must meet. Those are portable. They survive disagreement with the polemic. They can be used by a researcher who is neutral on whether the gap should be closed and only wants to describe where it is.
+
+</Section>
