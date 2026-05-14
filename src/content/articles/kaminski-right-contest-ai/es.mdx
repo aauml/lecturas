@@ -1,0 +1,147 @@
+---
+issue: "N° 15"
+date: "14 May 2026"
+sortDate: "2026-05-14"
+language: es
+track: ai-policy
+title: "El derecho a discutir con la máquina"
+titleHTML: "El derecho a discutir con la <em>máquina</em>"
+dek: "Margot Kaminski y Jennifer Urban construyen una argumentación teórica para un derecho individual de impugnación de decisiones tomadas por IA, proponen cuatro arquetipos para articularlo en la práctica y analizan por qué Estados Unidos — a diferencia de la UE, Brasil y Canadá — sigue sin reconocerlo."
+dekHTML: "Margot Kaminski y Jennifer Urban construyen una argumentación teórica para un derecho individual de impugnación de decisiones tomadas por IA, proponen cuatro arquetipos para articularlo en la práctica y analizan por qué Estados Unidos — a diferencia de la UE, Brasil y Canadá — sigue sin reconocerlo."
+coverDek: "En 2021, Kaminski y Urban publicaron un marco de referencia para el derecho individual a impugnar decisiones de IA. El Reglamento IA ha añadido nuevas capas desde entonces. Estados Unidos sigue sin contar con un derecho de impugnación de alcance general. Sus cuatro arquetipos permanecen como el instrumento analítico más claro disponible."
+source: "Basado en Margot E. Kaminski & Jennifer M. Urban, The Right to Contest AI, 121 Columbia Law Review 1957 (2021)"
+sourceLabel: "N° 15 · Columbia Law Review (2021)"
+topics:
+  - "Derecho de impugnación"
+  - "Artículo 22 RGPD"
+  - "Reglamento IA"
+  - "Garantías procesales algorítmicas"
+  - "Arquetipos regulatorios"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+import Scorecard from '../../../components/exhibits/Scorecard.astro';
+
+<Lede>Isabel Castaneda había pasado dos años de bachillerato calculando. Procedía de una familia con pocos recursos y había trazado, asignatura por asignatura, cuántos créditos universitarios podía acumular a través del programa del Bachillerato Internacional antes de que comenzara la matrícula. En julio de 2020, tras la cancelación de los exámenes de primavera por la pandemia, un algoritmo evaluó su trabajo en su lugar. Suspendió varios cursos del BI — entre ellos español de nivel superior, su lengua materna. La OBI se negó a explicar su modelo de manera significativa, calificándolo de "modelo de calificación, no de algoritmo informático", una caracterización que los expertos consideraron inverosímil. Su proceso de apelación ordinario requería el pago de tasas que ella no podía asumir. Más de 15.000 estudiantes y progenitores firmaron una petición. La OBI revisó algunas calificaciones y nunca explicó por qué cada nota era la que era. Esta historia abre un artículo publicado en 2021 en la Columbia Law Review por Margot Kaminski y Jennifer Urban — y es también el problema que lo anima: cuando un algoritmo toma una decisión trascendente sobre ti, ¿qué derecho tienes a recurrirla?</Lede>
+
+<Section number="01" title="Algoritmos que fallan y decisiones que no se pueden <em>impugnar</em>">
+
+<Standfirst>Kaminski y Urban no comienzan por el derecho sino por el fracaso: el registro acumulado de sistemas de IA que toman decisiones importantes de forma deficiente, y la constatación de que las salvaguardias habituales de la toma de decisiones humana no se trasladan bien a este dominio.</Standfirst>
+
+El escándalo de las calificaciones del BI no fue un caso aislado. Ese mismo verano, Inglaterra, Gales e Irlanda del Norte utilizaron un algoritmo para asignar las notas del acceso a la universidad a estudiantes cuyos exámenes habían sido cancelados; casi el 40% recibió calificaciones inferiores a las previstas por sus profesores, y las autoridades las revirtieron únicamente tras la presión pública. En los años siguientes, controversias similares han aflorado en sistemas de prestaciones sociales, evaluaciones de riesgo en condenas penales, asignación de cuidados a domicilio y plataformas de selección de personal.
+
+El artículo cataloga estos fracasos no para construir un argumento contra la IA en general, sino para caracterizar lo que tiene de particular el error algorítmico. Los decisores humanos pueden ser parciales, arbitrarios o equivocados — esto no es nuevo. Lo que sí es nuevo es el carácter específico del fallo algorítmico. Un algoritmo toma decisiones categóricas a velocidad y escala, usando reglas fijadas en la fase de diseño por personas que quizás no anticiparon todas las poblaciones a las que se aplicaría el sistema. Kaminski y Urban denominan esto el "problema de la cola larga". Un algoritmo de detección de fraude del programa SNAP de cupones de alimentación, entrenado para marcar compras realizadas en números redondos, señaló a tiendas de comestibles de la comunidad somalí-americana donde los clientes compraban carne habitualmente por importes enteros. El algoritmo no estaba equivocado al identificar las compras redondas como inusuales; estaba equivocado respecto a lo que esa inusualidad significaba en este contexto.
+
+<ContextBox label="¿Qué es el artículo 22 del RGPD?">
+El artículo 22 del Reglamento General de Protección de Datos de la UE, en vigor desde mayo de 2018, establece que las personas sujetas a decisiones basadas exclusivamente en el tratamiento automatizado que produzcan efectos jurídicos o efectos significativos similares deben tener acceso al menos al derecho a obtener intervención humana, a expresar su punto de vista y a impugnar la decisión. Es el principal instrumento jurídico que reconoce un derecho individual a recurrir las decisiones de la IA en la UE — y el equivalente más próximo a lo que Kaminski y Urban sostienen que Estados Unidos carece.
+</ContextBox>
+
+Sobre el error categórico se superpone la opacidad. Para los algoritmos actuariales — de derivación estadística y relativamente interpretables — quien impugna puede al menos ver los factores que el sistema ponderó. Para los sistemas de aprendizaje automático de caja negra, ni siquiera los propios diseñadores pueden explicar con precisión por qué se produjo una determinada salida. Los revisores humanos de las decisiones algorítmicas agravan el problema mediante el "sesgo de automatización": tratan los resultados de la máquina como autorizados incluso cuando algo parece incorrecto. Una paciente de cuidados a domicilio a quien se redujeron sus horas de asistencia descubrió que ni ella ni la trabajadora social que introdujo sus datos podían "comprender del todo lo que estaba ocurriendo". El proveedor del software que implementaba el algoritmo ignoraba que este no tenía correctamente en cuenta la diabetes. La impugnación individual es, en este entorno, el mecanismo por el que una excepción de cola larga aflora, un error sistemático se nombra y una corrección se hace posible.
+
+</Section>
+
+<Section number="02" title="Lo que dice el artículo 22 del RGPD — y lo que <em>calla</em>">
+
+<Standfirst>El RGPD reconoció un derecho de impugnación en 2018; el Reglamento IA añadió un derecho de explicación para los sistemas de alto riesgo en 2024. Estados Unidos no cuenta con ninguno de los dos a escala federal. Kaminski y Urban analizan por qué el texto europeo, a pesar de ser el más desarrollado en este ámbito, sigue siendo llamativamente indeterminado.</Standfirst>
+
+El artículo 22 del RGPD es el principal referente comparativo del artículo, y la primera tarea de Kaminski y Urban consiste en explicárselo a un público estadounidense que en gran medida lo ha ignorado. Cuando una decisión se basa exclusivamente en el tratamiento automatizado y produce efectos jurídicos o efectos significativos similares sobre la persona, el responsable del tratamiento debe aplicar medidas adecuadas que incluyan al menos la intervención humana, la posibilidad de expresar el punto de vista y el derecho a impugnar la decisión.
+
+Lo que hace que este derecho sea jurídicamente singular — y prácticamente resbaladizo — es lo que el texto no dice. No define en qué debe consistir una impugnación adecuada, no establece plazos, no exige contenidos específicos para la respuesta y no indica las bases sustantivas sobre las que un recurso puede prosperar. Las directrices de los organismos reguladores se limitan en gran medida a reiterar el propio texto del RGPD. Un ejemplo de cumplimiento que se ofrece consiste en facilitar "un enlace a un proceso de apelación en el momento en que la decisión automatizada se comunique al interesado, con plazos acordados para la revisión y un punto de contacto designado para cualquier consulta." Se trata de un estándar al que se ha atribuido contenido normativo mínimo.
+
+El derecho tiene una genealogía. Una ley francesa de protección de datos de 1978 ya prohibía las decisiones automatizadas sobre ciudadanos sin reconocerles el derecho a "impugnar los datos y la lógica utilizados". La Directiva europea de protección de datos de 1995 contenía un precepto precursor que Lee Bygrave describió más tarde como "bien vestido pero sin adónde ir" — rara vez invocado, mal comprendido, fácilmente eludido. El artículo 22 mejoró ese texto añadiendo lenguaje de impugnación explícito. Durante la mayor parte de los primeros años del RGPD, su contenido práctico continuó siendo escaso; el primer reconocimiento judicial de un derecho de explicación en virtud del artículo 22 tuvo lugar en un tribunal neerlandés en 2021, el mismo año de este artículo.
+
+Desde entonces, el panorama jurídico ha cambiado. El Reglamento IA de la UE, adoptado en 2024 y de aplicación progresiva hasta 2026–2028, superpone al RGPD normas sectoriales específicas para los sistemas de IA de alto riesgo. El artículo 86 del Reglamento IA reconoce un derecho de explicación para las personas afectadas cuando un sistema de alto riesgo produce decisiones con efectos significativos sobre la salud, la seguridad o los derechos fundamentales. El artículo 85 crea el derecho a presentar una reclamación ante las autoridades nacionales de vigilancia del mercado. Estos preceptos se aplican en paralelo al RGPD, sin sustituirlo. La interacción práctica entre ambos marcos — qué precepto rige en qué contexto, si exigen procedimientos paralelos — permanece en gran medida sin resolver.
+
+Estados Unidos carece de algo equivalente a escala federal. La Ley de Responsabilidad Algorítmica propuesta en 2019 habría exigido evaluaciones de riesgo de los sistemas de decisión automatizada; no reconocía ningún derecho individual a impugnar una decisión. La Ley de Derechos de Privacidad de California, promulgada en 2020, encargó a la Agencia de Protección de la Privacidad de California la elaboración de reglamentos sobre la toma de decisiones automatizada, pero no llegó a reconocer un derecho de impugnación. Lo que existe en Estados Unidos es un conjunto de leyes tecnológicamente neutras — procedimiento administrativo, legislación antidiscriminación, garantías procesales sectoriales — que podrían, en contextos específicos, extenderse para cubrir una decisión de IA. Los obstáculos doctrinales son considerables, las cargas probatorias formidables y la cobertura fragmentada.
+
+</Section>
+
+<Section number="03" title="Tres razones por las que las garantías procesales aplican a las <em>máquinas</em>">
+
+<Standfirst>La sección teórica del artículo construye un argumento desde la teoría clásica del proceso debido, articulado en tres planos — exactitud, Estado de derecho y dignidad — y responde directamente al rechazo académico más influyente de los derechos individuales de impugnación.</Standfirst>
+
+El argumento en favor de las garantías procesales individuales frente a los decisores humanos es antiguo. Extenderlo a las decisiones algorítmicas requiere mayor elaboración, y Kaminski y Urban lo proporcionan a través de tres canales.
+
+El primero es la exactitud. Las garantías procesales atajan el error antes de que se multiplique. Los recursos individuales revelan lo que la supervisión sistémica no ve — en particular, el caso de cola larga que el algoritmo no estaba diseñado para gestionar. La rehabilitación de las tiendas somalí-americanas llegó a través de la impugnación individual. La revelación de que un algoritmo de cuidados a domicilio no computaba correctamente la diabetes — afectando a centenares de pacientes — llegó a través de acciones legales individuales. Quienes critican los derechos de impugnación argumentan que las auditorías sistémicas realizan mejor esta función. Kaminski y Urban responden que las auditorías no pueden detectar lo que no saben que deben buscar. La persona que sabe que su nota en su lengua materna es incorrecta es una señal de error insustituible.
+
+El segundo canal es el Estado de derecho. Un sistema de toma de decisiones que no puede ser impugnado no puede ser sometido a coherencia. La impugnación, unida a la motivación que requiere, disciplina a los decisores para aplicar las normas de manera uniforme y demostrar que así lo hacen. No se trata solo de corregir malas decisiones ex post; se trata de estructurar cómo se toman en previsión del recurso.
+
+<PullQuote attribution="— Abogado de pacientes, citado en Kaminski &amp; Urban (2021)">Reducimos la humanidad de una persona a un número.</PullQuote>
+
+El tercer canal es la dignidad. Gran parte de la doctrina estadounidense sobre responsabilidad algorítmica ha descartado los argumentos de dignidad como vagos préstamos europeos. Kaminski y Urban replican señalando el Informe HEW de 1973 — el documento fundacional de la política de privacidad del Departamento de Salud, Educación y Bienestar de Estados Unidos — que enmarcó explícitamente el tratamiento automatizado de datos como un problema de garantías procesales y reclamó que las personas pudieran "impugnar la etiqueta que se les aplica". Los principios del Informe HEW se convirtieron en la base de las leyes sectoriales de privacidad estadounidenses, incluidas HIPAA y COPPA. La preocupación por la dignidad siempre estuvo ahí; fue progresivamente estrechada a medida que el derecho de privacidad en Estados Unidos retrocedió hacia un modelo de notificación y elección que trasladó toda la carga a los individuos.
+
+El principal interlocutor crítico del artículo es Aziz Huq, quien sostiene que la finalidad del proceso individual es esencialmente utilitaria — garantizar la exactitud sistémica — y que las acciones colectivas y la regulación ex ante orientadas al comportamiento del sistema la sirven mejor que los recursos individuales. Kaminski y Urban responden que esto confunde las finalidades instrumentales y de dignidad del proceso. El derecho a impugnar una decisión que te afecta no es reducible a un instrumento de calibración del sistema; es una forma de participación, de reconocimiento de que la decisión se tomó sobre una persona y no sobre un dato. La frase del abogado de los pacientes de cuidados a domicilio — "reducimos la humanidad de una persona a un número" — no desaparece demostrando que las auditorías son más baratas.
+
+</Section>
+
+<Section number="04" title="Dos ejes, cuatro arquetipos y los ejemplos que los <em>contrastan</em>">
+
+<Standfirst>La contribución más duradera del artículo es una tipología 2x2 de los diseños de impugnación, trazada sobre un eje normas-estándares y un eje procedimental-sustantivo, y aplicada a cuatro regímenes jurídicos existentes para mostrar el coste de cada opción de diseño.</Standfirst>
+
+Una vez establecido que el derecho de impugnación debe existir, Kaminski y Urban pasan a analizar qué forma debería adoptar. Identifican dos variables de diseño fundamentales.
+
+La primera es si el mecanismo de impugnación se articula como una norma específica o se deja como un estándar abierto. Una norma de impugnación concreta los detalles ex ante — plazos, formatos, elementos obligatorios de la notificación, procedimientos de respuesta. Un estándar de impugnación reconoce que el derecho existe y deja los detalles a quien lo aplique. Las normas son claras y relativamente baratas de cumplir; los estándares son flexibles y adaptables, pero dejan margen para que actores con intereses propios diseñen procedimientos que cumplan nominalmente sin ofrecer nada útil.
+
+La segunda variable es si el derecho de impugnación tiene contenido procedimental o sustantivo. Un derecho sustantivo especifica los fundamentos sobre los que un recurso puede prosperar — datos erróneos, discriminación prohibida, categorías especiales de datos. Un derecho puramente procedimental especifica solo cómo impugnar, no cuándo se gana.
+
+<Scorecard
+  label="Los cuatro arquetipos de impugnación"
+  subtitle="Cada celda nombra el tipo de diseño y un ejemplo real"
+  columns={["Estándar de impugnación", "Norma de impugnación"]}
+  rows={[
+    {
+      label: "Enfoque procedimental",
+      values: [
+        "Artículo 22 RGPD: el derecho existe, el procedimiento y el fondo quedan en manos de los implementadores",
+        "DMCA § 512; Ley de Protección de Datos del RU 2018: plazos precisos, sin revisión sustantiva requerida"
+      ]
+    },
+    {
+      label: "Enfoque sustantivo",
+      values: [
+        "Derecho al olvido de la UE; implementación eslovena del RGPD: ponderación sustantiva, sin normas procedimentales",
+        "Ley de Facturación Justa de Crédito (FCBA); implementaciones húngara y francesa del RGPD: fondo y procedimiento especificados"
+      ]
+    }
+  ]}
+/>
+
+El artículo 22 del RGPD, tal como está redactado, se sitúa en el primer cuadrante: un estándar de impugnación con enfoque procedimental. Indica a las empresas que deben permitir los recursos, pero dice casi nada sobre en qué deben consistir o cuándo deben prosperar. Esto deja a los Estados miembros libres para implementar el derecho de formas muy distintas — el Reino Unido optó por un enfoque marcadamente procedimental (plazos de un mes, respuesta escrita obligatoria), Eslovenia lo anclé en el derecho antidiscriminatorio, Hungría y Francia prohibieron las decisiones automatizadas basadas en categorías especiales de datos.
+
+La sección 512 de la DMCA ilustra el segundo cuadrante: una norma de impugnación con enfoque procedimental. La ley especifica en detalle qué debe contener una notificación de retirada, con qué rapidez debe actuar la plataforma y qué debe incluir una contranotificación. El fondo — la infracción de derechos de autor — existe pero raramente se aplica en la práctica. Las plataformas consideran más seguro y barato retirar el contenido ante cualquier notificación correctamente formulada que hacer un análisis jurídico. El mecanismo de contranotificación, que debería permitir a los destinatarios restaurar contenido retirado indebidamente, apenas se utiliza; los profesionales lo describen como papel mojado. Un procedimiento preciso sin compromiso sustantivo produce un sistema en que la parte más fuerte — el titular de derechos — domina.
+
+El derecho al olvido de la UE y algunas implementaciones nacionales del RGPD corresponden al tercer cuadrante: un estándar de impugnación con enfoque sustantivo. El Tribunal de Justicia en Google Spain (2014) estableció un test de ponderación entre el interés individual en la privacidad y el interés público en el acceso a la información, pero casi nada dijo sobre el procedimiento. Google construyó su propio formulario de solicitud y proceso de revisión; los reguladores elaboraron gradualmente los criterios. El estándar se ha hecho más normativo con el tiempo, aunque nunca fue diseñado así.
+
+La Ley de Facturación Justa de Crédito ocupa el cuarto cuadrante: una norma de impugnación con enfoque sustantivo. La ley define "error de facturación" con suficiente precisión para limitar la discrecionalidad — un cargo no realizado por el titular, un cargo por importe erróneo, bienes no entregados. También especifica plazos y procedimientos obligatorios. El resultado es un proceso de impugnación que los defensores del consumidor consideran en general exitoso: gratuito, accesible, rápido, con las entidades de tarjetas de crédito fallando a favor del consumidor en torno al 80–90% de los casos. El sistema funciona en parte porque "error de facturación" es un concepto sencillo de definir. La discriminación en la contratación por IA no lo es.
+
+</Section>
+
+<Section number="05" title="Notificación, motivación y un decisor con algo que <em>perder</em>">
+
+<Standfirst>Las recomendaciones de diseño del artículo se condensan en tres requisitos que la mayoría de los mecanismos de impugnación privados no logran satisfacer simultáneamente: notificación significativa, motivación genuina y estructuras de incentivos que efectivamente orienten a los decisores hacia resultados justos.</Standfirst>
+
+La lección más dura de los estudios de caso es que la claridad procedimental y el anclaje sustantivo son ambos necesarios y ninguno suficiente por sí solo. La DMCA ofrece claridad procedimental sin compromiso sustantivo. El artículo 22 del RGPD ofrece una aspiración sustantiva sin claridad procedimental. La FCBA ofrece ambas cosas — pero solo porque "error de facturación" es un concepto suficientemente simple.
+
+La notificación significativa no es un enlace enterrado en una política de privacidad. Es la información suficiente para permitir un recurso — lo bastante específica para que la persona sepa qué decisión se tomó sobre ella, con qué base y qué vía existe para impugnarla. La motivación no es un resumen de la lógica general del algoritmo; es información suficientemente específica para identificar qué estuvo mal en el caso concreto. Los reguladores del RGPD denominan esto "información significativa sobre la lógica aplicada" y lo articulan junto a un "derecho de explicación" para las decisiones individuales, pero los Estados miembros han interpretado estos requisitos con niveles de especificidad muy distintos. El enfoque francés en el sector público — que exige a los funcionarios explicar, a la persona afectada, en detalle, cómo se aplicó el tratamiento algorítmico a su situación concreta — representa el extremo más exigente del espectro.
+
+<ContextBox label="Reglamento IA — preceptos de impugnación (2024)">
+El Reglamento IA de la UE, de aplicación progresiva hasta 2026–2028, añade dos derechos conexos a la impugnación para las personas afectadas por sistemas de IA de alto riesgo. El artículo 86 crea el derecho a la explicación — sobre el modo en que el sistema intervino en una decisión trascendente, en lenguaje comprensible — cuando esa decisión tiene efectos significativos sobre la salud, la seguridad o los derechos fundamentales. El artículo 85 crea el derecho a presentar una reclamación ante las autoridades nacionales de vigilancia del mercado. Estos preceptos se aplican en paralelo al artículo 22 del RGPD, sin sustituirlo. La interacción práctica entre los dos marcos — qué rige en cada contexto, si exigen procedimientos paralelos — permanece en gran medida sin resolver.
+</ContextBox>
+
+La observación más incisiva del artículo concierne a los incentivos. Los mecanismos de impugnación operan sobre un fondo de riesgo de responsabilidad, estructuras de costes y asimetrías de información que condicionan lo que incluso un decisor bien intencionado hará. La DMCA ilustra el problema: la potencial responsabilidad de las plataformas por infracción de derechos de autor las lleva a retirar contenidos ante notificaciones correctamente formuladas sin hacer un análisis sustantivo. El mecanismo de contranotificación se ve enfriado por un riesgo asimétrico — el destinatario debe asumir la exposición por perjurio y la jurisdicción de los tribunales federales estadounidenses, mientras el remitente original afronta consecuencias menores por declaraciones falsas. Diseñar un mecanismo de impugnación significa diseñar la estructura de riesgos, no solo el procedimiento.
+
+El éxito de la FCBA refleja una estructura de incentivos que funciona a favor del consumidor. Investigar una disputa de facturación es caro; reembolsar el cargo es barato. La ley hace obligatoria la investigación una vez presentada la reclamación, lo que inclina el cálculo de costes hacia la resolución temprana. No es que la ley exigiera generosidad de las entidades — es que les resultaba más barata que la alternativa.
+
+Para Estados Unidos, Kaminski y Urban abogan por un umbral de aplicación general: un derecho de impugnación allí donde la IA tome decisiones con efectos significativos, con independencia del sector, complementado por normas sectoriales específicas en ámbitos — justicia penal, crédito, vivienda, empleo — donde los regímenes regulatorios existentes ya cuentan con tradiciones más desarrolladas de garantías procesales. Este umbral no debería ser ni el estándar indeterminado del RGPD ni la norma sobrearticulada pero sustantivamente vacía de la DMCA, sino algo más cercano a la FCBA: claro en cuanto al fondo, suficientemente especificado en cuanto al procedimiento para ser útil, e integrado en un entorno regulatorio con sanciones reales por incumplimiento.
+
+</Section>
+
+El artículo se publicó en 2021, cuando el Reglamento IA era todavía una propuesta de la Comisión y el artículo 22 no había visto su primera interpretación judicial. Cinco años después, la UE ha añadido los artículos 85 y 86 a la arquitectura de impugnación. Estados Unidos sigue sin contar con un derecho de impugnación de alcance general.
+
+Lo que el marco de Kaminski y Urban expone con mayor nitidez es la distancia entre tener un derecho de impugnación sobre el papel y tener uno que funcione. El artículo 22 del RGPD está en vigor desde 2018; el primer tribunal que reconoció un derecho de explicación en su virtud lo hizo en 2021. El mecanismo de contranotificación de la DMCA existe desde 1998 y prácticamente no se usa. La arquitectura procedimental no produce impugnación por sí sola. Produce las condiciones en las que la impugnación se hace posible — condiciones que siguen requiriendo un anclaje sustantivo, un procedimiento accesible y estructuras de incentivos que orienten efectivamente a los decisores hacia resultados justos.
+
+El artículo no sostiene que lograr las tres cosas a la vez sea sencillo. Sostiene que no lograrlo ya tiene un coste, y que ese coste lo soportan personas que no tienen palabras para lo que han perdido salvo que el número que la máquina les asignó era incorrecto.
