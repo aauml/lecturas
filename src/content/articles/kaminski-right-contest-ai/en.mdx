@@ -6,9 +6,9 @@ language: en
 track: ai-policy
 title: "The right to argue with the machine"
 titleHTML: "The right to argue with the <em>machine</em>"
-dek: "Kaminski and Urban map the legal landscape of algorithmic contestation, build a case from due process theory, and propose four archetypes for designing a right the United States still lacks."
-dekHTML: "Kaminski and Urban map the legal landscape of algorithmic contestation, build a case from due process theory, and propose four archetypes for designing a right the United States still lacks."
-coverDek: "In 2021, Kaminski and Urban published a landmark framework for contesting AI decisions. The EU AI Act has since added new layers. The US still has no cross-sectoral contestation right. Their four archetypes remain the clearest lens for understanding why some contestation systems work and most do not."
+dek: "Kaminski and Urban ask why a 1974 law lets you dispute a credit card charge in days, for free, with a 90% chance of winning — but no law anywhere gives you the same shot when an algorithm fails you."
+dekHTML: "Kaminski and Urban ask why a 1974 law lets you dispute a credit card charge in days, for free, with a 90% chance of winning — but no law anywhere gives you the same shot when an algorithm fails you."
+coverDek: "You can contest a wrong credit card charge and win 90% of the time, for free. You cannot contest an algorithm that denies you a kidney transplant. Kaminski and Urban map the gap, build the case from due process theory, and propose four archetypes for a right the United States still lacks."
 source: "Based on Margot E. Kaminski & Jennifer M. Urban, The Right to Contest AI, 121 Columbia Law Review 1957 (2021)"
 sourceLabel: "N° 15 · Columbia Law Review (2021)"
 topics:
@@ -26,156 +26,154 @@ import ContextBox from '../../../components/ContextBox.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import Scorecard from '../../../components/exhibits/Scorecard.astro';
 
-<Lede>Isabel Castaneda had spent two years of high school calculating. She came from a low-income family in Colorado and had mapped, course by course, how many college credits she could earn through the International Baccalaureate before tuition began. In July 2020, after the IBO canceled spring exams because of the pandemic, an algorithm graded her coursework instead. She failed several IB courses — including high-level Spanish, her native language. The IBO called its system an "awarding model, not a computer-based algorithm," a characterization experts found implausible. Its standard appeals route required fees. More than 15,000 students signed a petition. The IBO revised some grades. It never explained why any given grade was what it was. Margot Kaminski and Jennifer Urban open their 2021 Columbia Law Review article with Castaneda's story, and then ask the question behind it: when an algorithm makes a consequential decision about you, what right do you have to push back?</Lede>
+<Lede>Isabel Castaneda failed high-level Spanish — her native language — because an algorithm said so. She had spent two years of high school in Colorado calculating how many college credits she could accumulate through the International Baccalaureate before tuition began. When the IBO canceled spring exams in 2020 and substituted an algorithmic grading model, the machine gave her failing marks. The IBO refused to explain the model and charged fees for its standard appeals process. If the same algorithm had instead overcharged her credit card, she could have called her bank, disputed the charge, and had it reversed within days — for free, with roughly a 90% chance of winning. That right has existed in the United States since 1974. The right to challenge an algorithmic decision about your education, your health care, your job, or your freedom does not exist anywhere — not in the United States, and barely in the European Union. In a 2021 article in the Columbia Law Review, Margot Kaminski and Jennifer Urban map this gap, make the case for closing it, and build the most detailed framework yet for what the right to contest AI should actually look like.</Lede>
 
-<Section number="01" title="Isabel Castaneda failed Spanish because an algorithm <em>said so</em>">
+<Section number="01" title="The particular shape of <em>machine</em> failure">
 
-<Standfirst>Kaminski and Urban begin not with law but with failure — and with what makes machine failure different from the human kind.</Standfirst>
+<Standfirst>Human decision-makers can be wrong, biased, and arbitrary. Algorithms can be all of those things too — but the way they fail is structurally different, and the usual legal safeguards don't transfer.</Standfirst>
 
-Castaneda's case was not isolated. The same summer, England, Wales, and Northern Ireland used a different algorithm to assign university-entrance exam grades. Nearly 40% of students received lower grades than teachers had predicted. Officials reversed the results only after public backlash.
+Castaneda's case was not a fluke. That same summer, England, Wales, and Northern Ireland used a different algorithm to grade university-entrance exams; nearly 40% of students got lower marks than teachers had predicted. Officials reversed the results after street protests. In Idaho, an algorithm allocating home health-care hours for severely disabled patients failed to account for diabetes and miscoded cerebral palsy. Hundreds of patients had their care slashed. A patient told The Verge that neither she nor the caseworker entering her data could "quite understand what was happening." The software vendor didn't know about the diabetes error. In Massachusetts, an algorithm estimating kidney function gave Black patients healthier scores than white patients with the same kidney disease, making them less likely to receive a transplant referral.
 
-But grading is not where algorithmic failure stops. In Idaho, an algorithm used to allocate home health-care hours for severely disabled patients failed to account for diabetes and miscoded cerebral palsy. Hundreds of patients had their care hours slashed. One patient, interviewed by the Verge, said that neither she nor the caseworker entering her data could "quite understand what was happening." The third-party software vendor implementing the algorithm didn't know about the diabetes error. In Massachusetts, an algorithm used by Mass General Brigham to estimate kidney function assigned Black patients healthier scores than white patients with similar kidney disease, making Black patients less likely to be referred for a transplant. Amazon's AI recruiting tool consistently scored women lower than men.
+These are not random malfunctions. Kaminski and Urban argue that algorithmic failure has a distinctive shape. Three features set it apart.
+
+First: categorical processing. Algorithms sort people into groups using rules fixed at the design stage by programmers who may never have encountered the populations the system will eventually process. A USDA fraud-detection algorithm for the SNAP food-stamp programme flagged purchases in round dollar amounts. At Somali-American grocery stores, where customers customarily bought meat in whole-dollar amounts, the flag meant something different from what the designers assumed. This is the "long-tail problem" — the weird case the system was never trained for, except it isn't weird at all to the person living it.
 
 <ContextBox label="What is automation bias?">
-Automation bias is the documented tendency for human decision-makers to treat a machine's output as more authoritative than it is — even when they suspect something is wrong. Studies show that operators of automated systems trust computer answers and are reluctant to override them. The phenomenon compounds the problems of algorithmic error: a flawed algorithm is bad, but a human who defers to it uncritically is worse, because the human was supposed to be the check.
+Automation bias is the documented tendency for people to treat a machine's output as more reliable than it is — even when they suspect an error. Studies show that operators of automated systems trust computer answers and resist overriding them. This compounds the problem: a flawed algorithm is bad, but a human who defers to it uncritically is worse, because that human was supposed to be the check.
 </ContextBox>
 
-What makes these failures distinctive? Kaminski and Urban identify three features. First, algorithms make categorical decisions: they sort individuals into groups using rules fixed at the design stage by people who may not have anticipated every population. This is the "long-tail problem." A fraud-detection algorithm for the US SNAP food-stamp programme flagged Somali-American grocery stores because their customers bought meat in round dollar amounts. The algorithm correctly identified round-dollar purchases as unusual. It was wrong about what that unusualness meant.
+Second: opacity. Actuarial algorithms — statistically derived and relatively interpretable — at least let you see what factors were weighed. Black-box machine-learning systems often cannot explain their own outputs, even to their designers.
 
-Second, many AI systems are opaque — even to their designers. Black-box machine-learning systems produce outputs without interpretable reasoning chains. This makes it difficult for anyone to identify what went wrong, let alone challenge it.
-
-Third, the shift from human to machine decisions can remove the discretion, compassion, and individualized judgment that human decision-makers — for all their flaws — sometimes bring. As the attorney for the Idaho home-care patients put it: when you rely solely on algorithms, "we reduce a person's humanity to a number."
-
-None of this means human decision-makers are better. Human judges can be racist. Human assessors can be lazy. But AI failure has a particular shape, and the legal tools designed to address human failure don't automatically cover it.
+Third: the removal of human judgment from the loop. A caseworker might exercise discretion or compassion. An algorithm cannot. As the attorney for the Idaho home-care patients put it: when you rely solely on algorithms, "we reduce a person's humanity to a number."
 
 </Section>
 
-<Section number="02" title="A right that exists on paper and <em>nowhere else</em>">
+<Section number="02" title="A right written in <em>pencil</em>">
 
-<Standfirst>The GDPR's Article 22 is the world's most prominent individual right to contest an AI decision. It is also barely more than a sentence — and the United States has not even managed that.</Standfirst>
+<Standfirst>The GDPR established a right to contest certain automated decisions in 2018. Eight years later, it is still mostly an aspiration — underspecified, underenforced, and barely tested in court.</Standfirst>
 
 <ContextBox label="What is GDPR Article 22?">
-Article 22 of the EU General Data Protection Regulation, in force since May 2018, applies when a decision is based "solely" on automated processing and produces "legal or similarly significant effects" on an individual. Under those conditions, the controller must provide "at least the right to obtain human intervention, to express his or her point of view and to contest the decision." It applies to both public and private entities across all sectors. It is the closest thing in global law to a general right to challenge AI decisions.
+Article 22 of the EU General Data Protection Regulation applies when a decision is based "solely" on automated processing and produces "legal or similarly significant effects" on an individual. Under those conditions, the data controller must provide "at least the right to obtain human intervention, to express his or her point of view and to contest the decision." It covers both public and private entities. It is the closest thing in global law to a general right to challenge algorithmic decisions.
 </ContextBox>
 
-Kaminski and Urban's article is the first to examine GDPR Article 22's contestation right in depth for a US audience. Their central observation: the text says individuals must be able to contest certain automated decisions, but says almost nothing about what that means. It does not define adequate contestation. It does not set timelines. It does not name the substantive grounds on which a challenge can succeed. The regulators' guidance largely parrots the statutory text; one suggested example of compliance is "providing a link to an appeals process at the point the automated decision is delivered."
+Kaminski and Urban's article is the first in-depth examination of the GDPR's contestation right for a US audience. Their central finding: Article 22 says individuals must be able to contest certain automated decisions, then says almost nothing about what that means. No definition of adequate contestation. No timelines. No substantive grounds on which a challenge can succeed. The European Data Protection Board's guidance restates the statutory text and offers, as an example of compliance, "providing a link to an appeals process at the point the automated decision is delivered."
 
-The right has a genealogy that makes its thinness more striking. A French data protection law from 1978 already gave citizens the right to "dispute the data and logic used" in automated decisions. The EU's 1995 Data Protection Directive included a precursor provision — Article 15 — that Lee Bygrave later described as "all dressed up but nowhere to go." Rarely invoked, poorly understood, easily circumvented. Article 22 of the GDPR improved on it by adding explicit contestation language. But through most of the GDPR's first years, the right remained what the scholars call a "paper tiger." The first court anywhere in Europe to recognize a right to explanation under Article 22 was a Dutch court in 2021 — the year this article appeared.
+This vagueness is not new. The French data protection law of 1978 already gave citizens the right to "dispute the data and logic used" in automated decisions. The EU's 1995 Data Protection Directive contained a precursor — Article 15 — that scholar Lee Bygrave described as "all dressed up but nowhere to go." Article 22 added explicit contestation language, but through most of the GDPR's first years it remained what scholars called a "paper tiger." The first court anywhere in Europe to recognize a right to explanation under Article 22 was a Dutch court — in 2021, the year this article appeared.
 
-<ContextBox label="EU AI Act contestation provisions (2024)">
-Since the article's publication, the EU has added layers. The AI Act (Regulation 2024/1689), entering into force in stages through 2026-2028, overlays the GDPR with sector-specific rules for high-risk AI. Article 86 creates a right to explanation when a high-risk system produces decisions with significant effects on health, safety, or fundamental rights. Article 85 creates a right to lodge a complaint with national market surveillance authorities. These provisions run alongside Article 22 rather than replacing it. How the two frameworks interact in practice — which governs what, whether they require parallel processes — remains unresolved.
+<ContextBox label="What the EU AI Act added (2024)">
+The EU AI Act (Regulation 2024/1689), entering into force in stages through 2026-2028, layers new rights on top of the GDPR. Article 86 creates a right to explanation when a high-risk AI system produces decisions with significant effects on health, safety, or fundamental rights. Article 85 creates a right to lodge a complaint with market surveillance authorities. Both run alongside Article 22 rather than replacing it. How the two frameworks interact in practice remains unresolved.
 </ContextBox>
 
-The United States has nothing equivalent at the federal level. The Algorithmic Accountability Act proposed in 2019 required risk assessments but created no individual right to challenge a decision. California's Privacy Rights Act directed a state agency to develop regulations on automated decision-making; it stopped short of a contestation right. What the US has are technology-neutral laws — administrative procedure, antidiscrimination statutes, sectoral due process — that might, in specific contexts, be stretched to cover AI. The evidentiary burdens are formidable and the coverage is patchwork. Individual litigants have won due process challenges against government use of AI, but there is no general, cross-sectoral right to contest.
+The United States has nothing comparable at the federal level. The Algorithmic Accountability Act of 2019 would have required risk assessments but created no individual contestation right. California's Privacy Rights Act directed a state agency to develop regulations on automated decision-making; it stopped short of a right to contest. What exists are technology-neutral laws — administrative procedure, antidiscrimination statutes, sectoral due process — that can sometimes, in specific contexts, be stretched to cover AI decisions. The stretching is expensive, the evidentiary burdens are heavy, and the coverage is patchwork.
+
+Meanwhile, the right to contest a credit card charge — governed by the Fair Credit Billing Act of 1974 — works millions of times a year, with consumers winning roughly 80-90% of the time. The question Kaminski and Urban press is structural: why can't algorithmic decisions be contested as effectively as billing errors?
 
 </Section>
 
-<Section number="03" title="The Somali grocers, the sock-color algorithm, and the case for <em>dignity</em>">
+<Section number="03" title="Why you should be able to argue with a <em>machine</em>">
 
-<Standfirst>Kaminski and Urban build their theoretical case from three traditions — accuracy, rule of law, and what Jerry Mashaw called "the liberal tradition" — but the argument is sharpest when it starts with specific people.</Standfirst>
+<Standfirst>The theoretical case for an individual right to contest AI draws on three traditions — accuracy, rule of law, and dignity — and each is sharpest when it starts with a specific failure rather than an abstraction.</Standfirst>
 
-Start with the Somali-American grocers. Their vindication — the reversal of the fraud flag — came through individual contestation. No systemic audit caught the problem, because the audit didn't know to look for the cultural purchasing pattern that the algorithm flagged. This is the accuracy argument for a right to contest: individual challenges surface errors that systemic oversight misses, precisely because the individual knows something the system doesn't. The person who knows her grade in her native language is wrong is an irreplaceable error signal.
+The Somali-American grocers didn't need a theory of due process. They needed someone to listen when they said the fraud flag was wrong. Their vindication came through individual contestation — not a systemic audit, not a class action, but individual challenges that surfaced an error no auditor had thought to look for. This is the accuracy argument: individual contests catch mistakes the system cannot see, because the person inside the long tail knows something the algorithm doesn't.
 
-Now consider an algorithm that finds credit risk correlates with sock color. Pink socks get better credit than blue socks. Even if the correlation is statistically real, most people would find the rule irrational. And if sock color correlates with gender or race, it may also be discriminatory. An individual challenge could surface both the irrationality and the discrimination. This is the rule of law argument: a decision-making system that cannot be challenged cannot be held to consistency, rationality, or fairness.
+<ContextBox label="What is the HEW Report (1973)?">
+In 1973, the US Department of Health, Education, and Welfare published a report on automated data processing that became the foundation of American privacy law. The HEW Report framed computerized record-keeping as a due process problem and called for individuals to be able to "contest the label as applied to him." Its principles shaped HIPAA, COPPA, and other sectoral privacy statutes. Kaminski and Urban cite it to rebut the claim that dignitary concerns about automation are a European import.
+</ContextBox>
+
+Now consider a hypothetical Kaminski and Urban borrow from Ed Felten: an algorithm that finds credit risk correlates with sock color. Pink socks get better credit than blue socks. Even if the correlation is statistically robust, the rule seems irrational. And if sock color correlates with gender or race, it may also be discriminatory. No systemic audit would necessarily catch this unless it knew to test for sock color. An individual who was denied credit and asked why could surface both the irrationality and the discrimination. This is the rule of law argument: contestation holds a decisional system to consistency, rationality, and fairness by forcing it to explain itself one case at a time.
 
 <PullQuote attribution="— Patient advocate, quoted in Kaminski &amp; Urban (2021)">We reduce a person's humanity to a number.</PullQuote>
 
-Finally, the Idaho home-care patients. People who lost independence, who lay in their own waste, who feared institutionalization — because an algorithm miscoded their conditions. Their attorney's phrase — "we reduce a person's humanity to a number" — is the dignity argument stripped bare.
+And the Idaho home-care patients. People who lost independence, who skipped meals, who feared institutionalization — because an algorithm miscoded their conditions and no one knew how to challenge it. Their attorney's phrase is the dignity argument at its sharpest: "we reduce a person's humanity to a number." Much US scholarship dismisses dignitary reasoning as a vague European import. Kaminski and Urban point to the HEW Report — a 1973 American document, the founding text of US data privacy law — which explicitly called for individuals to be able to contest algorithmic labels. The dignitary tradition in America was there before Europe codified it. It was progressively narrowed as US privacy law retreated into a notice-and-choice model that expected individuals to read disclosures and opt out.
 
-<ContextBox label="What is the HEW Report (1973)?">
-In 1973, the US Department of Health, Education, and Welfare published a report on automated data processing that became the foundation of American data privacy law. The HEW Report framed computerized record-keeping as a due process problem — not just a privacy problem — and called for individuals to be able to "contest the label as applied to him." Its principles became the basis for HIPAA, COPPA, and other sectoral privacy statutes. Kaminski and Urban cite it to rebut the claim that dignitary concerns about automation are a European import: the American tradition was there first.
-</ContextBox>
-
-Much US scholarship on algorithmic accountability dismisses dignity as too vague to ground a legal right. Aziz Huq, the article's main interlocutor, argues that the purpose of individualized due process is essentially utilitarian — ensuring systemic accuracy — and that class action litigation targeting system-level behavior serves this better than individual challenges. He calls for a "right to a well-calibrated machine decision" instead of individual contestation.
-
-Kaminski and Urban push back. A right to challenge a decision made about you is not a calibration tool. It is a form of participation — an acknowledgment that a decision was made about a person, not a data point. The accuracy, rule-of-law, and dignity arguments are not three separate cases for the same right. They converge: accuracy grounds the instrumental case, rule of law grounds the systemic case, and dignity grounds the case for why individual process matters even when audits would be cheaper.
+The article's main opponent is Aziz Huq, who argues that individualized process is essentially a utilitarian tool for ensuring systemic accuracy — and that class actions and ex ante regulation do this more efficiently. Kaminski and Urban respond that this misidentifies what process is for. A right to challenge a decision about you is not a debugging tool for the system. It is a form of participation, an acknowledgment that the decision was made about a person rather than run against a data point. Audits may be cheaper. They are not the same thing.
 
 </Section>
 
-<Section number="04" title="Four ways to build the right to <em>contest</em>">
+<Section number="04" title="Four ways to build a right to <em>contest</em>">
 
-<Standfirst>The article's most enduring contribution is a 2x2 typology of contestation designs — mapped along a rules-versus-standards axis and a procedural-versus-substantive axis — then tested against four legal regimes that already exist.</Standfirst>
+<Standfirst>The article's most lasting contribution is a 2x2 matrix of contestation designs — rules versus standards on one axis, procedure versus substance on the other — tested against four legal regimes that already exist.</Standfirst>
 
 <ContextBox label="Rules vs. standards in legal design">
-A legal rule specifies precise content ex ante: "do not drive above 120 km/h." A legal standard leaves content to future interpretation: "drive reasonably." Rules are clear and cheap to comply with; standards are flexible and adaptable. Most real laws mix the two. Kaminski and Urban apply this distinction to contestation design: does the law specify how to contest a decision (a contestation rule) or merely state that a right to contest exists (a contestation standard)?
+A legal rule specifies its content ex ante: "do not exceed 120 km/h." A legal standard leaves content to interpretation: "drive reasonably." Rules are clear and cheap to comply with; standards are flexible and adaptable. Most real laws mix the two. Kaminski and Urban apply the distinction to contestation: does the law specify how to contest (a rule) or merely declare that a right exists (a standard)?
 </ContextBox>
 
-The first axis is rules versus standards: does the contestation mechanism spell out precise procedures (timelines, formats, required elements) or merely declare that a right exists? The second axis is procedural versus substantive: does the right specify only how to challenge, or also the grounds on which a challenge can succeed?
+Two design choices shape every contestation scheme. First: is the mechanism a rule (precise procedures specified in advance) or a standard (the right exists, details left to whoever applies it)? Second: is the focus procedural (how to challenge) or substantive (the grounds on which you can win)?
 
 <Scorecard
   label="The four contestation archetypes"
-  subtitle="Each cell names the design type and a real-world example"
+  subtitle="Design type and real-world example"
   columns={["Contestation Standard", "Contestation Rule"]}
   rows={[
     {
       label: "Procedural focus",
       values: [
-        "GDPR Art. 22: right exists, procedure and substance left to implementers",
+        "GDPR Art. 22: right exists, details left to implementers",
         "DMCA § 512; UK DPA 2018: precise timelines, minimal substantive review"
       ]
     },
     {
       label: "Substantive focus",
       values: [
-        "EU Right to Be Forgotten; Slovenian GDPR: substantive balancing, no procedural rules",
-        "Fair Credit Billing Act; Hungarian/French GDPR: substance and procedure both specified"
+        "EU Right to Be Forgotten; Slovenian GDPR: balancing test, no procedural rules",
+        "Fair Credit Billing Act; Hungarian/French GDPR: substance and procedure specified"
       ]
     }
   ]}
 />
 
-**Quadrant 1: GDPR Article 22** — a contestation standard with a procedural focus. Companies must allow challenges, but almost nothing is specified about what the challenge must consist of. Member States have filled the gap in sharply different ways. The UK set one-month timelines with written responses required. Slovenia anchored its version to antidiscrimination law. Hungary and France prohibited automated decisions based on sensitive data. The variation is a feature of standards — and also a cost.
+**Quadrant 1** — GDPR Article 22. A standard with procedural focus. Companies must allow challenges; almost nothing is specified about what the challenge must consist of. Member States have filled the gap in radically different ways: the UK imposed one-month timelines with written responses, Slovenia anchored its version to antidiscrimination law, Hungary and France banned automated decisions based on sensitive data.
 
-**Quadrant 2: DMCA notice-and-takedown** — a contestation rule with a procedural focus. The statute specifies exactly what a takedown notice must contain, how fast the platform must act, and what a counternotification requires. But the underlying substance — copyright infringement — is rarely engaged. Platforms find it cheaper to remove content on any conforming notice than to make a legal judgment. The counternotice mechanism is barely used. Precise process without substantive engagement produces a system the stronger party dominates.
+**Quadrant 2** — DMCA notice-and-takedown. A rule with procedural focus. The statute prescribes every element: what a takedown notice must contain, how fast platforms must act, what a counternotification requires. But the underlying substance — copyright infringement — is rarely examined in practice. Platforms remove content on any conforming notice rather than make a legal call. The counternotice mechanism, designed for targets to restore wrongly removed material, is barely used. Practitioners call it dead letter.
 
-**Quadrant 3: EU Right to Be Forgotten** — a contestation standard with a substantive focus. The Court of Justice in Google Spain (2014) established a balancing test between privacy and public access but said almost nothing about procedure. Google built its own review process. Regulators gradually elaborated the criteria. The standard has become more rule-like over time, but procedural gaps persist: there is no putback mechanism and no way for the public to argue that information should remain searchable.
+**Quadrant 3** — EU Right to Be Forgotten. A standard with substantive focus. The Court of Justice in Google Spain (2014) established a balancing test between privacy and public access, but prescribed no procedure. Google built its own review process. Regulators gradually filled in criteria. The standard has become more rule-like over time, though it was never designed that way — and there is no mechanism for the public to argue that information should remain searchable.
 
-**Quadrant 4: Fair Credit Billing Act** — a contestation rule with a substantive focus. The statute defines "billing error" precisely enough to constrain discretion. It also specifies timelines and required procedures. Credit card companies rule for consumers roughly 80-90% of the time. Consumer advocates broadly regard it as a success. The system works partly because "billing error" is easy to define.
+<ContextBox label="What is the Fair Credit Billing Act?">
+The FCBA (1974) gives US consumers the right to dispute erroneous credit card charges. It defines "billing error" precisely — a charge not made by the cardholder, a charge in the wrong amount, goods not delivered — and specifies detailed procedures including timelines. Credit card companies investigate and reverse charges. The process is free, fast, and consumers win roughly 80-90% of the time. Consumer advocates broadly consider it a success.
+</ContextBox>
+
+**Quadrant 4** — Fair Credit Billing Act. A rule with substantive focus. The statute defines "billing error" precisely enough to constrain discretion, and specifies timelines and procedures. Consumers win 80-90% of the time. The system works partly because "billing error" is simple to define — a luxury unavailable for concepts like "algorithmic discrimination."
 
 </Section>
 
-<Section number="05" title="Why the credit card company succeeded and the copyright system <em>didn't</em>">
+<Section number="05" title="Why the credit card company says yes and the copyright platform <em>doesn't care</em>">
 
-<Standfirst>The comparison between the DMCA and the Fair Credit Billing Act is the article's most instructive case study — because one system works and the other doesn't, and the difference is in the incentives, not the procedures.</Standfirst>
+<Standfirst>Both the DMCA and the FCBA have precise procedural rules. One works. One doesn't. The difference is in the incentive structure — who bears the cost of getting it wrong.</Standfirst>
 
 <ContextBox label="What is the DMCA's notice-and-takedown?">
-Section 512 of the Digital Millennium Copyright Act (1998) structures online copyright disputes. Copyright holders can send "takedown" notices to online platforms; if the platform removes the allegedly infringing material, it receives a "safe harbor" from secondary copyright liability. Targets can contest removal by sending a "counter notification" asking for restoration. The system processes billions of notices. It has been replicated worldwide.
+Section 512 of the Digital Millennium Copyright Act (1998) lets copyright holders send takedown notices to online platforms. If the platform removes the allegedly infringing material, it gets a "safe harbor" from secondary liability. Targets can send a counternotification asking for the material to be restored. The system handles billions of notices and has been replicated worldwide. Its influence on online dispute resolution is enormous.
 </ContextBox>
 
-The DMCA has precise rules: specific elements for notices, specific timelines for responses, a counternotice mechanism for restoration. On paper, it's well-designed. In practice, it skews heavily toward removal. Platforms face potentially enormous copyright liability — statutory damages of up to $150,000 per work infringed — so they remove content on any conforming notice without examining whether the claim has merit. One study found that 31% of a sample of takedown notices to Google Search were questionable; 70% of notices to Google Image Search were fundamentally flawed. Despite this, counternotices are rare. OSP representatives describe the counternotice mechanism as "dead letter."
+The DMCA has a beautifully designed process. Specified elements for notices, specified timelines, a counternotice mechanism. On paper, it balances the interests of copyright holders and content creators. In practice, it skews overwhelmingly toward removal. Platforms face potential copyright damages of up to $150,000 per work infringed, so they remove first and think later. One empirical study found that 31% of takedown notices to Google Search were questionable; 70% of those to Google Image Search were fundamentally flawed. Despite this, counternotices are vanishingly rare.
 
-Why? Asymmetric risk. A notice sender merely has to state a good-faith belief of infringement. A counter-notice sender must swear under penalty of perjury that the material is not infringing, and accept US federal court jurisdiction. This asymmetry chills legitimate contestation. One OSP representative put it plainly: "The process forces you to try to stay out of making judgment calls."
+The reason is asymmetric risk. A notice sender declares good-faith belief of infringement — no oath required for the substantive claim. A counter-notice sender must swear under penalty of perjury that the material is not infringing, and accept US federal court jurisdiction. An OSP representative told researchers: "The process forces you to try to stay out of making judgment calls." The system's risk architecture chills the very contestation it was designed to enable.
 
-<ContextBox label="What is the Fair Credit Billing Act?">
-The Fair Credit Billing Act (1974) gives consumers a right to contest erroneous credit card charges. The statute defines "billing error" precisely — a charge not made by the cardholder, a charge in the wrong amount, goods not delivered — and specifies detailed procedures including timelines for complaints and responses. Credit card companies investigate disputes and reverse charges. The system is free, fast, and widely regarded as a consumer-protection success.
-</ContextBox>
+The FCBA works the other way around. Investigating a billing dispute costs the credit card company real money: pulling records, reviewing evidence, writing a response. Refunding the charge is cheap. The statute makes investigation mandatory once a complaint is filed. The math tips toward early resolution. Companies rule for consumers 80-90% of the time — not because the law demands generosity, but because it makes generosity cheaper than the alternative.
 
-The FCBA works differently. It has precise rules, like the DMCA. But it also has a clear substantive definition of what qualifies for contestation, and — crucially — an incentive structure that pushes decision-makers toward fair outcomes. Investigating a billing dispute is expensive for credit card companies. Refunding the charge is cheap. The statute makes investigation mandatory once a complaint is filed. The cost calculation tips toward early resolution. Companies rule for consumers 80-90% of the time not because the law requires generosity but because it makes generosity cheaper than the alternative.
-
-The lesson Kaminski and Urban draw: designing a contestation scheme means designing the incentive structure. Process alone is not enough. The DMCA has precise process and still produces a system where the stronger party dominates and the counternotice is dead. The FCBA has precise process too, but its substantive clarity and cost structure make it actually work.
+The design lesson Kaminski and Urban draw: a contestation scheme is only as good as its incentive structure. Process without the right incentives produces the DMCA — a system where the counternotice is dead letter and the stronger party dominates. Process with the right incentives produces the FCBA — a system where the consumer wins most of the time and the system is widely regarded as legitimate.
 
 </Section>
 
 <Section number="06" title="A floor, not a <em>ceiling</em>">
 
-<Standfirst>For the United States, Kaminski and Urban propose a cross-sectoral right to contest AI — a baseline that applies everywhere, supplemented by sector-specific augmentation where existing law already has deeper traditions.</Standfirst>
+<Standfirst>For the United States, Kaminski and Urban propose a cross-sectoral right to contest AI — a baseline that applies everywhere, with sector-specific augmentation where deeper traditions already exist.</Standfirst>
 
-The article's design recommendations distill to three requirements that most privatized contestation schemes fail to provide simultaneously.
+Three things must be present for a right to contest AI to work in practice.
 
-First, meaningful notice. Not a link buried in a privacy policy. Information specific enough that the individual knows what decision was made, on what basis, and what avenue exists for contesting it.
+Meaningful notice. Not a link buried in a privacy policy. Information specific enough that the individual knows what decision was made, on what basis, and how to challenge it. The GDPR requires that individuals be told when a decision involves automated processing and be given "meaningful information about the logic involved." Most Member States have interpreted this loosely. France is the exception: its public-sector rules require that officials explain, to the specific person, in detail, how the algorithmic processing was applied to their case. This is the demanding end of the spectrum — and arguably the minimum for contestation to mean anything.
 
-Second, genuine reason-giving. Not a summary of the algorithm's general logic but information specific enough to identify what went wrong in the particular case. The GDPR calls this "meaningful information about the logic involved." France's public-sector approach requires officials to explain, in detail, how the algorithmic processing applied to the specific person. This is the demanding end of the spectrum; few other Member States approach it.
+Genuine reason-giving. Not a summary of the algorithm's general method but an account specific enough for the individual to identify what went wrong. Frederick Schauer's argument — that reason-giving commits decision-makers to an outcome, allows quality control, and shows respect for the subject of the decision — applies with special force to machine decisions that don't naturally come with reasons attached.
 
-Third, systemic transparency. The DMCA operates as a black box: private complainants, platforms, and targets make decisions without insight into others' actions. There are no requirements for platforms to disclose their policies or explain their decisions. The Council of Europe has recommended that companies make public the number and type of complaints from affected individuals. Without this kind of systemic visibility, there is no way to tell whether a contestation system is working fairly — or at all.
+Systemic transparency. The DMCA operates as a black box: no requirements for platforms to disclose their policies, their decision-making frameworks, or their outcomes. The Council of Europe has recommended that companies publish the number and type of complaints received. Without this kind of visibility, there is no way for regulators, researchers, or the public to tell whether a contestation system is fair.
 
-For the US, a right to contest should function as a floor: a cross-sectoral baseline wherever AI makes decisions with significant effects, regardless of industry. This floor should be supplemented by sector-specific rules in criminal justice, credit, housing, and employment, where existing regulatory regimes already have more developed due process traditions. The right should apply not only to "solely" automated decisions — a qualifier too easily evaded by inserting a rubber-stamping human — but to any decision in which AI plays a significant role. The Office of the Privacy Commissioner of Canada has recommended exactly this.
+For the United States, the right should operate as a floor. Cross-sectoral. Attached to the technology, not to a particular industry. Applying wherever AI makes decisions with significant effects on individuals. Supplemented by sector-specific rules in criminal justice, credit, housing, and employment, where existing law already has deeper due process traditions. Covering not just "solely" automated decisions — a qualifier too easily gamed by inserting a rubber-stamping human — but any decision in which AI plays a significant role. Canada's Privacy Commissioner has already recommended this broader scope.
 
-The framework should be neither the GDPR's underspecified standard nor the DMCA's procedurally precise but substantively empty rule. Closer to the FCBA: clear on substance, specified enough on process to be usable, embedded in a regulatory environment with real penalties for noncompliance, and designed so that the incentive structure pushes decision-makers toward fair outcomes rather than defensive compliance.
+The model is neither the GDPR's underspecified standard nor the DMCA's precise-but-empty rule. It is closer to the FCBA: clear on substance, specified enough on process to be usable, embedded in a regulatory environment with real penalties, and designed so that doing the right thing is cheaper for the decision-maker than ignoring you.
 
 </Section>
 
-The article appeared in 2021, when the EU AI Act was still a commission proposal and Article 22 had not yet been interpreted by any court. Five years on, the EU has added Articles 85 and 86 to the contestation architecture. The United States still has no cross-sectoral contestation right.
+The article appeared in 2021. The EU AI Act was a draft proposal. Article 22 had not yet been tested in court. Five years later, the EU has added Articles 85 and 86. The United States still has nothing.
 
-What Kaminski and Urban's framework exposes most sharply is the gap between a contestation right that exists and one that works. Article 22 has been in force since 2018; its first judicial interpretation came three years later. The DMCA's counternotice mechanism has existed since 1998 and is nearly unused. The Fair Credit Billing Act's chargeback process has existed since 1974 and is used millions of times a year.
+The GDPR's Article 22 has been in force since 2018. Its first judicial interpretation came three years later. The DMCA's counternotice has existed since 1998 and is barely used. The FCBA's chargeback process has existed since 1974 and is used millions of times a year.
 
-The difference is not complexity of design. It is whether the design makes it cheaper for the decision-maker to do the right thing than to ignore you. That is the question this article leaves with the reader — and the one that neither the GDPR nor the AI Act has yet answered.
+The gap between these outcomes is not a gap in legal architecture. It is a gap in design — specifically, in whether the design makes it cheaper for the person holding the power to give you a fair hearing than to ignore you. That is the question Kaminski and Urban leave on the table. Neither the GDPR nor the AI Act has answered it yet.
