@@ -103,19 +103,44 @@ The palette and typography are defined once in `src/styles/global.css`. New arti
 
 ## Exhibits — data only
 
-**Exhibits are restricted to five data-only types.** Use the components in `src/components/exhibits/`:
+Exhibits come in two tiers. **Default to static.** Reach for interactive only when the interaction itself adds understanding the static version can't provide.
 
-- `<Timeline events={[{year, label}, ...]} />` — dated markers along an axis
-- `<Bars items={[{label, value, note?, accent?}, ...]} unit="" />` — quantitative comparison
-- `<Scorecard columns={[...]} rows={[{label, values}]} />` — ✓/✗ matrix; values can be `true`/`false` or a string
-- `<Document header body={[...]} stamp />` — official-notice mockup, monospace
-- `<Comparison leftLabel rightLabel rows={[{left, right}]} />` — two-column
+### Static exhibits (default)
 
-**Do not draw maps, portraits, scenes, or any representational illustration.** Claude is bad at spatial illustration; the result is wrong and ugly on mobile. When geography matters: write it in prose ("the strait is 33 km wide at its narrowest"), or embed a real Wikimedia Commons image as `<img src="https://upload.wikimedia.org/...">`. Never try to draw it.
+Five types in `src/components/exhibits/`. All HTML/CSS-based (except Timeline's desktop layout, which is SVG); all responsive down to 360px viewport without overflow or unreadable text.
 
-If a piece doesn't need any data exhibit, ship it without one. Zero exhibits is fine.
+- `<Timeline events={[{year, label}, ...]} />` — horizontal SVG axis on desktop; vertical list on mobile (switched automatically below 640px)
+- `<Bars items={[{label, value, note?, accent?}, ...]} unit="" />` — quantitative comparison; bars become full-width with values stacked below on mobile
+- `<Scorecard columns={[...]} rows={[{label, values}]} />` — ✓/✗ matrix using CSS Grid + subgrid; converts to per-row cards on mobile
+- `<Document header body={[...]} stamp />` — official-notice mockup, monospace; padding adjusts on mobile
+- `<Comparison leftLabel rightLabel rows={[{left, right}]} />` — two-column on desktop; stacks vertically with section labels on mobile
 
-The `<Exhibit>` wrapper component still exists for fully bespoke needs (data dense in a way the five components can't express), but reach for it last. The default is one of the five.
+### Interactive exhibits
+
+Four React components in `src/components/exhibits/interactive/`, rendered as Astro islands with `client:visible` so they only hydrate when scrolled into view.
+
+- `<InteractiveMatrix client:visible columns={...} rows={[{label, values, context?}]} />` — Scorecard with sortable columns and per-row expandable context paragraphs. Use for thesis correspondence tables (EU AI Act ↔ NIST RMF) where each correspondence has nuance worth a sentence.
+- `<AnnotatedChart client:visible data={...} annotations={[{x, y, label, description?}]} type="line"|"area" />` — Recharts time-series with hoverable annotation markers and a paired annotation list. Use when 3+ inflection points need explanation.
+- `<ComparisonToggle client:visible views={[{label, paragraphs: [...]}]} />` — switch between two or more framings of the same material. Use when the comparison itself is the editorial argument (Lectura A vs Lectura B; plain vs technical reading).
+- `<ExplorableTimeline client:visible events={[{year, label, context?}]} />` — vertical timeline where each event can be expanded for context. Use when events benefit from optional background the reader can choose to read or skip.
+
+Each requires an explicit import at the top of the MDX file:
+
+```mdx
+import InteractiveMatrix from '../../../../components/exhibits/interactive/InteractiveMatrix.jsx';
+```
+
+Full prop reference and worked examples in `src/components/exhibits/interactive/README.md`.
+
+### When to reach for interactive
+
+Test: would removing the interaction make the piece worse, or just less shiny? If the latter, use the static version. The interaction has to do work — sorting reveals an ordering, expanding reveals a paragraph that wouldn't fit in the matrix cell, toggling reveals a parallel reading. If it's just "look it moves," ship static.
+
+Other defaults that don't change:
+
+- **No representational illustration.** No maps, portraits, scenes, drawn diagrams. The data-only constraint applies to interactive exhibits too. For geography: prose ("the strait is 33 km wide") or a real Wikimedia Commons image. Never draw.
+- **Zero exhibits is fine.** If the piece doesn't need one, ship without one.
+- **`<Exhibit>` wrapper** still exists for fully bespoke needs not covered by the nine components above. Reach for it last.
 
 ## The components, briefly
 
@@ -298,6 +323,7 @@ That is the entire delivery. No retrospective. No comparison to previous issues.
 - `references/editorial-conventions.md` — voice, framings, established patterns
 - `references/spanish-translation.md` — Iberian register, the billion trap, key terminology
 - `references/deployment.md` — repo layout, frontmatter spec, MDX body conventions, both deploy flows
+- `src/components/exhibits/interactive/README.md` — full prop reference and worked examples for the four interactive React components
 - `assets/article-template.html`, `assets/cover-template.html`, `assets/exhibit-patterns.html` — legacy HTML, kept as visual reference for what the rendered article looks like; not used as templates
 
 ## What to do first when triggered

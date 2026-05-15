@@ -1,10 +1,7 @@
 ---
 const { label = 'Timeline', title, subtitle, source, events = [], yearStart, yearEnd } = Astro.props;
 
-// Robust position resolver. Accepts:
-//   - numeric year (4-digit int or float) — used directly
-//   - string like "Feb 2025" / "feb. 2025" / "2025" — parsed to numeric
-//   - explicit `pos` field on event — overrides
+// Robust position resolver (same as before).
 const MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, sept:8, oct:9, nov:10, dec:11 };
 function parseYear(v) {
   if (typeof v === 'number' && Number.isFinite(v)) return v;
@@ -29,7 +26,6 @@ const resolved = events.map((e, i) => ({
   _idx: i,
 }));
 const allParsed = resolved.every(e => e._pos != null);
-// If any event has no parseable position, fall back to even spacing by index.
 const positions = allParsed
   ? resolved.map(e => e._pos)
   : resolved.map((_, i) => i);
@@ -38,43 +34,53 @@ const startY = yearStart ?? Math.min(...positions);
 const endY = yearEnd ?? Math.max(...positions);
 const span = (endY - startY) || 1;
 
-const W = 800, H = 280, padX = 60, axisY = 180;
+// Desktop SVG dimensions
+const W = 800, H = 240, padX = 60, axisY = 150;
 const x = pos => padX + ((pos - startY) / span) * (W - padX * 2);
-
-// Stagger labels across 3 rows when >5 events; 2 rows otherwise.
 const rows = events.length > 5 ? 3 : 2;
-const rowGap = 22;
+const rowGap = 26;
 
 const items = resolved.map((e, i) => ({
   ...e,
   _x: x(positions[i]),
   _row: i % rows,
 }));
-
-// Footer year markers: prefer the user-facing strings, not the numeric span.
-const startLabel = events.length ? (typeof events[0].year === 'string' ? events[0].year : events[0].year) : '';
-const endLabel = events.length ? (typeof events[events.length-1].year === 'string' ? events[events.length-1].year : events[events.length-1].year) : '';
 ---
 <figure class="exhibit">
   <div class="exhibit-frame">
     <div class="exhibit-label">{label}</div>
     {title && <div class="exhibit-title">{title}</div>}
     {subtitle && <div class="exhibit-subtitle">{subtitle}</div>}
-    <div class="exhibit-svg-wrapper">
-      <svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+    {/* Desktop: horizontal SVG axis with foreignObject labels */}
+    <div class="timeline-horizontal">
+      <svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label={title || label}>
         <line x1={padX} y1={axisY} x2={W - padX} y2={axisY} stroke="#1A1A1A" stroke-width="0.8"/>
-        {items.map((e) => (
+        {items.map(e => (
           <g>
             <circle cx={e._x} cy={axisY} r="4" fill="#7A1F1F"/>
-            <line x1={e._x} y1={axisY - 4} x2={e._x} y2={axisY - 30 - e._row * rowGap} stroke="#C8C2B5" stroke-width="0.6"/>
-            <text x={e._x} y={axisY - 36 - e._row * rowGap} text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="11" fill="#1A1A1A" font-weight="500">{e.label}</text>
-            <text x={e._x} y={axisY + 22} text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="10" fill="#5C5C5C">{e.year}</text>
+            <line x1={e._x} y1={axisY - 4} x2={e._x} y2={axisY - 28 - e._row * rowGap} stroke="#C8C2B5" stroke-width="0.6"/>
+            <foreignObject x={e._x - 70} y={axisY - 28 - e._row * rowGap - 28} width="140" height="32">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="timeline-h-label">{e.label}</div>
+            </foreignObject>
+            <foreignObject x={e._x - 40} y={axisY + 8} width="80" height="20">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="timeline-h-year">{e.year}</div>
+            </foreignObject>
           </g>
         ))}
-        <text x={padX} y={axisY + 50} font-family="'IBM Plex Sans', sans-serif" font-size="10" fill="#5C5C5C" letter-spacing="0.08em">{startLabel}</text>
-        <text x={W - padX} y={axisY + 50} text-anchor="end" font-family="'IBM Plex Sans', sans-serif" font-size="10" fill="#5C5C5C" letter-spacing="0.08em">{endLabel}</text>
       </svg>
     </div>
+
+    {/* Mobile: vertical list */}
+    <ol class="timeline-vertical">
+      {events.map(e => (
+        <li class="timeline-v-event">
+          <time class="timeline-v-year">{e.year}</time>
+          <div class="timeline-v-label">{e.label}</div>
+        </li>
+      ))}
+    </ol>
+
     {source && <div class="exhibit-source" set:html={`<strong>Source.</strong> ${source}`} />}
   </div>
 </figure>
