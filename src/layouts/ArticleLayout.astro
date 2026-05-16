@@ -1,8 +1,32 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ArticleMasthead from '../components/ArticleMasthead.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
 const { entry, slug, lang } = Astro.props;
 const { data } = entry;
+
+// Word count and reading-time calculation.
+// We work on the raw MDX body, stripping imports, JSX tags, and expressions,
+// then counting whitespace-separated tokens.
+function countWords(rawBody) {
+  if (!rawBody || typeof rawBody !== 'string') return 0;
+  const cleaned = rawBody
+    .replace(/^import .+$/gm, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\{[^}]*\}/g, ' ')
+    .replace(/[*_`#>~\\\-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned ? cleaned.split(' ').filter(w => w.length > 0).length : 0;
+}
+
+const WPM = 200; // academic-magazine register; Spanish prose with technical density
+const wordCount = countWords(entry.body || '');
+const readingMinutes = Math.max(1, Math.ceil(wordCount / WPM));
+const localeTag = lang === 'es' ? 'es-ES' : 'en-US';
+const wordCountFormatted = wordCount.toLocaleString(localeTag);
+const wordsLabel = lang === 'es' ? 'palabras' : 'words';
+const readLabel = lang === 'es' ? 'min de lectura' : 'min read';
 ---
 <BaseLayout title={`${data.title} · Lecturas`} description={data.dek}>
   <ArticleMasthead lang={lang} slug={slug} />
@@ -15,8 +39,16 @@ const { data } = entry;
       <span>{data.date}</span>
       {data.source && <><span class="hero-meta-bar"></span><span>{data.source}</span></>}
     </div>
+    {wordCount > 0 && (
+      <div class="hero-reading-meta">
+        <span>{readingMinutes} {readLabel}</span>
+        <span class="hero-reading-bar" aria-hidden="true"></span>
+        <span>{wordCountFormatted} {wordsLabel}</span>
+      </div>
+    )}
   </section>
   <article class="article">
     <slot />
   </article>
+  <ReadingProgress />
 </BaseLayout>

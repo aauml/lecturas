@@ -179,7 +179,7 @@ Most Lecturas paragraphs do not need pedagogical scaffolding. The genre is acade
 - It marks a counterintuitive move where the reader's first instinct is likely wrong (e.g., "two things that look identical do opposite work").
 - It carries a definition the rest of the argument depends on.
 
-A typical piece has two or three hinges. A piece with zero is probably summarizing without arguing. A piece with seven is trying to teach a course.
+A piece has as many hinges as the source has organizing concepts that the rest of the argument depends on. A narrative interview may have one — the single tesis the reporter is reconstructing. A dense paper or book chapter may have five — one per structural move. A summary piece that's not really arguing may have zero, in which case the genre is wrong and a Lecturas piece probably shouldn't exist. Don't pick a number in advance; pick the passages and count them after.
 
 **The hinge pattern.** When you've identified a hinge, expand it using this five-move structure:
 
@@ -189,7 +189,7 @@ A typical piece has two or three hinges. A piece with zero is probably summarizi
 4. **Recast abstract opposition as two concrete questions** when contrasting concepts. Not "they do opposite work" but "A asks: how do I make the system comply with the rule? B asks: how do I make the system leave standing what makes the rule protect?"
 5. **Close with a reflection prompt**, not a summary. A question the reader can hold without answering — one that the rest of the piece will retroactively answer. *"Antes de continuar, considera: ¿…? La intuición rápida puede no ser correcta."*
 
-**Cost and discipline.** A hinge expansion adds roughly 200-300 words to what would have been a 80-150 word paragraph. That cost is acceptable on two or three passages per piece. It is not acceptable on every paragraph — a piece where every concept is scaffolded becomes a textbook chapter and loses the magazine register entirely.
+**Cost and discipline.** A hinge expansion adds roughly 200-300 words to what would have been a 80-150 word paragraph. That cost is acceptable on the passages that genuinely warrant it. It is not acceptable on every paragraph — a piece where every concept is scaffolded becomes a textbook chapter and loses the magazine register entirely.
 
 **Where not to use hinges.** Don't scaffold concepts that have already been installed earlier in the piece. Don't scaffold the recap moves of a coda. Don't scaffold in places where the source itself already does the pedagogical work and your job is to compress, not expand.
 

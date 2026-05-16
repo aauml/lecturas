@@ -1,0 +1,52 @@
+---
+// ReadingProgress — small fixed-position circle in the bottom-right that
+// fills as the user scrolls through the article. Hidden at start and end.
+---
+<div class="reading-progress" data-reading-progress aria-hidden="true">
+  <svg viewBox="0 0 44 44" width="44" height="44">
+    <circle class="reading-progress-track" cx="22" cy="22" r="18" fill="none" stroke-width="1.5"/>
+    <circle
+      class="reading-progress-fill"
+      cx="22"
+      cy="22"
+      r="18"
+      fill="none"
+      stroke-width="1.5"
+      stroke-dasharray="113.097"
+      stroke-dashoffset="113.097"
+      transform="rotate(-90 22 22)"
+      stroke-linecap="round"
+    />
+  </svg>
+  <span class="reading-progress-percent" data-reading-progress-label>0</span>
+</div>
+<script>
+  (function () {
+    const root = document.querySelector('[data-reading-progress]');
+    const fill = root && root.querySelector('.reading-progress-fill');
+    const label = root && root.querySelector('[data-reading-progress-label]');
+    const article = document.querySelector('.article');
+    if (!root || !fill || !label || !article) return;
+
+    const CIRCUMFERENCE = 2 * Math.PI * 18; // ≈ 113.097
+
+    function update() {
+      const rect = article.getBoundingClientRect();
+      const articleTop = rect.top + window.scrollY;
+      const articleHeight = article.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      // Progress = how much of the article body has scrolled past the viewport midline.
+      const scrolled = window.scrollY + viewportHeight * 0.5 - articleTop;
+      const total = articleHeight;
+      const ratio = Math.max(0, Math.min(1, scrolled / total));
+      fill.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - ratio));
+      label.textContent = String(Math.round(ratio * 100));
+      // Visible only mid-read.
+      root.classList.toggle('is-visible', ratio > 0.02 && ratio < 0.99);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  })();
+</script>
