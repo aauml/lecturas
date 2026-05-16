@@ -18,11 +18,49 @@ const { title, description } = Astro.props;
 <slot />
 <script is:inline>
 (function(){
-  var btns=document.querySelectorAll('.text-size-switch button');
-  function paint(s){btns.forEach(function(b){b.classList.toggle('active',b.dataset.size===s);});}
-  var cur=localStorage.getItem('lecturas-text-size')||'md';
+  var btns = document.querySelectorAll('.text-size-switch button');
+  function paint(s){ btns.forEach(function(b){ b.classList.toggle('active', b.dataset.size === s); }); }
+  var cur = localStorage.getItem('lecturas-text-size') || 'md';
   paint(cur);
-  btns.forEach(function(b){b.addEventListener('click',function(){var s=b.dataset.size;document.documentElement.setAttribute('data-text-size',s);try{localStorage.setItem('lecturas-text-size',s);}catch(e){}paint(s);});});
+
+  // Capture the text element near the reading sweet spot of the viewport.
+  // We use 1/4 from the top — typical reading focus zone, well below any masthead.
+  function captureAnchor(){
+    var sweetSpotY = Math.max(60, window.innerHeight * 0.25);
+    var sweetSpotX = Math.max(20, window.innerWidth * 0.5);
+    var el = document.elementFromPoint(sweetSpotX, sweetSpotY);
+    if (!el) return null;
+    // Find the nearest piece of body content to anchor to.
+    var container = el.closest(
+      '.article p, .article h2, .article h3, .article h4, .article li, ' +
+      '.article figure, .article blockquote, .article .exhibit, .article section'
+    );
+    if (!container) return null;
+    return { element: container, viewportOffset: container.getBoundingClientRect().top };
+  }
+
+  // After the size attribute changes, the browser will recompute layout
+  // when we read getBoundingClientRect — forcing a synchronous reflow.
+  // We use that value to compute how far to scroll to keep the anchor in place.
+  function restoreAnchor(anchor){
+    if (!anchor || !anchor.element) return;
+    var newTop = anchor.element.getBoundingClientRect().top;
+    var delta = newTop - anchor.viewportOffset;
+    if (Math.abs(delta) > 1) window.scrollBy(0, delta);
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var anchor = captureAnchor();
+      var s = b.dataset.size;
+      document.documentElement.setAttribute('data-text-size', s);
+      try { localStorage.setItem('lecturas-text-size', s); } catch(e){}
+      paint(s);
+      restoreAnchor(anchor);
+      // The scrollBy above will fire a scroll event that ReadingProgress
+      // is already listening to, so the percentage recalculates naturally.
+    });
+  });
 })();
 </script>
 </body>
