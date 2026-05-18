@@ -220,11 +220,33 @@ Other defaults that don't change:
 - **Zero exhibits is fine.** If the piece doesn't need one, ship without one.
 - **`<Exhibit>` wrapper** still exists for fully bespoke needs not covered by the nine components above. Reach for it last.
 
+## Orientation block
+
+A short surface card before the Lede, previewing the concepts and ideas the reader is about to encounter. **Going-forward articles only** — existing pieces are not retrofitted.
+
+Write threads as **concept-pointers, not "what you'll learn" sentences**. Each thread is a noun phrase or short clause that names something the piece will touch — a mechanism, a distinction, a claim, a tension. The number of threads is source-driven; let the text decide.
+
+Mechanics:
+- Each thread is a plain `<p>` element inside `<Orientation>`. The dash prefix and label are rendered by CSS — don't write them yourself.
+- The `lang` prop sets the label ("In this reading" / "En esta lectura"). Required when writing ES.
+- Use `<em>` for concept names worth surfacing in italics.
+
+Good threads:
+- *"How a single jurisdiction globalises its standards without treaties or coercion."*
+- *"The distinction between* legal by design *and* legal protection by design *— and why it survives or fails the move into computational systems."*
+
+Bad threads (too generic / too meta):
+- *"The article explains how the EU sets global standards."*
+- *"An overview of Hildebrandt's argument."*
+
+The orientation is optional — short pieces that don't need it (≤ ~1,500 words on a single contained argument) can omit it. For thesis-track, ai-policy, and dense geopolitics pieces, default to including it.
+
 ## The components, briefly
 
 In `src/components/`:
 
 - `<Lede>` — first paragraph (no drop cap)
+- `<Orientation lang="en">` — pre-Lede surface card; concept-thread preview of what the piece covers (going-forward articles only)
 - `<Section number="01" title="Section title with <em>emphasis</em>">...</Section>` — section with number + h2
 - `<Standfirst>` — italic intro to a section
 - `<ContextBox label="What is X?">` — cream box with oxblood border, for assumed concepts
@@ -278,6 +300,7 @@ Import components at the top of the body, then use them inline:
 
 ```mdx
 import Lede from '../../../components/Lede.astro';
+import Orientation from '../../../components/Orientation.astro';
 import Section from '../../../components/Section.astro';
 import Standfirst from '../../../components/Standfirst.astro';
 import ContextBox from '../../../components/ContextBox.astro';
@@ -286,6 +309,12 @@ import PullQuote from '../../../components/PullQuote.astro';
 import Callback from '../../../components/Callback.astro';
 import Timeline from '../../../components/exhibits/Timeline.astro';
 import Bars from '../../../components/exhibits/Bars.astro';
+
+<Orientation lang="en">
+<p>First concept-thread — what the piece touches, in a noun phrase or short clause.</p>
+<p>Second thread — a distinction, mechanism, or tension the reader will encounter.</p>
+<p>Third thread — why this matters / what it connects to.</p>
+</Orientation>
 
 <Lede>First paragraph that introduces the piece.</Lede>
 
