@@ -409,3 +409,45 @@ h2.section-title em { font-style: italic; font-weight: 500; }
     font-size: 8px;
   }
 }
+
+/* ======== Orientation block ======== */
+/* Pre-Lede surface card. Concept-thread preview of what the piece covers. */
+/* Authored as plain <p> elements inside <Orientation>; dash prefix is CSS. */
+
+.orientation {
+  background: var(--surface);
+  padding: 18px 22px 16px;
+  margin: 8px 0 32px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+.orientation-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.orientation p {
+  font-size: calc(14px * var(--reader-scale));
+  line-height: 1.6;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  padding-left: 18px;
+  text-indent: -18px;
+}
+.orientation p:last-child { margin-bottom: 0; }
+.orientation p::before {
+  content: "— ";
+  color: var(--accent);
+  font-weight: 500;
+}
+.orientation em { font-style: italic; color: var(--ink); }
+.orientation strong { color: var(--ink); font-weight: 500; }
+
+/* Mobile — match the ContextBox tightening pattern */
+@media (max-width: 640px) {
+  .orientation { padding: 16px 18px 14px; margin: 6px 0 24px; }
+  .orientation p { padding-left: 16px; text-indent: -16px; }
+}
