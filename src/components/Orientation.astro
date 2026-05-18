@@ -1,0 +1,8 @@
+---
+const { lang = 'en' } = Astro.props;
+const label = lang === 'es' ? 'En esta lectura' : 'In this reading';
+---
+<aside class="orientation">
+  <div class="orientation-label">{label}</div>
+  <slot />
+</aside>
