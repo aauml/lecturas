@@ -1,0 +1,143 @@
+---
+issue: "N° 21"
+date: "17 May 2026"
+sortDate: "2026-05-17"
+language: es
+kicker: "La conversación, anotada"
+track: ai-policy
+title: "El dios máquina que Pekín no venera"
+titleHTML: "El dios máquina que Pekín no <em>venera</em>"
+dek: "Kyle Chan, investigador de Brookings y uno de los observadores estadounidenses más agudos de la política tecnológica china, explica a Ross Douthat por qué Estados Unidos y China libran carreras de IA distintas — y por qué la distinción importa más que quién va delante."
+dekHTML: "Kyle Chan, investigador de Brookings y uno de los observadores estadounidenses más agudos de la política tecnológica china, explica a Ross Douthat por qué Estados Unidos y China libran carreras de IA distintas — y por qué la distinción importa más que quién va delante."
+coverDek: "Estados Unidos invierte cientos de miles de millones en la búsqueda de la superinteligencia artificial. China construye robots de reparto, humanoides para sus fábricas y modelos de código abierto que medio mundo descarga gratis. Kyle Chan cartografía la divergencia y sostiene que la obsesión americana con la AGI podría estar ocultando la competición que realmente importa."
+source: "Basado en una conversación entre Kyle Chan y Ross Douthat · Interesting Times · 14 de mayo de 2026"
+sourceLabel: "N.º 21 · De Interesting Times"
+topics:
+  - "Competición IA EE. UU.-China"
+  - "Escepticismo ante la AGI"
+  - "Controles de exportación de semiconductores"
+  - "Código abierto vs modelos cerrados"
+  - "Robótica y despliegue"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import QABlock from '../../../components/QABlock.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+import Comparison from '../../../components/exhibits/Comparison.astro';
+import Scorecard from '../../../components/exhibits/Scorecard.astro';
+
+<Lede>La frase aparece cerca del final de la conversación, pronunciada con una risa seca que Douthat recoge de inmediato: «Cuanto más cerca estás del dios máquina, más te susurra al oído.» Kyle Chan — investigador de Brookings que ha testificado ante el Congreso estadounidense sobre política tecnológica china, escribe el influyente boletín *High Capacity* y prepara un libro sobre política industrial china para Princeton University Press — describe por qué puede haber personas en DeepSeek que crean en el futuro de la superinteligencia con más fervor que nadie en el Consejo de Estado de Pekín. La frase captura algo esencial sobre la divergencia que el resto de la hora se dedica a cartografiar: el proyecto de IA de Estados Unidos y el de China no son el mismo proyecto a distinta velocidad. Son proyectos diferentes, animados por teorías distintas sobre para qué sirve la inteligencia artificial, condicionados por realidades materiales diferentes y convergentes hacia futuros distintos.</Lede>
+
+<Section number="01" title="Dos carreras, no <em>una</em>">
+
+<Standfirst>La tesis central de Chan es estructural, no cuantitativa: Estados Unidos libra una carrera hacia la AGI; China libra varias carreras a la vez, y la AGI no es la principal.</Standfirst>
+
+La carrera estadounidense, en el encuadre de Chan, es una apuesta por la trascendencia. OpenAI, Anthropic, Google DeepMind — empresas valoradas ya en cientos de miles de millones — vierten capital en la persecución de la inteligencia artificial general, un sistema capaz de hacer todo lo que un humano puede hacer en un ordenador, y luego la parte «súper»: algo que exceda la capacidad humana en todos los dominios. La escala del gasto, la retórica de los fundadores, la atracción gravitacional sobre el talento y el capital — todo orbita en torno a esta idea.
+
+<ContextBox label="¿Qué es la AGI y por qué importa aquí?">
+La inteligencia artificial general es el punto hipotético en el que un sistema de IA iguala o supera la capacidad cognitiva humana en todos los dominios — no solo en ajedrez, no solo en programación, sino en razonamiento, creatividad, persuasión, descubrimiento científico, todo. Ningún sistema la ha alcanzado. Si es alcanzable, inminente o siquiera coherentemente definible es objeto de un debate feroz. Lo que importa para el argumento de Chan no es si la AGI llega, sino que la *creencia* en su llegada condiciona la estrategia estadounidense: cómo se asigna el capital, qué regulaciones se resisten, qué riesgos se toleran.
+</ContextBox>
+
+El proyecto chino, por contraste, es difuso. Chan identifica cuatro frentes distintos. Primero, calidad de modelos — mantener el ritmo con los modelos de frontera estadounidenses, lo que los laboratorios chinos hacen con un desfase de entre tres y nueve meses según el indicador. Segundo, eficiencia — hacer modelos más pequeños, más baratos, más rápidos de ejecutar. Esto responde en parte a la restricción (la escasez de chips) y en parte a una estrategia deliberada. Tercero, código abierto — regalar modelos para que desarrolladores de todo el mundo, incluidos los de Silicon Valley, los descarguen, personalicen y construyan sobre cimientos chinos. Cuarto, aplicaciones — robótica, reparto autónomo, automatización fabril, integración en servicios de transporte y logística.
+
+Si uno recorriera Shanghái o Pekín hoy, dice Chan, podría ver robots de reparto gestionando paquetes, robots camareros sirviendo comida en restaurantes, drones entregando café, taxis autónomos. No es ubicuo aún, pero es visible — y probablemente sorprendente para un visitante estadounidense cuya interacción cotidiana con la IA consiste sobre todo en una ventana de chat en la pantalla de un portátil.
+
+</Section>
+
+<Section number="02" title="El cuello de botella de los <em>chips</em>">
+
+<Standfirst>Estados Unidos controla el acceso a los chips de IA más avanzados del mundo — pero la cadena de suministro que aprovecha pasa por Taiwán, los Países Bajos y un conjunto de dependencias que cortan en ambas direcciones.</Standfirst>
+
+Chan recorre la pila de semiconductores con una claridad inusual. Nvidia diseña los chips. TSMC, en Taiwán, los fabrica. ASML, en los Países Bajos, construye las máquinas de litografía — sistemas de ultravioleta extremo que cuestan cientos de millones de dólares cada uno — sin las cuales los procesos más avanzados de TSMC serían imposibles. Los controles de exportación estadounidenses no se limitan a impedir que Nvidia venda a China. Excluyen a China de toda esta cadena de suministro verticalmente integrada.
+
+<Scorecard
+  columns={["Diseña chips", "Fabrica chips", "Fabrica equipos", "Bajo control de exportación de EE. UU."]}
+  rows={[
+    { label: "Nvidia (EE. UU.)", values: [true, false, false, "Controla"] },
+    { label: "TSMC (Taiwán)", values: [false, true, false, "Cumple"] },
+    { label: "ASML (Países Bajos)", values: [false, false, true, "Cumple"] },
+    { label: "Huawei (China)", values: [true, true, false, "Sancionada"] }
+  ]}
+  title="La cadena de suministro de chips de IA"
+  subtitle="Roles simplificados en la producción de chips de IA de frontera"
+/>
+
+La respuesta china ha sido construir capacidad propia. Huawei — el gigante de telecomunicaciones, duramente sancionado, que se ha expandido a teléfonos inteligentes, vehículos eléctricos, energía limpia y ahora chips de IA — es el actor principal. Pero los chips de Huawei simplemente no son tan buenos como los de Nvidia. La brecha es real y condiciona lo que los laboratorios chinos pueden hacer. El imperativo de eficiencia que define buena parte de la estrategia china en IA es, en parte, producto de exprimir más inteligencia con menos computación.
+
+Chan ofrece un indicador revelador para quienes temen un programa chino secreto de AGI. Cuando Trump relajó algunos controles de exportación y permitió la venta de chips Nvidia H200 a China, Pekín dijo, en la práctica, «no, gracias». Las empresas de IA querían esos chips desesperadamente, pero el gobierno priorizó reducir la dependencia de cadenas de suministro estadounidenses y reforzar el desarrollo doméstico de semiconductores. Si China estuviera verdaderamente corriendo hacia la AGI, argumenta Chan, habría engullido esos chips al instante sin saber cuándo se cerraría la ventana.
+
+</Section>
+
+<Section number="03" title="La energía, la capa <em>invisible</em>">
+
+<Standfirst>Por debajo de los chips, por debajo de los modelos, se sitúa la capa que Chan considera la más importante y la menos comentada: la energía. Y aquí China podría tener la ventaja estructural.</Standfirst>
+
+El argumento resulta casi embarazosamente físico para una conversación sobre inteligencia artificial. Los centros de datos necesitan electricidad. Enormes cantidades, crecientes, constantes. En Estados Unidos esto se ha convertido en un verdadero cuello de botella: la construcción de centros de datos choca con los límites de capacidad eléctrica, las batallas de permisos y la resistencia de las comunidades. La oposición a los centros de datos es ya un tema político en varios estados.
+
+China, mientras tanto, ha estado desarrollando capacidad energética — solar, eólica, baterías — a un ritmo sin paralelo en el mundo industrializado. Y está empezando a conectar esa expansión energética con su expansión de computación. Una estrategia que Chan destaca: construir centros de datos en las provincias occidentales, lejos de las megaciudades costeras. Suena contraintuitivo — ¿no conviene tener los centros de datos cerca de los usuarios? — pero sirve un doble propósito. Aprovecha los recursos de energía renovable concentrados en regiones remotas y redistribuye la actividad económica hacia provincias más pobres, una preocupación perenne para los planificadores chinos que temen la brecha entre la Shenzhen de alta tecnología y el interior subdesarrollado.
+
+El punto de fondo es que la competición en IA no es solo una carrera de software o de chips. Es una carrera de infraestructuras que desciende hasta los insumos industriales más básicos. Y en infraestructura, el modelo de dirección estatal chino — con toda su rigidez en otros ámbitos — puede moverse más rápido que el sistema estadounidense de inversión privada condicionada por la planificación local, la revisión ambiental y la oposición comunitaria.
+
+</Section>
+
+<Section number="04" title="La ansiedad que se <em>refleja</em>">
+
+<Standfirst>En Estados Unidos, el estado de ánimo público ante la IA mezcla pavor apocalíptico con temor económico. En China, la ansiedad dominante es distinta: el miedo a quedarse atrás.</Standfirst>
+
+La descripción que hace Chan del ánimo público chino es la sección de la conversación que más probablemente incomode a los oyentes estadounidenses. En Estados Unidos, las ansiedades son conocidas: pérdida de empleo, disrupción social, el centro de datos en el patio trasero, el vago temor existencial a una superinteligencia incontrolable. En China, la ansiedad principal es competitiva — no «¿me quitará la IA el trabajo?» sino «¿estoy usando la IA lo suficiente para conservar mi trabajo?».
+
+Esta ansiedad individual refleja la ansiedad nacional. Cuando AlphaGo derrotó al campeón mundial humano de Go — un juego con profunda resonancia cultural en China — hubo una oleada de alarma política en Pekín. Cuando se lanzó ChatGPT, la preocupación se agudizó: ¿se estaba quedando China atrás? La respuesta no fue frenar, sino acelerar, integrar, desplegar.
+
+<ContextBox label="El problema de empleo juvenil en China">
+El contexto de esta ansiedad es demográfico. El desempleo juvenil en China ronda el 17 % — aproximadamente el doble de la tasa estadounidense. Más de 12 millones de nuevos titulados universitarios se incorporan cada año al mercado laboral chino. No quieren trabajos en fábricas ni de repartidores. Quieren los «buenos empleos», los puestos de la economía del conocimiento que la IA a la vez crea y amenaza. En este entorno, la IA no es una preocupación abstracta sobre el futuro del trabajo. Es una herramienta competitiva en un mercado laboral que ya era brutalmente saturado antes de que llegara la tecnología.
+</ContextBox>
+
+La dimensión del estado del bienestar es incipiente pero creciente. China desmanteló hace décadas el «cuenco de arroz de hierro» de la era maoísta — el empleo garantizado de por vida en empresas estatales. A menos que uno trabaje para una empresa estatal o para el gobierno, la seguridad laboral es en gran medida un resultado del mercado. Hay un debate creciente en Pekín sobre el desplazamiento laboral asociado a la IA y sobre qué debería hacer el Estado al respecto, pero sigue en fase temprana. La postura dominante sigue siendo aceleracionista: enfatizar los nuevos empleos que creará la IA, enmarcar la disrupción como parte de la «Revolución Industrial 4.0 o 5.0», pisar el acelerador.
+
+Una excepción notable: Pekín ya está regulando los compañeros de IA — el novio virtual, la novia virtual. La visión del partido-Estado es productivista. Se persiguieron los videojuegos porque se consideraban un desperdicio de potencial humano. Se aplastaron las startups de tecnología educativa porque alimentaban una carrera destructiva de preparación de exámenes. Los compañeros de IA son sospechosos por la misma razón: podrían absorber la atención y la energía de jóvenes que deberían estar diseñando el futuro, construyendo los equivalentes chinos de SpaceX, dotando de personal las fábricas de robótica.
+
+<PullQuote attribution="— Kyle Chan">Cuanto más cerca estás del dios máquina, más te susurra al oído. No creo que Pekín esté convencido de la AGI.</PullQuote>
+
+</Section>
+
+<Section number="05" title="La cuestión del <em>cinturón</em> de seguridad">
+
+<Standfirst>Douthat presenta el argumento halcón: si los plazos son cortos, mantener incluso unos meses de ventaja sobre un rival autoritario podría ser enormemente importante. Chan responde — pero no del todo en contra.</Standfirst>
+
+El tramo final de la conversación es el más denso en política, y es donde la posición de Chan revela su forma real. No argumenta que Estados Unidos deba dejar de competir. Argumenta que el marco de la competición está distorsionado por la fijación con la AGI de maneras que producen malas políticas.
+
+La mentalidad de carrera, en su opinión, está impulsando la temeridad. Si lo único que importa es alcanzar la superinteligencia primero, entonces las salvaguardas son un lastre, la regulación es autosabotaje y cada centro de datos es una necesidad patriótica. JD Vance lo explicitó en un discurso: en la disyuntiva entre seguridad de IA y velocidad de IA, Estados Unidos debería elegir la velocidad. Chan cree que ese planteamiento es erróneo — no porque la seguridad sea más importante que la velocidad, sino porque la disyuntiva no es tan binaria como la presentan los halcones.
+
+<Comparison
+  leftLabel="El caso halcón"
+  rightLabel="El reencuadre de Chan"
+  rows={[
+    { left: "La AGI es inminente; el tiempo de ventaja lo es todo", right: "El plazo de la AGI es incognoscible; los riesgos medios son más concretos" },
+    { left: "Los controles de exportación deberían ser más estrictos", right: "Los controles frenan a China a corto plazo pero aceleran su autosuficiencia" },
+    { left: "Las salvaguardas ralentizan a EE. UU.", right: "Un cinturón de seguridad no es lo mismo que un límite de velocidad" },
+    { left: "China es un adversario unitario", right: "Pekín, DeepSeek y los laboratorios de IA tienen visiones distintas de la carrera" },
+    { left: "La interlocución es ingenua", right: "Actores no estatales usando IA para bioarmas o ciberataques son una amenaza compartida" }
+  ]}
+  title="Dos posiciones sobre la política de IA EE. UU.-China"
+/>
+
+Los riesgos medios — la capacidad de ciberataque, las amenazas de bioseguridad derivadas de modelos que pueden potenciar a actores poco sofisticados — son, en la estimación de Chan, más plausibles y más subestimados que el escenario AGI. Son los riesgos que justifican mantener los controles de exportación. Son también los riesgos que podrían justificar hablar con China, no sobre acuerdos vinculantes de control de armas (el déficit de confianza es demasiado profundo para eso), sino sobre vulnerabilidades compartidas — el actor no estatal que juega modelos estadounidenses y chinos unos contra otros, el ciberataque que explota una capacidad que ninguno de los dos gobiernos anticipó plenamente.
+
+En materia de despliegue, Chan es más prescriptivo. Estados Unidos debería invertir más en código abierto, donde los incentivos comerciales empujan actualmente a los laboratorios estadounidenses hacia modelos cerrados y de suscripción mientras los laboratorios chinos regalan los suyos. Estados Unidos debería pensar más en la difusión — en llevar la IA a manos, industrias y países que actualmente recurren por defecto a modelos chinos porque son gratuitos, personalizables y suficientemente buenos. Es una competición que Estados Unidos está cediendo por diseño, no por necesidad.
+
+La pregunta final de Douthat es la más oscura. ¿Cambia algo de esto solo tras un desastre — un ciberincidente grave, un evento con armas biológicas, algo que haga a ambos países detenerse? Chan no descarta el escenario. Le preocupa que Estados Unidos y China estén esperando exactamente ese tipo de incidente antes de empezar a hablar en serio. La analogía nuclear sobrevuela la conversación: aquellas negociaciones solo fueron posibles porque las armas se habían usado, y todo el mundo sabía lo que podían hacer.
+
+</Section>
+
+<Section number="06" title="Coda">
+
+Lo que permanece genuinamente incierto es el plazo de la AGI — y Chan es honesto al respecto. Nadie puede decir si el bucle de mejora recursiva que teorizan los laboratorios estadounidenses llegará en dos años, en veinte o nunca. Si llega pronto, los halcones tienen razón y cada mes de ventaja es precioso. Si no llega, Estados Unidos podría haber dedicado una década a optimizar para una carrera que China nunca estaba corriendo, mientras China capturaba los mercados, los despliegues y la integración industrial que determinan quién moldea realmente el modo en que la IA se usa en el mundo.
+
+Lo que no es incierto es la divergencia misma. China construye robots, no dioses. Envía modelos al mundo, no los atesora. Conecta centros de datos a granjas solares en Gansu, no a visiones apocalípticas de conciencia maquinal en San Francisco. Que esto sea sabiduría o simplemente un tipo diferente de apuesta depende por entero de lo que la inteligencia artificial resulte ser: una herramienta que mejora progresivamente, o un umbral que, una vez cruzado, cambia la naturaleza del juego por completo.
+
+Al lector le queda la inversión silenciosa que Chan hace del encuadre habitual. La pregunta no es «¿está China alcanzando a Estados Unidos?». La pregunta es si Estados Unidos ha identificado correctamente hacia qué corre — y si, en su fijación con el dios máquina, está descuidando la competición terrenal que determinará dentro de la visión de qué país vivirá realmente el resto del mundo.
+
+</Section>
