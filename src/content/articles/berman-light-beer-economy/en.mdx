@@ -1,0 +1,167 @@
+---
+issue: "N° 26"
+date: "2 Jun 2026"
+sortDate: "2026-06-02"
+language: en
+track: geopolitics
+title: "The light-beer economy and the strait that will not reopen"
+titleHTML: "The light-beer economy and the strait that will not <em>reopen</em>"
+dek: "Art Berman, petroleum geologist and energy consultant, explains why America's supposed energy independence is a category error — and why the futures price you see on your screen has almost nothing to do with the real cost of oil right now."
+dekHTML: "Art Berman, petroleum geologist and energy consultant, explains why America's supposed energy independence is a category error — and why the futures price you see on your screen has almost nothing to do with the real cost of oil right now."
+coverDek: "Art Berman breaks down why the US imports 6.5 million barrels a day despite being called energy-independent, why the two oil prices on your screen describe completely different realities, and why the consensus among every credible energy analyst is that nothing is going back to normal."
+source: "Based on a conversation with Daniel Davis · Daniel Davis Deep Dive"
+sourceLabel: "N° 26 · Daniel Davis Deep Dive"
+topics:
+  - "Strait of Hormuz"
+  - "oil quality & refining"
+  - "futures vs. spot divergence"
+  - "demand destruction"
+  - "energy independence myth"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import QABlock from '../../../components/QABlock.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+import Callback from '../../../components/Callback.astro';
+import Bars from '../../../components/exhibits/Bars.astro';
+import Comparison from '../../../components/exhibits/Comparison.astro';
+
+<Lede>The number you see when you search "oil price" is not the price of oil. It is a futures contract — someone's bet, settled by competing parties, on what a barrel will cost when it changes hands in July or August. The physical barrel you could buy today costs somewhere around $140 to $150. The gap between those two figures is the gap between what the market believes will happen and what is already happening. Art Berman, a petroleum geologist with over four decades of experience who spent twenty years at Amoco before founding Labyrinth Consulting Services, spent an hour on the Daniel Davis Deep Dive working through why that gap exists, why it will close violently, and why almost everything the current administration has said about American energy independence rests on a misunderstanding so basic it is almost instructive. The short version: the United States produces the wrong kind of oil, runs on the right kind it cannot make, and is telling itself a story about self-sufficiency that its own import ledger refutes every single day.</Lede>
+
+<Callback issue="N° 21" slug="hudson-oil-weapon" lang="en">Michael Hudson argued in this collection that the Iran war was not a crisis but a logical endpoint — the financial damage, he said, cannot be quarantined. Berman arrives at the same destination from the geology up.</Callback>
+
+<Section number="01" title="Why energy independence is a <em>category error</em>">
+
+<Standfirst>The US imports 6.5 million barrels of oil per day. That fact alone ends the conversation — but it requires an explanation that almost nobody gives.</Standfirst>
+
+President Trump, at a cabinet meeting, said the United States has more oil than anybody else, that the US plus Venezuela together hold 64 percent of the world's reserves, and that none of this has anything to do with the Persian Gulf. Berman, asked to respond, said the claims were "patently untrue," "preposterously untrue," and "completely, utterly, unsupportably false" — and then immediately added a caveat: in one narrow, aggregate sense, Trump is right.
+
+The US is, technically, a net energy exporter. If you convert every form of energy the country exports and imports — oil, natural gas, coal, refined products, electricity — into a common unit and run the ledger, the exports edge out the imports. That is what "energy independence" means in the administration's usage. What it does not mean: the United States does not need oil from elsewhere.
+
+<QABlock speaker="Art Berman">
+Why in the world would an energy-independent nation import more oil per day than all of Europe uses in a day? We export about 4 million barrels a day. We import 6.5 million barrels a day. So in the simplest analysis, we are a net importer of about 2.5 million barrels of crude oil and condensate per day.
+</QABlock>
+
+The reason the US both exports and imports oil — simultaneously, at scale — is not accounting confusion. It is refinery chemistry.
+
+<ContextBox label="What is API gravity?">
+Crude oil is classified by density, measured in degrees API gravity. The higher the number, the lighter the oil. Light crude (above roughly 35° API) flows easily, contains shorter hydrocarbon chains, and yields large quantities of gasoline and petrochemical feedstocks. Heavy crude (below 25° API) is viscous, contains longer chains, and yields larger proportions of diesel, jet fuel, and kerosene — the fuels that actually run the global economy. Most US shale production falls in the 45–55° API range: too light to make significant diesel. The Persian Gulf and Russia produce medium-sour crude in the 28–35° range: the refinery sweet spot for distillate fuels.
+</ContextBox>
+
+American oil is light. Berman's metaphor: it is 3.2 beer. The world economy runs on 100-proof Jack Daniels — the heavier, medium-gravity crude that cooks down into diesel, jet fuel, and kerosene. US refineries were designed decades ago, when diesel became the dominant global fuel, to blend American light crude with heavy imports to produce the full slate of refined products. That design is not a switch you flip. It is capital infrastructure built over fifty years.
+
+Three-quarters of US crude imports come from Canada. Canadian oil sands are the chemical inverse of shale — so heavy they are effectively tar, requiring hydrogen injection and complex cracking to be upgraded into usable product. Venezuela is the same. Together, the heavy Canadian and Venezuelan feedstock blended with American light crude allows US refineries to produce diesel. Without the heavy component, the refinery slate breaks.
+
+<Bars
+  items={[
+    { label: "US crude imports (mb/d)", value: 6.5, display: "6.5" },
+    { label: "US crude exports (mb/d)", value: 4.0, display: "4.0" },
+    { label: "Net import position (mb/d)", value: 2.5, display: "2.5", accent: true },
+  ]}
+  unit="mb/d"
+  title="The US oil ledger"
+  subtitle="The net import figure obscures that the exported and imported barrels are chemically different products"
+  source="Art Berman / EIA 2026"
+/>
+
+So when Trump says tankers are streaming into US ports because Gulf oil is unavailable and American production is filling the gap: the tankers are indeed arriving. They are arriving because tankers need cargo and the Gulf is closed. Whether the cargo they carry can substitute for what was lost from the Persian Gulf is a different question, and the answer is largely no.
+
+</Section>
+
+<Section number="02" title="The anatomy of a <em>blockade</em>">
+
+<Standfirst>Iran does not own the Strait of Hormuz. It has done something more durable: made it uninsurable. The legal distinction Trump keeps invoking is operationally meaningless.</Standfirst>
+
+Berman's framing of what Iran has actually achieved is precise. The strait is, legally, international waters. Trump is correct on that point. Iran has not placed a toll booth at the entrance. What it has done, through mines, anti-ship missiles, and demonstrated willingness to attack vessels, is make insurance unavailable. No insurance company will write a war-risk policy for a tanker transiting the strait. No responsible ship operator sends a vessel into a lane where a single missile strike means an uninsured total loss.
+
+<QABlock speaker="Art Berman">
+They have created enough risk and disruption that nobody will push a ship through there. No insurance company will insure a tanker to go through there. Nobody will accept the risk. The president can say it's an international waterway and he is correct in saying that. But if nobody will move a tanker through it, then what does it matter?
+</QABlock>
+
+There are also mines. US naval forces attacked Iranian vessels over a weekend for laying mines. The number of mines placed is unknown. Even if Iran agreed, tomorrow, to full normalization, the sequence of events required before a tanker captain would take his vessel through the strait runs roughly as follows: minesweepers must clear the passage (weeks, perhaps two months); insurance underwriters must agree the risk is acceptable and write new policies (another month to six weeks, at premiums far above pre-war levels); tanker owners must instruct captains to return; tankers trapped inside the Gulf — potentially hundreds — must queue and exit. In the most optimistic scenario imaginable, Berman estimates four months from decision to first tanker. Goldman Sachs, in its March 2026 revision, assumed flows would return to 5 percent of normal for six weeks followed by a one-month recovery — and still revised Brent to average $85 for the year.
+
+Then there is production. Twelve million barrels per day of output is shut in across Saudi Arabia, Iraq, the UAE, Qatar, and other Gulf producers. Their loading terminals have been damaged by missiles. When a well is shut in and restarted, it does not come back at full capacity immediately: pressure is disturbed, formation damage can be permanent, the entire plumbing of a reservoir miles underground behaves like household pipes after the water has been off for months — it spits, pressurizes unevenly, and stabilizes over weeks or months.
+
+QatarEnergy's CEO confirmed to Reuters in March that missile strikes on Ras Laffan industrial city damaged LNG trains representing about 17 percent of Qatar's export capacity. His estimate for repairs: three to five years.
+
+<ContextBox label="What is the Strait of Hormuz?">
+The strait is a narrow passage — 33 kilometers at its narrowest navigable point — between Oman and Iran, connecting the Persian Gulf to the Gulf of Oman and the Arabian Sea. Before the February 2026 conflict, approximately 20 million barrels per day of oil and about 20 percent of global LNG trade transited it daily, according to the EIA. It is the single chokepoint through which Saudi Arabia, Iraq, the UAE, Kuwait, and Qatar move virtually all of their seaborne energy exports.
+</ContextBox>
+
+And even if the physical infrastructure were repaired overnight, Berman raises a behavioral question: if you own a tanker and after three months of being trapped in the Gulf you finally get out, do you go back? The commercial environment of the UAE and Qatar — built over decades as a stable free-trade haven — has been shattered. The confidence that made it a business destination does not return on the same timeline as the physical repairs. Saudi Arabia, meanwhile, has not collected meaningful oil revenue in three months. For a country whose GDP is more than 80 percent oil-dependent, that is an existential pressure that will shape every negotiating decision MBS makes going forward.
+
+</Section>
+
+<Section number="03" title="Two prices, two <em>markets</em>">
+
+<Standfirst>The number CNN shows you is the July futures contract, priced by competing bets. The number that matters is what a physical barrel costs today. They describe completely different realities right now.</Standfirst>
+
+When Berman's host showed a chart of the oil futures curve declining toward $70 by 2032, Berman did something unusual: he told his host not to believe it — even though it appeared to support his argument. The futures curve, he said, always looks that way. It is not a forecast. It is a series of bets, priced by the participants who are willing to put money on them.
+
+The specific dynamic at play is this: there is a spot price — what a physical barrel costs today — and there are futures prices for delivery in July, August, December, 2027. Today's quoted "oil price" is typically the front-month futures contract. The IEA noted in April that physical crude was trading near $150 per barrel, far above futures markets, with the divergence "increasingly acute." EIA data logged Brent reaching $138 on April 7.
+
+<PullQuote attribution="— Art Berman">
+There are two markets. There is a financial market, which is the futures, and there is a physical market, which is what we call spot. They are different. The price you see is someone's bet on what it will cost in two months. If you want to buy a barrel of WTI today, it costs $140, not $89.
+</PullQuote>
+
+Why the divergence? Because futures are settled by two parties: one betting low, one betting high. The party betting low is, in Berman's framing, "less informed money" — traders who believe the administration's signals that the strait will reopen, that Saudi spare capacity will flood the market, that Kevin Hassett's $80-by-August call will prove out. The party betting high does not need to bet $150 to make money. They only need to bet higher than the low bidder. If someone is bidding $80, you bid $90. You win the trade without committing to your full view of where price is going. Price discovery in an unprecedented situation is therefore artificially compressed: the smartest bet is the smallest winning bet, not the true fundamental price.
+
+<Comparison
+  leftLabel="Futures market logic"
+  rightLabel="Physical market reality"
+  title="Two oil markets, June 2026"
+  rows={[
+    { left: "Front-month futures ~$91–104/bbl", right: "Physical/spot barrels ~$140–150/bbl at peak" },
+    { left: "Curve prices return to mid-$70s by late 2026", right: "14 mb/d still shut in, inventories drawing 8.5 mb/d" },
+    { left: "Bets assume strait reopens and snaps back", right: "No insurance, mines, damaged terminals, tanker queue" },
+    { left: "Institutional forecasters: $85–104 Brent 2026 avg", right: "IEA: 'largest oil supply disruption in history'" },
+    { left: "Less-informed money bets $80 on Trump signals", right: "Smart money bets $90 — wins without committing to $150" },
+  ]}
+/>
+
+What happens when the less-informed money runs out? When enough people have lost enough bets to stop bidding low, the futures price converges toward the physical price. By end of June, mid-July, Berman says the two will be close. By then, the downstream effects — diesel shortages at trucking companies, inventory drawdowns at refineries, actual scarcity visible at gas stations — will have landed in ways no administration statement can counter.
+
+</Section>
+
+<Section number="04" title="The demand destruction <em>floor</em>">
+
+<Standfirst>Berman's model runs to $160–180 before demand destruction kicks in, then settles at a new permanent floor of $105–120. The adverse case, where the blockade holds through June, starts at $200.</Standfirst>
+
+Demand destruction is the mechanism by which an impossibly high price eventually corrects itself: consumers stop buying, or buy less, or substitute. You fill your tank halfway. You drive less. Businesses cut logistics. Airlines ground marginal routes. At some price — Berman puts it at $160 to $180 — demand drops enough to bring price back down. But not to where it was. Because the supply that was withdrawn has not returned.
+
+In Berman's base scenario — a deal is reached, the strait begins to reopen around now, the four-month unwinding clock starts — prices spike to $150–$180, then fall back as demand destruction takes hold, but stabilize at a floor of $105 or higher. The average Brent price going forward, in this scenario, is $115 to $120, "forever." Not $80. Not $70. The era of cheap crude ends at the Strait of Hormuz in late February 2026, and doesn't come back regardless of what Kevin Hassett says.
+
+In the adverse scenario — the dueling blockades (Iranian mines, US naval blockade of Iranian ports) hold through the end of June — the model runs to $200, demand destruction is more extreme, and the floor from which prices settle is around $140 rather than $105. The world-changing nature of the event is the same; only the altitude of the permanent plateau changes.
+
+<ContextBox label="What is demand destruction in oil markets?">
+Demand destruction refers to permanent or semi-permanent reductions in consumption caused by high prices. Unlike a temporary demand drop (say, from a recession), demand destruction implies behavioral and structural changes: logistics companies redesign supply chains, manufacturers nearshore, consumers buy electric vehicles or move closer to work, governments mandate efficiency standards. Some of the demand lost in the 1970s oil shocks never returned. Berman argues that at $160–180 crude, enough demand destruction occurs that price falls back — but to a new equilibrium, not to the old baseline.
+</ContextBox>
+
+The IEA confirmed in late May that global oil inventories were drawing at 8.5 million barrels per day in Q2 — the fastest drawdown in decades. Rabobank's commodity team noted that US commercial crude inventories were already at 4-year lows as of late May, with the EIA projecting continued draws through June and July before any meaningful Middle East production recovery. The EIA's own May 2026 Short-Term Energy Outlook forecasts Brent around $106 for May and June, then dropping to $89 by Q4 — prices it explicitly ties to assumed strait reopening and recovery. If the reopening does not happen on that schedule, the Q4 figure is not $89. It is something considerably higher.
+
+The broader analyst consensus Berman points to is real and verifiable. Jeff Currie at Carlyle — formerly Goldman's global head of commodities research — told CNBC in May that Asian storage is at "tank bottoms" (minimum operating levels) and US shortages will arrive "by July 4." Eric Nuttall at Ninepoint Partners, running a fund that is 100 percent oil-weighted, has repeatedly said crude may need to reach $150 to ration demand. Mohamed El-Erian warned in April that without a strait reopening in "four to eight weeks," the world will be looking at something very different from a soft landing. Christine Lagarde at the ECB noted in April that the IEA had called this the largest oil supply disruption in history, and modeled a severe scenario with oil peaking at $145 before core inflation reaches 3.9 percent in 2027. Jamie Dimon's April shareholder letter named the Iran war as the paramount global risk, with a line that crystallizes the policy trap: you cannot interest-rate your way out of a naval blockade.
+
+</Section>
+
+<Section number="05" title="Russia, the quality <em>substitute</em>">
+
+<Standfirst>The only large alternative supply of medium-gravity crude outside the Persian Gulf is Russian oil. The sanction relaxations are not coincidental.</Standfirst>
+
+The reason US and Western sanctions on Russian oil have been quietly relaxed during the Gulf crisis is not, primarily, diplomatic: it is chemistry. Russia is one of three countries — alongside the US and Saudi Arabia — that produce enough oil daily to move global markets. And a significant portion of Russian export crude falls in the API gravity range that produces diesel, jet fuel, and kerosene at scale. West African producers have light crude. Venezuela has tar. Canada has tar. The Persian Gulf had medium-sour crude. Russia still has it.
+
+This creates a geopolitical situation where the country that has gained the most from the disruption — Iran, which now effectively controls the most important energy chokepoint in the world — is adjacent to the country that is the best near-term substitute supplier: Russia. Putin, Berman notes, is not a fool. While the world is consumed by the Hormuz crisis, Russia is pressing its military advantage in Ukraine. The energy crisis and the European security crisis are not separate events; they are concurrent legs of the same structural shift.
+
+Kpler, the shipping analytics firm, has modeled recovery scenarios for Hormuz flows. Even in the best case — full Iranian compliance, clean mines, restored insurance, full tanker queue clearance — the firm's models suggest flows reach roughly 40 percent of pre-war levels within a year. That is not an outlier estimate. Rory Johnston at Commodity Context, who publishes some of the most detailed physical oil market analysis available, emphasized in his May weekly that even optimistic MOU leaks pointed to "at least another month before Iran allows Hormuz transits to return to pre-war levels, even if a deal is signed soon." Johnston's own framing: the crucial distinction is between the reopening of the shipping lane and actual production relief, and the two are separated by months of operational complexity.
+
+The collection of voices Berman names — Currie, Nuttall, Anas Alhajji, Johnston, Tavi Costa, Jim Bianco, HFI Research, El-Erian, Lagarde, Dimon — do not all agree on price targets. Some are more extreme, some less. What they agree on is the structural diagnosis: this is a world-changing event, the supply that was lost cannot be quickly replaced, the US is not immune, and the current futures pricing reflects not fundamental analysis but a bet that political resolution is imminent. That bet keeps losing. The market keeps reconverging. And by mid-July, Berman argues, the physical reality will be visible to anyone who buys diesel.
+
+</Section>
+
+The coda of this conversation is worth holding. Berman ends not with a prediction but with an instruction: go check the other names. Look at what Currie says. Look at what El-Erian says. Ask whether what Berman is telling you is a fringe view or the mainstream view among people who work in the field. The answer, as of early June 2026, is that his core diagnosis — unprecedented disruption, slow unwinding, permanent price reset — is exactly what the mainstream says, stated more bluntly than most are willing to say it publicly.
+
+What remains genuinely uncertain is the political timeline. The conversation between Berman and Davis was recorded on a day when Kevin Hassett had just told Fox News prices would "plummet like nothing you've ever seen" once the strait reopened, and Trump had just said the strait would be open to everybody and that no one would control it. Those statements were made on the same day Iran was reported to be suspending indirect talks with Washington. The futures market priced a discount accordingly. The physical market did not.
+
+What is not uncertain: the US produces the wrong kind of oil, the strait is functionally closed, and the unwinding — should it begin — takes months, not days, before a single barrel arrives anywhere. The gap between the number on your screen and the number that actually matters will close. The question is only when, and from which direction.
