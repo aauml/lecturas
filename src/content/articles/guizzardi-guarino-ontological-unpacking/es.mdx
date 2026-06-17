@@ -1,0 +1,134 @@
+---
+issue: "N° 30"
+date: "17 de junio de 2026"
+sortDate: "2026-06-17"
+language: es
+track: ai-policy
+title: "Lo que la IA explicable entiende mal sobre la explicación"
+titleHTML: "Lo que la IA explicable entiende mal sobre la <em>explicación</em>"
+dek: "Giancarlo Guizzardi y Nicola Guarino sostienen que la IA explicable ha malinterpretado qué es una explicación — y que corregir el error exige ir más adentro de la ontología que subyace a los modelos simbólicos."
+dekHTML: "Giancarlo Guizzardi y Nicola Guarino sostienen que la IA explicable ha malinterpretado qué es una explicación — y que corregir el error exige ir más <em>adentro</em> de la ontología que subyace a los modelos simbólicos."
+coverDek: "El campo de la XAI cree que producir un árbol de decisión o una descripción contrafactual es el fin de la explicación. Dos ontólogos de referencia dicen que es solo el comienzo — y que la confusión está causando problemas reales para la integración de datos, la transparencia de la IA y los marcos de cumplimiento que dependen de ambas."
+source: "Basado en Guizzardi, G. y Guarino, N. (2024). Explanation, semantics, and ontology. Data and Knowledge Engineering, 153, 102325."
+sourceLabel: "N.º 30 · Data and Knowledge Engineering"
+topics:
+  - "IA Explicable"
+  - "Ontología"
+  - "Interoperabilidad Semántica"
+  - "Gobernanza de la IA"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+
+<Lede>En algún lugar de un sistema sanitario, una base de datos registra que el paciente John «es tratado por» el Hospital General de Twente. Un segundo sistema, que funciona con un software distinto en otro departamento, registra al mismo paciente como participante en un «evento de tratamiento» ocurrido el martes pasado. Un tercer sistema, el de facturación, tiene a John vinculado a un contrato con el hospital. Los tres sistemas describen algo que parece la misma relación. No lo es. La diferencia entre ellos no es un problema de formato, ni un desajuste de vocabulario, ni algo que un glosario pueda resolver. Es una diferencia ontológica — en qué tipo de entidades y relaciones supone que existen en el mundo cada uno de esos sistemas. Hasta que esa diferencia no se haga explícita, los tres sistemas no podrán integrarse con seguridad, y cualquier respuesta que dé el sistema integrado podría ser errónea de formas invisibles para sus usuarios. Este es el problema que Giancarlo Guizzardi y Nicola Guarino se proponen resolver — y en el camino diagnostican un fracaso mucho más general en la forma en que la informática entiende la explicación.</Lede>
+
+<Section number="01" title="La brecha entre semántica <em>formal</em> y semántica del mundo real">
+
+<Standfirst>Los informáticos y el resto del mundo entienden cosas distintas cuando dicen «semántica» — y cerrar esa brecha es donde empieza todo el argumento.</Standfirst>
+
+Cuando un informático dice que un modelo tiene «semántica formal», suele significar que puede traducirse a una estructura matemática: conjuntos de individuos, predicados lógicos, reglas de inferencia. Esto es riguroso y útil para la computación. Pero no es lo que entienden por semántica un lingüista, un filósofo o un médico en ejercicio. Para ellos, la semántica trata de a qué se refieren los símbolos en el mundo — no en un modelo de teoría de conjuntos, sino en el dominio real de la sanidad, el comercio, el derecho, la genómica o lo que sea que el sistema pretende representar.
+
+La distinción importa porque la semántica formal por sí sola no puede impedir que dos sistemas distintos usen la misma palabra con significados diferentes. Ambos podrían ser formalmente consistentes mientras se refieren a entidades completamente distintas. Guizzardi y Guarino llaman a la noción más amplia «semántica del mundo real» — la función que mapea símbolos no solo a objetos matemáticos, sino a los tipos de entidades y relaciones que se asume que existen realmente en el dominio.
+
+<ContextBox label="¿Qué es una ontología (en minúscula)?">
+En filosofía, una ontología es una teoría sobre qué tipos de cosas existen y cómo se relacionan. En el sentido de este artículo: toda descripción simbólica de un dominio se compromete con una ontología particular — asume que ciertas entidades y relaciones son reales. Hacer explícito ese compromiso es el movimiento central. «Ontología» en informática suele referirse a un artefacto formal (un fichero, un vocabulario, un grafo de conocimiento); Guizzardi y Guarino trabajan en el nivel filosófico más fundamental, donde la pregunta es qué está afirmando realmente ese artefacto sobre el mundo.
+</ContextBox>
+
+Todo modelo simbólico — ya sea un diagrama UML, un esquema de base de datos o un grafo de conocimiento — asume lo que los filósofos llaman un compromiso ontológico: afirma implícitamente que ciertos tipos de entidades y relaciones existen en el dominio que representa. Este compromiso suele estar oculto. El modelo muestra una caja etiquetada «Paciente» conectada por una flecha a otra etiquetada «Proveedor Sanitario», pero no dice si esa flecha representa una relación contractual vigente, un evento histórico, una asociación estadística derivada o cualquier otra cosa.
+
+Revelar el compromiso ontológico oculto de una descripción simbólica es lo que Guizzardi y Guarino llaman desempaquetado ontológico — ontological unpacking en el original. El proceso no es una mejora estilística del modelo. Es un cambio en la naturaleza del modelo.
+
+</Section>
+
+<Section number="02" title="Dos tipos de modelo, dos tipos de <em>naturaleza</em>">
+
+<Standfirst>La diferencia entre un modelo descriptivo y uno explicativo no está en la cantidad de información que contienen — está en el tipo de trabajo que pueden hacer.</Standfirst>
+
+Consideremos el caso más simple posible: un diagrama UML que muestra «Proveedor Sanitario — trata → Persona». Este modelo puede servir de plano para construir un sistema de información. Estructura datos. Describe portadores de verdad — proposiciones que son verdaderas o falsas. Pero no explica por qué esas proposiciones son verdaderas cuando lo son. No identifica qué entidades en el mundo hacen que «trata» se cumpla entre John y el Hospital General de Twente en un día concreto.
+
+Para desempaquetar ontológicamente este modelo hay que preguntar: ¿cuál es el hacedor de verdad de la relación «es tratado por»? ¿Qué existe realmente en el mundo que hace que esa relación se cumpla entre estas entidades particulares en este momento particular?
+
+<ContextBox label="¿Qué es un hacedor de verdad?">
+Un hacedor de verdad (truthmaker) es una entidad en el mundo cuya existencia hace verdadera una proposición. Si «John es más alto que María» es verdad, los hacedores de verdad son la estatura de John y la de María — no John y María en sí mismos. En el marco de Guizzardi y Guarino, identificar hacedores de verdad es el núcleo del análisis ontológico: obliga a preguntarse qué existe realmente en el dominio, no solo qué proposiciones se quieren expresar.
+</ContextBox>
+
+La respuesta resulta ser que no son solo «John» y «el hospital». Para que la relación «es tratado por» se cumpla, debe existir algo genuinamente relacional que los vincule — un tratamiento. En el vocabulario ontológico que Guizzardi ha desarrollado a lo largo de años, esta entidad vinculante se llama relator: un haz de aspectos relacionales (compromisos, derechos, responsabilidades, citas) que inhieren en John, dependen del hospital y están fundados en algún evento constitutivo. La relación «trata» se deriva entonces de la existencia de ese relator. Si el tratamiento desaparece — se cancela, concluye, o nunca existió — la relación deja de cumplirse.
+
+<PullQuote>La diferencia entre un modelo conceptual tradicional y su versión desempaquetada ontológicamente no es de expresividad sino de naturaleza: el primero tiene una naturaleza meramente descriptiva; el segundo tiene una naturaleza explicativa.</PullQuote>
+
+Esta distinción — entre modelos que describen portadores de verdad y modelos que identifican hacedores de verdad — es el eje del artículo. No es un refinamiento técnico. El modelo desempaquetado puede responder preguntas que el original no puede. Desambigua restricciones de cardinalidad que eran inherentemente ambiguas (¿puede John ser tratado por varios proveedores en el mismo tratamiento, o solo en tratamientos separados?). Distingue entre tipos de relaciones que parecen idénticas en el diagrama original pero son ontológicamente distintas: «es más grave que» (una relación comparativa derivada de propiedades intrínsecas de las condiciones médicas) frente a «es tratado por» (una relación material que requiere que exista un relator). Y puede detectar interpretaciones no deseadas: la misma persona apareciendo como paciente y como proveedor sanitario en el mismo tratamiento, un antipatrón de modelado que el diagrama original ni siquiera puede ver.
+
+</Section>
+
+<Section number="03" title="Por qué la interoperabilidad semántica <em>requiere</em> esto">
+
+<Standfirst>Lo que está en juego no es filosófico — es el problema entero de conectar sistemas de datos construidos de forma independiente.</Standfirst>
+
+Casi toda pregunta relevante en gobierno, ciencia y grandes organizaciones requiere hoy integrar datos de múltiples sistemas construidos en momentos distintos, por equipos distintos, con supuestos distintos. ¿Qué organizaciones tienen contratos con una institución gubernamental y también han donado a las campañas de políticos que gobiernan esa institución? No es una pregunta hipotética; variantes de ella aparecen en el control anticorrupción, la regulación financiera y la supervisión de contratos públicos. Responderla exige conectar al menos cinco tipos distintos de sistemas de datos, cada uno con su propio vocabulario.
+
+La dificultad no está en que esos sistemas usen palabras distintas. Está en que incorporan ontologías distintas. Lo que «contrato» significa en una base de datos de contratación pública — un compromiso jurídico fundado en un relator específico, con partes, fechas, objeto y obligaciones — puede o no coincidir con lo que «contrato» significa en un registro de donaciones políticas. Si el significado en ambos sistemas es idéntico, todo lo que la base de contratación implica sobre contratos se cumple también en el registro de donaciones. Esa es una afirmación extraordinariamente fuerte. Lo más probable es que las dos nociones guarden alguna relación más débil: una es subtipo de la otra, o son subtipos hermanos de un supertipo común, o una depende históricamente de la otra.
+
+<ContextBox label="¿Qué es la interoperabilidad semántica?">
+La interoperabilidad semántica es la capacidad de distintos sistemas de información de intercambiar datos y de que el sistema receptor los interprete correctamente — no solo de recibir los bytes, sino de entender qué significan. Se distingue habitualmente de la interoperabilidad sintáctica (mismo formato) y la interoperabilidad técnica (mismo protocolo). Los marcos de política digital de la UE, incluido el Marco Europeo de Interoperabilidad y los requisitos de documentación del Reglamento de IA, dependen implícitamente de ella. Lograrla sin análisis ontológico es, en la argumentación de Guizzardi y Guarino, sistemáticamente imposible.
+</ContextBox>
+
+Determinar qué relación se cumple requiere análisis ontológico: revelar los hacedores de verdad de las proposiciones clave de cada sistema y preguntar qué relaciones ontológicas pueden darse entre esos hacedores. Sin esto, la integración de datos es conjetura. Los sistemas pueden estar técnicamente conectados mientras son semánticamente incoherentes, y los errores que produzcan serán reales pero invisibles.
+
+Los requisitos del Reglamento de IA para sistemas de alto riesgo — documentación de los datos de entrenamiento, especificaciones del modelo, métricas de rendimiento, mecanismos de supervisión humana — todos presuponen que esas descripciones pueden entenderse a través de fronteras organizativas y técnicas. Presuponen, en otras palabras, interoperabilidad semántica. El argumento de Guizzardi y Guarino implica que ese presupuesto no puede honrarse con alineación de vocabulario sola. La documentación debe reflejar un compromiso ontológico compartido.
+
+</Section>
+
+<Section number="04" title="El proyecto incompleto de la <em>IA explicable</em>">
+
+<Standfirst>La XAI se propuso hacer comprensibles las decisiones de la IA. Guizzardi y Guarino argumentan que en gran medida ha producido nuevos artefactos simbólicos — asumiendo, erróneamente, que los artefactos se interpretan solos.</Standfirst>
+
+El paradigma dominante en la IA explicable — XAI, por sus siglas en inglés — consiste en tomar la decisión de un modelo de caja negra y producir un artefacto simbólico más interpretable: un árbol de decisión que aproxima el comportamiento del modelo, un mapa de saliencia que destaca qué píxeles influyeron en un clasificador de imágenes, una descripción contrafactual («habrías sido aprobado si tus ingresos fueran un 10% más altos»). El supuesto tácito es que estos productos son «inherentemente interpretables» — que un árbol de decisión, a diferencia de una red neuronal, se explica a sí mismo.
+
+Guizzardi y Guarino sostienen que ese supuesto es falso. Un árbol de decisión es un artefacto simbólico. Como cualquier artefacto simbólico, tiene una semántica del mundo real que no está contenida en su sintaxis. Las variables que aparecen en los nodos del árbol se refieren a entidades y propiedades del mundo; las relaciones entre nodos representan algún tipo de dependencia condicional; las etiquetas de las hojas representan resultados que solo tienen significado dentro de un modelo de dominio más amplio. Nada de este significado está codificado en el propio árbol. El árbol, igual que el modelo de caja negra original, requiere desempaquetado ontológico antes de poder explicar genuinamente nada.
+
+Esta no es una objeción técnica menor. Implica que todo el programa de investigación en XAI — en la medida en que aspira a producir explicación generando nuevos artefactos simbólicos — solo ha diferido el problema de la explicación, no lo ha resuelto. El árbol de decisión no es el final del camino hacia la explicación. Es un nuevo punto de partida para el mismo camino.
+
+<ContextBox label="¿Qué es una explicación contrafactual en XAI?">
+Una explicación contrafactual dice qué cambio mínimo en la entrada habría cambiado la decisión del sistema de IA. «Si hubieras tenido un año más de historial laboral, el préstamo habría sido aprobado.» Son populares en decisiones de IA de alto impacto — crédito, contratación, diagnóstico médico — porque parecen accionables y comprensibles. El derecho a explicación del RGPD se interpreta frecuentemente como exigiendo algo de este tipo. Guizzardi y Guarino no sostienen que los contrafácticos sean inútiles — solo que no se interpretan solos. La descripción contrafactual sigue refiriéndose a entidades («historial laboral») cuyo significado en el dominio relevante necesita ser desempaquetado antes de que la explicación sea completa.
+</ContextBox>
+
+Lo que el desempaquetado ontológico añade a la XAI es el paso siguiente: preguntar qué entidades en el mundo hacen que las variables de la explicación se refieran a lo que se supone que deben referirse, y qué relaciones entre esas entidades hacen que las dependencias condicionales de la explicación se cumplan. Eso es lo que requiere una explicación genuina. Conecta el producto simbólico del proceso explicativo de vuelta con el mundo.
+
+La conexión con el cumplimiento regulatorio es directa. Cuando el Reglamento de IA exige que las decisiones de un sistema de alto riesgo sean explicables a las personas afectadas, y cuando los tribunales o los reguladores pregunten si ese requisito se ha satisfecho, la pregunta no será si se produjo un artefacto simbólico. Será si la persona afectada pudo entender, a partir de la explicación, qué hizo realmente el sistema y por qué. Producir un árbol de decisión que es él mismo semánticamente opaco no responde esa pregunta.
+
+</Section>
+
+<Section number="05" title="Los patrones ontológicos como <em>gramática</em> de la explicación">
+
+<Standfirst>El método escala porque la explicación no es arbitraria — se apoya en un conjunto pequeño de patrones formales que se aplican en todos los dominios.</Standfirst>
+
+Podría objetarse que el desempaquetado ontológico suena imposiblemente laborioso: ¿todo modelo, en todo dominio, requiere un análisis filosófico cuidadoso antes de poder usarse? La respuesta de Guizzardi y Guarino es que el trabajo es sistemáticamente tratable porque los patrones que rigen la semántica del mundo real son independientes del dominio.
+
+Las relaciones, por ejemplo, caen en un número pequeño de categorías ontológicas. Las relaciones internas — como «es más grave que» entre condiciones médicas — se cumplen en virtud de las propiedades intrínsecas de sus relata, sin requerir que exista ninguna entidad adicional. Las relaciones comparativas se cumplen por cualidades de aspectos intrínsecos de sus relata. Las relaciones materiales — como «es tratado por» — requieren que exista un relator. Estas categorías son formales: se aplican a cualquier dominio, y cada categoría conlleva propiedades formales predecibles (reflexividad, transitividad, qué se puede y no se puede inferir de que la relación se cumpla).
+
+El lenguaje de modelado OntoUML, desarrollado en el grupo de investigación de Guizzardi a lo largo de más de una década, codifica directamente estas distinciones ontológicas como primitivas de modelado. Funciona como una gramática de patrones ontológicos: los modelos se construyen instanciando patrones formales que representan micro-teorías sobre cómo está estructurado el mundo. Un modelador que usa el «patrón relator» para representar una relación de tratamiento se está comprometiendo, en efecto, con una teoría específica sobre qué hace que esa relación se cumpla — y el compromiso genera consecuencias concretas y verificables sobre cardinalidad, temporalidad e identidad.
+
+Esto es lo que hace posible la validación automatizada. El ecosistema OntoUML puede generar representaciones visuales de todas las interpretaciones posibles de un modelo, permitiendo a los modeladores ver si el modelo dice lo que pretendían que dijera. En la práctica, con frecuencia no lo hace. La brecha entre el significado pretendido y el compromiso ontológico real es sistemática, e invisible sin herramientas que hagan explícito ese compromiso.
+
+</Section>
+
+<Section number="06" title="Lo que queda por hacer">
+
+<Standfirst>El artículo identifica el problema con precisión. Deja abierta — deliberadamente — la pregunta de cómo operacionalizar el desempaquetado ontológico a la escala que la gobernanza de la IA requiere hoy.</Standfirst>
+
+Guizzardi y Guarino no afirman haber resuelto la explicabilidad. Afirman haber diagnosticado correctamente qué requiere la explicación, y haber mostrado que los enfoques actuales de XAI no han satisfecho ese requisito. La demostración usa un ejemplo sanitario con dos o tres tipos de entidades. El principio se extiende a cualquier dominio crítico.
+
+Lo que el principio no proporciona aún es un protocolo escalable para aplicar el desempaquetado ontológico a los tipos de sistemas de IA que ahora están sujetos a supervisión regulatoria bajo el Reglamento de IA: sistemas que clasifican solicitudes de préstamo, evalúan la elegibilidad para prestaciones sociales, filtran candidatos laborales o señalan contenidos para su retirada. Estos sistemas involucran decenas de variables, cientos de relaciones potenciales y contextos de despliegue donde la ontología del dominio es controvertida y dinámica.
+
+La literatura sobre ingeniería de ontologías — incluida la propia obra de Guizzardi sobre la Ontología Fundacional Unificada (UFO) — ofrece herramientas para esto, pero aplicarlas sistemáticamente a la documentación de sistemas de IA sigue siendo una agenda de investigación abierta. La conexión que Guizzardi y Guarino establecen entre explicación e interoperabilidad semántica sugiere que esa agenda no es optativa para la gobernanza de la IA. Los sistemas que no pueden ser desempaquetados ontológicamente no pueden explicarse genuinamente; los sistemas que no pueden explicarse genuinamente no pueden satisfacer los requisitos de transparencia del Reglamento de IA en ningún sentido sustantivo; y los sistemas cuya documentación no refleja un compromiso ontológico compartido no pueden integrarse de forma segura con los demás sistemas — mecanismos de supervisión humana, registros de auditoría, procedimientos de recurso — que el mismo Reglamento también exige.
+
+El artículo no explicita estas implicaciones. Proporciona los fundamentos conceptuales de los que se derivan.
+
+---
+
+La contribución más duradera del artículo puede ser la distinción que traza entre portadores de verdad y hacedores de verdad como eje organizador de una teoría de la explicación. La mayor parte de lo que producen los sistemas de IA — predicciones, clasificaciones, rankings, recomendaciones — son portadores de verdad: proposiciones que son verdaderas o falsas. Lo que las hace verdaderas o falsas, en el dominio relevante, es un conjunto de entidades y relaciones cuya naturaleza no está capturada en la salida del sistema ni en los artefactos simbólicos que la XAI produce para representarla. Cerrar esa brecha es el trabajo del análisis ontológico. Es también — aunque los reguladores no lo hayan nombrado así — lo que requiere genuinamente la transparencia en la IA.
+
