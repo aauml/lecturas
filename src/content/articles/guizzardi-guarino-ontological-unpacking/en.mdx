@@ -1,0 +1,134 @@
+---
+issue: "N° 30"
+date: "17 June 2026"
+sortDate: "2026-06-17"
+language: en
+track: ai-policy
+title: "What XAI gets wrong about explanation"
+titleHTML: "What XAI gets wrong about <em>explanation</em>"
+dek: "Giancarlo Guizzardi and Nicola Guarino argue that explainable AI has misunderstood what an explanation is — and that fixing the error requires going deeper into the ontology behind symbolic models."
+dekHTML: "Giancarlo Guizzardi and Nicola Guarino argue that explainable AI has misunderstood what an explanation is — and that fixing the error requires going <em>deeper</em> into the ontology behind symbolic models."
+coverDek: "The XAI field thinks producing a decision tree or a counterfactual is the end of explanation. Two leading ontologists say it is only the beginning — and the confusion is causing real problems for data integration, AI transparency, and the compliance frameworks that depend on both."
+source: "Based on Guizzardi, G. & Guarino, N. (2024). Explanation, semantics, and ontology. Data and Knowledge Engineering, 153, 102325."
+sourceLabel: "N° 30 · Data and Knowledge Engineering"
+topics:
+  - "Explainable AI"
+  - "Ontology"
+  - "Semantic Interoperability"
+  - "AI Governance"
+---
+
+import Lede from '../../../components/Lede.astro';
+import Section from '../../../components/Section.astro';
+import Standfirst from '../../../components/Standfirst.astro';
+import ContextBox from '../../../components/ContextBox.astro';
+import PullQuote from '../../../components/PullQuote.astro';
+
+<Lede>Somewhere in a healthcare system, a database records that patient John is "treated by" the Twente General Hospital. A second system, running on different software in a different department, records the same patient as a participant in a "treatment event" that occurred last Tuesday. A third system, used for billing, has John listed under a contract with the hospital. All three systems are describing something that looks like the same relationship. They are not. The difference between them is not a formatting issue, not a vocabulary mismatch, not something a glossary can fix. It is a difference in ontology — in what kind of entities and relations these systems assume to exist in the world. Until that difference is made explicit, these three systems cannot be safely integrated, and any answer the integrated system gives could be wrong in ways that are invisible to its users. This is the problem that Giancarlo Guizzardi and Nicola Guarino set out to solve — and along the way they diagnose a much more general failure in how computer science thinks about explanation.</Lede>
+
+<Section number="01" title="The gap between <em>formal</em> and real-world semantics">
+
+<Standfirst>Computer scientists and everyone else mean different things by the word "semantics" — and closing that gap is where the whole argument begins.</Standfirst>
+
+When a computer scientist says a model has "formal semantics," they typically mean it can be translated into a mathematical structure: sets of individuals, logical predicates, inference rules. This is rigorous and useful for computation. But it is not what a linguist, a philosopher, or a practicing doctor means by semantics. For them, semantics is about what symbols refer to in the world — not in a set-theoretic model, but in the actual domain of healthcare, trade, law, genomics, or whatever the system is supposed to represent.
+
+The distinction matters because formal semantics alone cannot prevent two different systems from using the same word to mean different things. Both could be formally consistent while referring to entirely different entities. Guizzardi and Guarino call the fuller notion "real-world semantics" — the function that maps symbols not just to mathematical objects but to the types of entities and relations that are actually assumed to exist in the domain.
+
+<ContextBox label="What is an ontology (lowercase)?">
+In philosophy, an ontology is a theory about what kinds of things exist and how they relate. In this paper's sense: every symbolic description of a domain commits to a particular ontology — it assumes certain entities and relations are real. Making that commitment explicit is the core move. "Ontology" in computer science usually refers to a formal artifact (a file, a vocabulary, a knowledge graph); Guizzardi and Guarino work at the more fundamental philosophical level, where the question is what the artifact is actually claiming about the world.
+</ContextBox>
+
+Every symbolic model, whether a UML diagram, a database schema, or a knowledge graph, makes what philosophers call an ontological commitment: it implicitly asserts that certain kinds of entities and relations exist in the domain it represents. Usually this commitment is hidden. The model shows a box labeled "Patient" connected by an arrow to a box labeled "Healthcare Provider," but it does not say whether that arrow represents a current contractual relationship, a historical event, a derived statistical association, or something else entirely.
+
+Revealing the hidden ontological commitment of a symbolic description is what Guizzardi and Guarino call ontological unpacking. The process is not a stylistic improvement to a model. It is a change in the model's nature.
+
+</Section>
+
+<Section number="02" title="Two kinds of model, two kinds of <em>nature</em>">
+
+<Standfirst>The difference between a descriptive model and an explanatory one is not about how much information they contain — it is about what kind of work they can do.</Standfirst>
+
+Consider the simplest possible case: a UML diagram showing "Healthcare Provider — treats → Person." This model can serve as a blueprint for building an information system. It structures data. It describes truth-bearers — propositions that are either true or false. But it does not explain why those propositions are true when they are. It does not identify what entities in the world make "treats" hold between John and the Twente General Hospital on a given day.
+
+To unpack this model ontologically, you have to ask: what is the truthmaker of the relation "is treated by"? What actually exists in the world that makes it the case that this relation holds between these particular entities at this particular time?
+
+<ContextBox label="What is a truthmaker?">
+A truthmaker is an entity in the world whose existence makes a proposition true. If "John is taller than Maria" is true, the truthmakers are John's height and Maria's height — not John and Maria themselves. In Guizzardi and Guarino's framework, identifying truthmakers is the core of ontological analysis: it forces you to ask what really exists in your domain, not just what propositions you want to express.
+</ContextBox>
+
+The answer, it turns out, is not just "John" and "the hospital." For the relation "is treated by" to hold, something genuinely relational must exist binding them — a treatment. In the ontological vocabulary Guizzardi has developed over many years, this binding entity is called a relator: a bundle of relational aspects (commitments, claims, liabilities, appointments) that inhere in John, depend on the hospital, and are grounded in some founding event. The relation "treats" is then derived from the existence of this relator. Take away the treatment — cancel it, complete it, imagine it never happened — and the relation no longer holds.
+
+<PullQuote>The difference between a traditional conceptual model and an ontologically unpacked version is not one of expressivity but one of nature: the former has a merely descriptive nature; the latter has an explanatory one.</PullQuote>
+
+This distinction — between models that describe truth-bearers and models that identify truthmakers — is the hinge of the paper. It is not a technical refinement. The unpacked model can answer questions the original cannot. It can disambiguate cardinality constraints that were inherently ambiguous (can John be treated by multiple providers in the same treatment, or only in separate ones?). It can distinguish between kinds of relations that look identical in the original diagram but are ontologically different: "is more severe than" (a comparative relation derived from intrinsic properties of medical conditions) versus "is treated by" (a material relation that requires a relator to exist). And it can detect unintended interpretations: the same person appearing as both patient and healthcare provider in the same treatment event, a modeling anti-pattern that the original diagram cannot even see.
+
+</Section>
+
+<Section number="03" title="Why semantic interoperability <em>requires</em> this">
+
+<Standfirst>The practical stakes of ontological unpacking are not philosophical — they are the entire problem of connecting data systems that were built independently.</Standfirst>
+
+Almost every interesting question in government, science, and large organizations today requires integrating data from multiple systems built at different times, by different teams, with different assumptions. Which organizations have contracts with a governmental institution and also donated to the campaigns of politicians who govern that institution? This is not a hypothetical question; variants of it appear in anti-corruption enforcement, financial regulation, and public procurement oversight. Answering it requires connecting at least five different types of data systems, each with its own vocabulary.
+
+The difficulty is not that these systems use different words. It is that they embed different ontologies. What "contract" means in a procurement database — a legal commitment grounded in a specific relator, with parties, dates, subject matter, and obligations — may or may not match what "contract" means in a political donation registry. If the two systems' meanings are identical, everything the procurement database implies about contracts also holds in the donation registry. That is an extremely strong claim. More likely, the two notions stand in some weaker relation: one is a subtype of the other, or they are sibling subtypes of a common supertype, or one historically depends on the other.
+
+<ContextBox label="What is semantic interoperability?">
+Semantic interoperability is the ability of different information systems to exchange data and have the receiving system interpret it correctly — not just receive the bytes, but understand what they mean. It is routinely distinguished from syntactic interoperability (same format) and technical interoperability (same protocol). The EU's digital policy frameworks, including the European Interoperability Framework and the AI Act's documentation requirements, all implicitly depend on it. Achieving it without ontological analysis is, on Guizzardi and Guarino's account, systematically impossible.
+</ContextBox>
+
+Figuring out which relation holds requires ontological analysis — revealing the truthmakers of each system's key propositions, then asking what ontological relations can hold between those truthmakers. Without this, data integration is guesswork. Systems can be technically connected while semantically incoherent, and the errors they produce will be real but invisible.
+
+The AI Act's requirements for high-risk systems — documentation of training data, model specifications, performance metrics, human oversight mechanisms — all presuppose that these descriptions can be understood across organizational and technical boundaries. They presuppose, in other words, semantic interoperability. Guizzardi and Guarino's argument implies that this presupposition cannot be honored by vocabulary alignment alone. The documentation must reflect a shared ontological commitment.
+
+</Section>
+
+<Section number="04" title="The incomplete project of <em>explainable AI</em>">
+
+<Standfirst>XAI set out to make AI decisions understandable. Guizzardi and Guarino argue it has mostly produced new symbolic artifacts — and assumed, falsely, that artifacts are self-interpreting.</Standfirst>
+
+The dominant paradigm in Explainable AI is to take a black-box model's decision and produce a more interpretable symbolic artifact: a decision tree approximating the model's behavior, a saliency map highlighting which pixels influenced an image classifier, a counterfactual description ("you would have been approved if your income were 10% higher"). The unstated assumption is that these outputs are "inherently interpretable" — that a decision tree, unlike a neural network, explains itself.
+
+Guizzardi and Guarino argue this assumption is false. A decision tree is a symbolic artifact. Like any symbolic artifact, it has a real-world semantics that is not contained in its syntax. The features listed in the tree's nodes refer to entities and properties in the world; the relations between nodes represent some kind of conditional dependency; the leaf labels represent outcomes that carry meaning only within a broader domain model. None of this meaning is encoded in the tree itself. The tree, like the original black-box model, requires ontological unpacking before it can genuinely explain anything.
+
+This is not a minor technical objection. It implies that the entire XAI research program — insofar as it aims to produce explanation by producing new symbolic artifacts — has only deferred the problem of explanation, not solved it. The decision tree is not the end of the road to explanation. It is a new starting point for the same road.
+
+<ContextBox label="What is a counterfactual explanation in XAI?">
+A counterfactual explanation tells you what minimal change to an input would have changed the AI system's output. "If you had one more year of employment history, the loan would have been approved." These are popular in high-stakes AI decisions (credit, hiring, medical diagnosis) because they seem actionable and human-readable. The GDPR's right to explanation is often interpreted as requiring something like this. Guizzardi and Guarino do not claim counterfactuals are useless — only that they are not self-interpreting. The counterfactual description still refers to entities ("employment history") whose meaning in the relevant domain needs to be unpacked before the explanation is complete.
+</ContextBox>
+
+What ontological unpacking adds to XAI is the next step: asking what entities in the world make the features in the explanation refer to the things they are supposed to refer to, and what relations among those entities make the conditional dependencies in the explanation hold. This is what genuine explanation requires. It connects the symbolic output of the explanation process back to the world.
+
+The connection to regulatory compliance is direct. When the AI Act requires that a high-risk AI system's decisions be explainable to affected persons, and when courts or regulators eventually ask whether that requirement has been met, the question will not be whether a symbolic artifact was produced. It will be whether the affected person could understand, from the explanation, what the system actually did and why. Producing a decision tree that is itself semantically opaque does not answer that question.
+
+</Section>
+
+<Section number="05" title="Ontological patterns as the <em>grammar</em> of explanation">
+
+<Standfirst>The method scales because explanation is not arbitrary — it draws on a small set of formal patterns that apply across every domain.</Standfirst>
+
+One might object that ontological unpacking sounds impossibly labor-intensive: every model, in every domain, requires careful philosophical analysis before it can be used? Guizzardi and Guarino's answer is that the work is systematically tractable because the patterns that govern real-world semantics are domain-independent.
+
+Relations, for example, fall into a small number of ontological categories. Internal relations — like "is more severe than" between medical conditions — hold in virtue of the intrinsic properties of their relata, without requiring any additional entity to exist. Comparative relations hold because of qualities of intrinsic aspects of their relata. Material relations — like "is treated by" — require a relator to exist. These categories are formal: they apply to any domain, and each category carries predictable formal properties (reflexivity, transitivity, what can and cannot be inferred from the relation holding).
+
+The OntoUML modeling language, developed in Guizzardi's research group over more than a decade, encodes these ontological distinctions directly as modeling primitives. It functions as an ontology pattern grammar: models are built by instantiating formal patterns that represent micro-theories about how the world is structured. A modeler who uses the "relator pattern" to represent a treatment relationship is, in effect, committing to a specific theory about what makes that relationship hold — and the commitment generates concrete, checkable consequences about cardinality, temporality, and identity.
+
+This is what makes automated validation possible. The OntoUML ecosystem can generate visual representations of all possible interpretations of a model, allowing modelers to see whether the model is saying what they intended it to say. In practice, it often is not. The gap between intended meaning and actual ontological commitment is systematic, and it is invisible without tools that make the commitment explicit.
+
+</Section>
+
+<Section number="06" title="What remains to be done">
+
+<Standfirst>The paper identifies the problem with precision. It leaves open — deliberately — the question of how to operationalize ontological unpacking at the scale AI governance now requires.</Standfirst>
+
+Guizzardi and Guarino do not claim to have solved explainability. They claim to have correctly diagnosed what explanation requires, and to have shown that current XAI approaches have not satisfied that requirement. The demonstration uses a healthcare example with two or three entity types. The principle extends to any critical domain.
+
+What the principle does not yet provide is a scalable protocol for applying ontological unpacking to the kinds of AI systems now subject to regulatory oversight under the AI Act: systems classifying loan applications, assessing social benefit eligibility, screening job candidates, flagging content for removal. These systems involve dozens of features, hundreds of potential relations, and deployment contexts where the domain ontology is contested and dynamic.
+
+The literature on ontology engineering — including Guizzardi's own body of work on the Unified Foundational Ontology — provides tools for this, but applying them systematically to AI system documentation remains an open research agenda. The connection Guizzardi and Guarino establish between explanation and semantic interoperability suggests that this agenda is not optional for AI governance. Systems that cannot be ontologically unpacked cannot be genuinely explained; systems that cannot be genuinely explained cannot satisfy the AI Act's transparency requirements in any substantive sense; and systems whose documentation does not reflect a shared ontological commitment cannot be safely integrated with the other systems — human oversight mechanisms, audit trails, appeal processes — that the Act also requires.
+
+The article does not spell out these implications. It provides the conceptual foundation from which they follow.
+
+---
+
+The paper's most lasting contribution may be the distinction it draws between truth-bearers and truthmakers as the organizing axis for a theory of explanation. Most of what AI systems produce — predictions, classifications, rankings, recommendations — are truth-bearers: propositions that are true or false. What makes them true or false, in the relevant domain, is a set of entities and relations whose nature is not captured by the system's output or by the symbolic artifacts XAI produces to represent it. Closing that gap is the work of ontological analysis. It is also, whether regulators have named it this way or not, what genuine AI transparency requires.
+
