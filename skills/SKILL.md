@@ -125,9 +125,9 @@ Capture the `pk` of every source you actually use — it is the provenance key w
 
 Every piece leaves a provenance graph: a dated human **seed** → an **issue** moving through the pipeline → **sources** from the KB with verification. Schema: `db/migrations/0001_glossa_publication_layer.sql`.
 
-1. **At the seed/framing gate** — insert one `glossa_seeds` row (the dated human intention = authorship). Set `mode` (tesis|fuente|pregunta|vigilancia|dialectica|serie), `track`, `thesis` (Arturo's angle), and any origin (`origin_finding_id` / `origin_conversation_id` / `origin_kb_id`).
+1. **When you write the seed (on the publish command)** — insert one `glossa_seeds` row (the dated human intention = authorship). Set `mode` (tesis|fuente|pregunta|vigilancia|dialectica|serie), `track`, `thesis` (Arturo's angle, as it emerged in the conversation), and any origin (`origin_finding_id` / `origin_conversation_id` / `origin_kb_id`).
 2. **When work starts** — insert a `glossa_issues` row: `slug`, `issue_no`, `track`, `mode`, `status='researching'`, `seed_id`, and `title_en/title_es/dek_en/dek_es/topics/chapters` as they firm up. Advance `status` through `researching → drafting → review → published`.
-3. **At the review gate / on publish** — for each KB source used, insert `glossa_issue_sources` (`issue_id`, `source_kb_id` = the `evaluated_items.pk`, `role` primary|support|context|discourse, `claim`, `verified` si|no|parcial). On publish, set the issue's `status='published'`, `url_en/url_es`, `published_at`, `model`.
+3. **On publish** — for each KB source used, insert `glossa_issue_sources` (`issue_id`, `source_kb_id` = the `evaluated_items.pk`, `role` primary|support|context|discourse, `claim`, `verified` si|no|parcial). On publish, set the issue's `status='published'`, `url_en/url_es`, `published_at`, `model`.
 
 Web/API sources that are not in the KB still go into the piece's `sources.json` sidecar (see `references/deployment.md` and doc 05); only KB-backed sources get a `glossa_issue_sources` row (it FKs to `evaluated_items`).
 
@@ -144,23 +144,22 @@ The skill executes one of these. Don't ask which.
 
 ## Entry modes and gates (compuertas)
 
-The intake modes above (A/B) decide *how to research*. The **entry mode** decides *where Arturo's authorship enters* and *which human gates apply*. The invariant across all modes: a dated human intention anchors the piece, and there is a gate before anything is written or published. Detail: doc 03.
+The intake modes above (A/B) decide *how to research*. The **entry mode** decides *where Arturo's authorship enters*. The invariant across all modes: a dated human intention anchors the piece. Detail: doc 03.
 
-| Entry mode | What Arturo brings | Authorship enters | Framing gate? |
-|---|---|---|---|
-| **tesis** | a formed hypothesis | up front | no (thesis already set) |
-| **serie** | a gap in the argument to fill | up front | no |
-| **fuente** | a URL / PDF / podcast / video | after a digest | **yes** |
-| **pregunta** | a question, no thesis yet | after a digest | **yes** |
-| **vigilancia** | nothing — surveillance pinged | after a digest | **yes** |
-| **dialectica** | two sources in tension | after a digest | **yes** |
+| Entry mode | What Arturo brings | Authorship enters |
+|---|---|---|
+| **tesis** | a formed hypothesis | up front |
+| **serie** | a gap in the argument to fill | up front |
+| **fuente** | a URL / PDF / podcast / video | after a digest |
+| **pregunta** | a question, no thesis yet | after a digest |
+| **vigilancia** | nothing — surveillance pinged | after a digest |
+| **dialectica** | two sources in tension | after a digest |
 
-**The two gates** — a gate is a stop where the flow waits for Arturo's OK. Nothing is written or published without it.
+**The supervision is the conversation, not a separate approval stop.** Arturo's directive (2026-06-30): *do not* build a draft and then present the EN/ES files asking him to review and approve. By the time he says "publícalo" / "hazme el artículo" / invokes the glossa skill to create, he has **already had the conversation** — the framing and the massaging happened there. So:
 
-1. **Framing gate (encuadre) — "ask before fixing the thesis."** In material-first modes (fuente / pregunta / vigilancia / dialectica), stop after the research digest, surface what you found, and let Arturo react and fix the thesis/angle. Write the `glossa_seeds` row only once the thesis is fixed. In angle-first modes (tesis / serie) the thesis is already supplied, so this gate is already satisfied — proceed.
-2. **Review gate (revisión) — "ask before publishing."** Build the EN/ES draft, then present it (and the source list) for Arturo's review and edits **before** pushing. Do not auto-push a Glossa piece. On approval, push, then write provenance and flip `status='published'`.
-
-This is the one place Glossa deliberately departs from the old `lecturas` "ship first, talk later" default — see *When to ask vs when to proceed* below. The gate is elastic: during the conversation, pull more sources as needed; it is a ping-pong, not a rigid "before/after research" line. In angle-first modes the two gates can collapse into a single review conversation.
+- **While the conversation is open** (he's pasting a source, asking, discussing, refining the angle): research KB-first, surface findings, discuss. This *is* the framing/review — pull more sources as needed, ping-pong. Do **not** write the seed or publish yet.
+- **The publish trigger is an explicit command** — "publícalo", "hazlo", "créalo", "haz el artículo", or invoking the skill to produce the piece. On that trigger, write the seed + issue, write the EN/ES MDX, and **publish directly** (see *Publishing*). No "here's the draft, approve?" stop, and **do not echo the full MDX into the chat** before publishing — write it once, straight into the publish call (this also avoids the mobile length-cap stall). Then reply with the live URL.
+- Only hold back if he's clearly still exploring and has **not** asked to create/publish. When in doubt near the end of a conversation, a one-line "¿lo publico?" is fine — but never a full-draft review dump.
 
 ## Research is mandatory in both modes
 
@@ -436,14 +435,14 @@ Desktop / Cowork:
 git clone https://github.com/aauml/glossa.git   # or reuse a checkout
 cd glossa
 mkdir -p src/content/articles/{slug}
-# write en.mdx and es.mdx  (push only after the review gate — see Entry modes and gates)
+# write en.mdx and es.mdx  (do this on the publish command — see Entry modes and gates)
 git add -A && git commit -m "N° XX — short title" && git push
 ```
 The repo was renamed `aauml/lecturas` → `aauml/glossa`; GitHub redirects old URLs and Vercel is linked by repo ID, so the deploy and the `glossa.ademas.ai` URL are unaffected.
 
 **Chat / mobile has NO git.** Do not push or use GitHub's Contents API from chat, and do not try to compose a giant SQL `INSERT` (it stalls). **Publish from chat with ONE HTTP POST to the public `glossa-enqueue` edge function** — the same kind of call as `semantic-search`. The function inserts the queue row server-side; a GitHub Action (`glossa-publish.yml`) materializes the MDX into the repo, Vercel deploys, and the live URLs are written back.
 
-Chat / mobile publish (only after the review gate / Arturo's OK) — **one call**:
+Chat / mobile publish (on the publish command — see *Entry modes and gates*) — **one call**:
 ```
 POST https://wtwuvrtmadnlezkbesqp.supabase.co/functions/v1/glossa-enqueue
 Content-Type: application/json
@@ -476,19 +475,17 @@ curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/articles/
 
 ## When to ask vs. when to proceed
 
-**Editorial decisions are autonomous; the two compuertas are not.** Glossa keeps the old `lecturas` speed on everything editorial — and honors exactly two human gates, because the portfolio's value is the proof that the *thinking* is Arturo's.
+**Editorial decisions are autonomous. The supervision is the conversation, and the publish command is the go.** The portfolio's value is the proof that the *thinking* is Arturo's — and that thinking happens in the conversation, before he says publish.
 
-**Proceed silently on (never ask):** slug, headline, dek, section breakdown, length tier, which threads to follow, whether the source is editorially contested, exhibit choices, whether ES is in scope. If a 2-hour podcast covers five unrelated threads, pick the strongest. Arturo edits or asks for a redo after he sees the draft. No proposals, no plans, no "quick check before I start," no outline/slug/word-count confirmations.
+**Proceed silently on (never ask):** slug, headline, dek, section breakdown, length tier, which threads to follow, whether the source is editorially contested, exhibit choices, whether ES is in scope. If a 2-hour podcast covers five unrelated threads, pick the strongest. No proposals, no plans, no "quick check before I start," no outline/slug/word-count confirmations.
 
-**Stop and wait at the two gates (see *Entry modes and gates*):**
-1. **Framing gate** — only in material-first modes (fuente / pregunta / vigilancia / dialectica): after the research digest, surface the findings and let Arturo fix the thesis before you write the seed or draft. In tesis / serie modes the thesis is already set — skip this gate.
-2. **Review gate** — always for a Glossa piece: present the EN/ES draft and the source list for review **before** pushing. Do not auto-publish. Push only on Arturo's OK.
+**The one rule (per Arturo's 2026-06-30 directive):** while he's still discussing, discuss (research, surface, refine — that's the framing/review). The moment he says **"publícalo / hazlo / créalo / haz el artículo"** or invokes the skill to produce it, **write it once and publish directly** — no draft-review dump, no "approve?" stop. Do not echo the full MDX to chat before publishing; emit it once, straight into the publish call.
 
-These gates are about *substance* (the thesis, the published artifact), not *process*. They are not an invitation to re-introduce outline-confirmation theater. If Arturo explicitly says "just publish it" / "ship directly," collapse the review gate for that piece.
+When genuinely unsure whether he wants it published yet, a single one-line "¿lo publico?" is acceptable. A full-draft review block is not.
 
-No credential is needed from Arturo on chat: KB reads use the Supabase connector / public edge function, and publishing goes through the `glossa_publish_requests` queue (the worker holds the secrets). Just operate; surface nothing except at the gates.
+No credential is needed from Arturo on chat: KB reads use the Supabase connector / public `semantic-search`, and publishing is one POST to `glossa-enqueue`. Just operate.
 
-If a judgment call genuinely affects the framing (you treated a partisan figure with neutral voice; you cut a section the source emphasized), flag it in **one sentence** when you present the draft.
+If a judgment call genuinely affected the framing (you treated a partisan figure with neutral voice; you cut a section the source emphasized), flag it in **one sentence** in the reply *after* publishing.
 
 What this still rules out:
 - "I'm thinking of slug `foo-bar` — sound right?"
@@ -531,12 +528,13 @@ In the repo `aauml/glossa` (read when you have a checkout — Code/Cowork):
 
 1. Determine the **entry mode** (tesis / serie / fuente / pregunta / vigilancia / dialectica) and the **intake mode** (A: source provided / B: topic only) from the input shape. No confirmation question.
 2. **Research — KB first, then the web.** Query `evaluated_items` for relevant curated sources, then verify (Mode A) or gather (Mode B) with the web. On **chat/mobile** this works without a shell: read the KB via the **Supabase connector** (REST `select` with `ilike` filters on `title`/`thesis_relevance`/`importance`), and/or call the **public `semantic-search` edge function** (`POST {project}.supabase.co/functions/v1/semantic-search` with `{query, match_count, match_threshold}` — no JWT). Web/academic: native connectors (web search, Scholar/Consensus) or Tavily/OpenAlex. Build a small brief; capture each KB source's `pk`.
-3. **Framing gate** (material-first modes only): present the digest, let Arturo fix the thesis. Then write the `glossa_seeds` row (dated authorship) and a `glossa_issues` row — via the Supabase connector (anon key; RLS allows it). Advance `status` `researching→drafting`.
-4. Read `references/editorial-conventions.md` before writing. Decide slug, headline (with `<em>`), dek, sections, and whether ES is in scope — silently.
-5. Write the complete `en.mdx` (+ `es.mdx` if in scope) and the `sources.json` sidecar. Run the pre-publish checklist (audit pattern above).
-6. **Review gate:** present the EN/ES draft + source list for Arturo's OK. Do not publish yet (unless he said "ship directly").
-7. **On approval — publish by the surface you're on:**
-   - **Code / Cowork (has git):** write the files into a checkout of `aauml/glossa`, `git commit` + `push`. Vercel deploys.
-   - **Chat / mobile (no git):** POST the finished MDX to the public `glossa-enqueue` edge function (one call, like `semantic-search`); poll `glossa_publish_requests` by the returned `id` until `state='done'`; the worker commits, deploys, and returns the URLs (see *Deployment*).
-8. Write `glossa_issue_sources` (KB sources with role/claim/verified) and ensure the issue is `status='published'` with `url_en/url_es`, `published_at`, `model`. (The chat publish worker sets the issue's status/URLs for you when `issue_id` is provided.)
-9. Reply with the live URLs (and one sentence on any framing judgment call).
+3. **During the conversation:** surface findings, discuss, refine the angle with Arturo. This *is* the framing/review — no separate stop. Don't write the seed or publish while he's still discussing.
+4. **When Arturo says publish / make the article** (or invokes the skill to produce it) — proceed straight through, no approval stop:
+   a. Read `references/editorial-conventions.md`. Decide slug, headline (`<em>`), dek, sections, ES scope — silently.
+   b. Write the complete `en.mdx` (+ `es.mdx` if in scope) and the `sources.json` sidecar. Run the pre-publish checklist. **Do not echo the full MDX into chat first** — write it once, straight into the publish call (avoids the mobile length-cap stall).
+   c. Write the `glossa_seeds` + `glossa_issues` rows (authorship + pipeline).
+   d. **Publish by surface:**
+      - **Code / Cowork (has git):** write the files into a checkout of `aauml/glossa`, `git commit` + `push`.
+      - **Chat / mobile (no git):** one POST to the public `glossa-enqueue` edge function (like `semantic-search`); poll `glossa_publish_requests` by the returned `id` until `state='done'`.
+5. Write `glossa_issue_sources` (KB sources with role/claim/verified). The chat publish worker sets the issue's `status='published'` + URLs when `issue_id` is provided; on Code/Cowork, set them yourself.
+6. Reply with the live URLs (one sentence on any framing judgment call, *after* publishing).
