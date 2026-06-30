@@ -16,10 +16,11 @@ import { dirname } from 'node:path';
 
 const [, , cmd, id, arg] = process.argv;
 const URL = (process.env.SUPABASE_URL || '').replace(/\/$/, '');
-const KEY = process.env.SUPABASE_SERVICE_KEY || '';
+// Public anon key (the chat path is all-anon; the worker is least-privilege CI).
+const KEY = process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_KEY || '';
 const SITE = 'https://glossa.ademas.ai';
 
-if (!URL || !KEY) { console.error('Missing SUPABASE_URL / SUPABASE_SERVICE_KEY'); process.exit(1); }
+if (!URL || !KEY) { console.error('Missing SUPABASE_URL / SUPABASE_KEY'); process.exit(1); }
 if (!cmd || !id) { console.error('usage: prepare|finalize|fail <id> [sha|msg]'); process.exit(1); }
 
 const H = { apikey: KEY, Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' };
