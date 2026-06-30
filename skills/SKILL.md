@@ -441,9 +441,29 @@ git add -A && git commit -m "N° XX — short title" && git push
 ```
 The repo was renamed `aauml/lecturas` → `aauml/glossa`; GitHub redirects old URLs and Vercel is linked by repo ID, so the deploy and the `glossa.ademas.ai` URL are unaffected.
 
-Mobile / claude.ai Chat: use the analysis tool's Python sandbox to PUT both MDX files via GitHub's Contents API. The PAT (`LECTURAS_PAT`) lives in claude.ai personal preferences — read from `<user_preferences>` in your system prompt and paste literally; do NOT use `os.environ`.
+**Chat / mobile has NO git.** Do not try to push or to use GitHub's Contents API from chat — that path is not available on mobile. Publishing from chat goes through the **Supabase publish queue**: the chat writes the finished MDX into `glossa_publish_requests`; a GitHub Action (`glossa-publish.yml`) materializes the files into the repo, Vercel deploys, and the worker writes the live URLs back into the row.
 
-After push, verify:
+Chat / mobile publish (only after the review gate / Arturo's OK):
+```jsonc
+// INSERT into glossa_publish_requests via the Supabase connector (anon key).
+// body_en / body_es are the COMPLETE MDX files (frontmatter + imports + body).
+{
+  "issue_id": "<glossa_issues.id, if already created>",
+  "slug": "newissue-keyword",
+  "issue_no": "N° XX",
+  "body_en": "---\nissue: \"N° XX\"\n...full en.mdx...",
+  "body_es": "---\n...full es.mdx...",   // omit if EN-only
+  "sources_json": { /* the sources.json sidecar */ },
+  "state": "queued"                       // 'queued' fires the dispatch trigger
+}
+```
+Then poll the row for the result (it flips `queued → building → done`):
+```sql
+select state, url_en, url_es, error from glossa_publish_requests where id = '<id>';
+```
+On `state='done'`, reply with `url_en` / `url_es`. On `state='error'`, report `error`. Round-trip is ~1–2 min (Action build + Vercel deploy).
+
+After publish (any surface), verify the live URLs:
 ```bash
 curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/
 curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/articles/{slug}/en/
@@ -461,7 +481,7 @@ curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/articles/
 
 These gates are about *substance* (the thesis, the published artifact), not *process*. They are not an invitation to re-introduce outline-confirmation theater. If Arturo explicitly says "just publish it" / "ship directly," collapse the review gate for that piece.
 
-The only credential you may surface, and only if it isn't already available: `LECTURAS_PAT`. If it isn't in your `<user_preferences>` block, ask once. Otherwise: silence except at the gates.
+No credential is needed from Arturo on chat: KB reads use the Supabase connector / public edge function, and publishing goes through the `glossa_publish_requests` queue (the worker holds the secrets). Just operate; surface nothing except at the gates.
 
 If a judgment call genuinely affects the framing (you treated a partisan figure with neutral voice; you cut a section the source emphasized), flag it in **one sentence** when you present the draft.
 
@@ -474,14 +494,12 @@ Those are editorial; just decide. The thesis and the publish step are the gates.
 
 ## Mobile output discipline
 
-On claude.ai Chat (mobile especially), the most common failure mode is "response incomplete" mid-build because the per-response length cap was hit. With the new MDX architecture, files are 8-15KB instead of 50KB, so this is much less of a concern — but the rules still apply:
+On chat/mobile, publishing is a single `INSERT` into `glossa_publish_requests` (the full `en.mdx`/`es.mdx` go in `body_en`/`body_es`), not a file upload — so the old chunked-PUT concerns are gone. Two rules remain:
 
-1. **Use the analysis tool only** for file production. Never the file/artifact UI, canvas, or "create file" affordance.
-2. **Never hold a full file in a single tool call** if it's getting close to the cap. Build content in chunks across multiple tool calls using a list that persists in sandbox state.
-3. **Push each file as soon as it's assembled.** Free memory before the next.
-4. **Status output, not content output, in chat.** Three lines plus the URL. Nothing else.
+1. **Build the MDX, then publish in one write.** Assemble each file's text, then INSERT the row. If a file is too large for one tool call, build it across calls in sandbox state and INSERT once it's whole.
+2. **Status output, not content output, in chat.** After publishing, reply with the live URLs and nothing else (one sentence only if a framing judgment call needs flagging).
 
-See `references/deployment.md` for the chunked-assembly pattern.
+See `references/deployment.md` for the full chat-publish (Supabase queue) flow and the Code/Cowork git flow.
 
 ## Delivery — what to send back to Arturo
 
@@ -504,11 +522,13 @@ That is the entire delivery. No retrospective. No comparison to previous issues.
 ## What to do first when triggered
 
 1. Determine the **entry mode** (tesis / serie / fuente / pregunta / vigilancia / dialectica) and the **intake mode** (A: source provided / B: topic only) from the input shape. No confirmation question.
-2. **Research — KB first, then the web.** Query `evaluated_items` for relevant curated sources (filters, then semantic search); then verify the source's claims (Mode A) or gather sources (Mode B) with web search / Tavily / OpenAlex. Build a small brief; capture the `pk` of each KB source you use.
-3. **Framing gate** (material-first modes only): present the digest, let Arturo fix the thesis. Then write the `glossa_seeds` row (dated authorship) and a `glossa_issues` row (`status='researching'→'drafting'`).
+2. **Research — KB first, then the web.** Query `evaluated_items` for relevant curated sources, then verify (Mode A) or gather (Mode B) with the web. On **chat/mobile** this works without a shell: read the KB via the **Supabase connector** (REST `select` with `ilike` filters on `title`/`thesis_relevance`/`importance`), and/or call the **public `semantic-search` edge function** (`POST {project}.supabase.co/functions/v1/semantic-search` with `{query, match_count, match_threshold}` — no JWT). Web/academic: native connectors (web search, Scholar/Consensus) or Tavily/OpenAlex. Build a small brief; capture each KB source's `pk`.
+3. **Framing gate** (material-first modes only): present the digest, let Arturo fix the thesis. Then write the `glossa_seeds` row (dated authorship) and a `glossa_issues` row — via the Supabase connector (anon key; RLS allows it). Advance `status` `researching→drafting`.
 4. Read `references/editorial-conventions.md` before writing. Decide slug, headline (with `<em>`), dek, sections, and whether ES is in scope — silently.
-5. On desktop/Cowork: clone/reuse `aauml/glossa`. On mobile: prepare files for the Contents API (PAT `LECTURAS_PAT` from `<user_preferences>`; ask once if absent).
-6. Write `en.mdx` (+ `es.mdx` if in scope) and the `sources.json` sidecar. Run the pre-publish checklist (audit pattern above).
-7. **Review gate:** present the EN/ES draft + source list for Arturo's OK. Do not push yet (unless he said "ship directly").
-8. On approval: push. Vercel builds the cover + deploy. Then write `glossa_issue_sources` (KB sources with role/claim/verified) and flip the issue to `status='published'` with `url_en/url_es`, `published_at`, `model`.
+5. Write the complete `en.mdx` (+ `es.mdx` if in scope) and the `sources.json` sidecar. Run the pre-publish checklist (audit pattern above).
+6. **Review gate:** present the EN/ES draft + source list for Arturo's OK. Do not publish yet (unless he said "ship directly").
+7. **On approval — publish by the surface you're on:**
+   - **Code / Cowork (has git):** write the files into a checkout of `aauml/glossa`, `git commit` + `push`. Vercel deploys.
+   - **Chat / mobile (no git):** INSERT the finished MDX into `glossa_publish_requests` (`state='queued'`) via the Supabase connector; poll the row until `state='done'`; the worker commits, deploys, and returns the URLs (see *Deployment*).
+8. Write `glossa_issue_sources` (KB sources with role/claim/verified) and ensure the issue is `status='published'` with `url_en/url_es`, `published_at`, `model`. (The chat publish worker sets the issue's status/URLs for you when `issue_id` is provided.)
 9. Reply with the live URLs (and one sentence on any framing judgment call).

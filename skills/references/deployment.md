@@ -52,17 +52,10 @@ src/
       index.astro
 ```
 
-## Auth
+## Auth — two surfaces, two paths
 
-A long-lived GitHub PAT named `lecturas-deploy` is provisioned on the `aauml` user with `Contents: Read and write` and `Administration: Read and write`. It does not expire.
-
-The PAT lives in Arturo's **claude.ai personal preferences** as a line like:
-
-```
-LECTURAS_PAT: github_pat_11BLSTNNQ0...
-```
-
-**Personal preferences are inserted into the model's system prompt as text — they are NOT environment variables.** `os.environ.get("LECTURAS_PAT")` returns `None` in any sandbox. Read the value from the `<user_preferences>` block in your system prompt and paste it directly into Python code as a string literal. Only ask Arturo to paste it if it is genuinely missing.
+- **Code / Cowork (has git):** an authenticated git remote (the `aauml` user via `gh`, or a checkout). Write files, `git commit`, `git push`. No PAT handling in the conversation.
+- **Chat / mobile (NO git):** publishing goes through Supabase. The chat writes the MDX into `glossa_publish_requests` (anon key, via the Supabase connector); a GitHub Action (`glossa-publish.yml`) holds the real secrets (`OP_SERVICE_ACCOUNT_TOKEN` → 1Password → Supabase service key) and does the commit/push. **No GitHub PAT is needed or used on chat.** Do not attempt the GitHub Contents API from mobile.
 
 ## Frontmatter spec
 
@@ -179,124 +172,51 @@ curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/articles/
 [ -f src/content/articles/{slug}/es.mdx ] && curl -s -o /dev/null -w "HTTP %{http_code}\n" https://glossa.ademas.ai/articles/{slug}/es/
 ```
 
-## Deploy flow — mobile / claude.ai Chat
+## Deploy flow — chat / mobile (no git): the Supabase publish queue
 
-Use the analysis tool's Python sandbox to PUT MDX files via GitHub's Contents API.
+Chat/mobile cannot push to GitHub. Instead, write the finished article into the Supabase table `glossa_publish_requests`; a GitHub Action (`.github/workflows/glossa-publish.yml`) materializes it into the repo and Vercel deploys. Round-trip ≈ 1–2 min.
 
-### Hard rules
+### How it works (the bridge)
+1. Chat `INSERT`s a row into `glossa_publish_requests` with `state='queued'` (anon key, RLS allows insert).
+2. A DB trigger (`glossa_publish_dispatch`, migration 0002) fires `pg_net` → GitHub `repository_dispatch` (`event_type: glossa_publish`), using `github_dispatch_pat` from the Supabase Vault.
+3. `glossa-publish.yml` reads the row with the service key (`scripts/publish_from_supabase.mjs prepare`), writes `src/content/articles/{slug}/{en,es}.mdx` (+ `sources.json`), runs `npm run build` to validate, `git commit` + `push`. Vercel deploys.
+4. The worker (`… finalize`) writes `state='done'`, `commit_sha`, `url_en`, `url_es` back to the row, and flips the linked `glossa_issues` to `published`.
 
-- **Analysis tool only.** Never claude.ai's file-creation UI, artifact panel, canvas, or "create file" affordance — they stream content through the chat response and hit the per-message cap. The analysis tool is the only mechanism that scales.
-- **PAT comes from preferences (`<user_preferences>`), not `os.environ`.** Paste the literal value.
-- **MDX files are now small (~8-15KB)** so a single tool call can usually hold one. If you find one approaching the cap, split into multiple `parts.append(...)` across tool calls — Python state persists.
-- **Status output only in chat.** Three lines plus URL. No HTML preview.
+### Publish (one INSERT via the Supabase connector)
 
-### Setup (call 1)
-
-```python
-import base64, requests
-
-PAT = "github_pat_REPLACE_WITH_VALUE_FROM_PREFERENCES"
-OWNER, REPO, BRANCH = "aauml", "glossa", "main"
-HEADERS = {"Authorization": f"Bearer {PAT}", "Accept": "application/vnd.github+json"}
-API = f"https://api.github.com/repos/{OWNER}/{REPO}"
-
-def put_file(path, content_bytes, message):
-    r = requests.get(f"{API}/contents/{path}", params={"ref": BRANCH}, headers=HEADERS)
-    sha = r.json().get("sha") if r.status_code == 200 else None
-    body = {"message": message, "content": base64.b64encode(content_bytes).decode(), "branch": BRANCH}
-    if sha: body["sha"] = sha
-    r = requests.put(f"{API}/contents/{path}", json=body, headers=HEADERS)
-    r.raise_for_status()
-    return r.json()["commit"]["sha"]
+```jsonc
+// table: glossa_publish_requests
+{
+  "issue_id": "<glossa_issues.id or null>",
+  "slug": "newissue-keyword",
+  "issue_no": "N° XX",
+  "body_en": "---\nissue: \"N° XX\"\n...COMPLETE en.mdx (frontmatter + imports + body)...",
+  "body_es": "---\n...COMPLETE es.mdx...",   // omit/null if EN-only
+  "sources_json": { /* the sources.json sidecar object */ },
+  "state": "queued"
+}
 ```
 
-### Build and push EN (call 2)
+`body_en`/`body_es` are the **entire** MDX files — same content as the Code/Cowork flow would commit, just carried in a column instead of a file.
 
-```python
-slug = "newissue-keyword"
+### Poll for the result
 
-en_mdx = """---
-issue: "N° XX"
-date: "DD MMM YYYY"
-sortDate: "YYYY-MM-DD"
-language: en
-track: general
-title: "..."
-titleHTML: "...<em>...</em>"
-dek: "..."
-coverDek: "..."
-source: "..."
-sourceLabel: "..."
-topics:
-  - "..."
-  - "..."
-  - "..."
-  - "..."
----
-
-import Lede from '../../../components/Lede.astro';
-import Section from '../../../components/Section.astro';
-import Standfirst from '../../../components/Standfirst.astro';
-import ContextBox from '../../../components/ContextBox.astro';
-
-<Lede>...</Lede>
-
-<Section number="01" title="...with <em>emphasis</em>">
-
-<Standfirst>...</Standfirst>
-
-...paragraphs...
-
-</Section>
-
-<Section number="02" title="...">
-
-...
-
-</Section>
-"""
-
-sha = put_file(f"src/content/articles/{slug}/en.mdx", en_mdx.encode(), f"N° XX — EN")
-print(f"EN ({len(en_mdx)//1024} KB) → {sha[:7]}")
-del en_mdx
+```sql
+select state, url_en, url_es, commit_sha, error
+from glossa_publish_requests
+where id = '<inserted id>';
+-- state: queued -> building -> done | error
 ```
 
-### Build and push ES (call 3, if ES in scope)
-
-```python
-es_mdx = """---
-issue: "N° XX"
-... (same metadata, language: es, ES values for title/dek/coverDek/sourceLabel)
----
-
-[same imports, Spanish prose]
-"""
-sha = put_file(f"src/content/articles/{slug}/es.mdx", es_mdx.encode(), f"N° XX — ES")
-print(f"ES ({len(es_mdx)//1024} KB) → {sha[:7]}")
-del es_mdx
-```
-
-**No cover update step.** The cover regenerates from the article collection at build time.
-
-### Verify (final call)
-
-```python
-import time
-time.sleep(60)  # let Vercel build
-for path in ["", f"articles/{slug}/en/"]:
-    r = requests.get(f"https://glossa.ademas.ai/{path}")
-    print(r.status_code, path or "(cover)")
-```
-
-### Final chat reply
+### Final chat reply (on `state='done'`)
 
 ```
-EN (12 KB) → 7a3b...
-[ES (11 KB) → 9c2d... if ES in scope]
-Live: https://glossa.ademas.ai/articles/{slug}/en/
+Live:
+- EN: {url_en}
+[- ES: {url_es}  if ES in scope]
 ```
 
-That's the entire delivery.
+If `state='error'`, report `error` (usually a build/validation failure) and fix the MDX, then INSERT a fresh queued row.
 
 ## Working on the design system
 

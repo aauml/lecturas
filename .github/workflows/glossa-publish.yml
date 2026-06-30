@@ -1,0 +1,87 @@
+name: Glossa publish (from chat via Supabase)
+
+# Publica una lectura encolada desde una superficie SIN git (chat/móvil).
+# Cadena: chat -> INSERT glossa_publish_requests (state='queued')
+#         -> trigger glossa_publish_dispatch (pg_net) -> repository_dispatch [glossa_publish]
+#         -> este workflow materializa los MDX al repo -> Vercel despliega
+#         -> escribe url_en/url_es/commit_sha de vuelta en la fila (y en glossa_issues).
+# Secretos: OP_SERVICE_ACCOUNT_TOKEN (lee Supabase URL + service-role-key de 1Password).
+
+on:
+  repository_dispatch:
+    types: [glossa_publish]
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'glossa_publish_requests.id'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glossa-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: 1password/install-cli-action@v1
+
+      - name: Resolve request id
+        id: rid
+        run: echo "id=${{ github.event.client_payload.id || github.event.inputs.id }}" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare files from Supabase
+        id: prep
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: |
+          export SUPABASE_URL="$(op read 'op://ademas.ai/Supabase thesis/add more/url')"
+          export SUPABASE_SERVICE_KEY="$(op read 'op://ademas.ai/Supabase thesis/service-role-key')"
+          node scripts/publish_from_supabase.mjs prepare "${{ steps.rid.outputs.id }}"
+
+      - name: Install & build (validate)
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: Commit & push
+        id: push
+        run: |
+          git config user.name "Glossa Bot"
+          git config user.email "glossa@thesis.local"
+          git add src/content/articles/
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "N° ${{ steps.prep.outputs.issue_no }} — ${{ steps.prep.outputs.slug }} (publicado desde chat)"
+            git push
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Finalize (write urls/status back)
+        if: success()
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: |
+          export SUPABASE_URL="$(op read 'op://ademas.ai/Supabase thesis/add more/url')"
+          export SUPABASE_SERVICE_KEY="$(op read 'op://ademas.ai/Supabase thesis/service-role-key')"
+          node scripts/publish_from_supabase.mjs finalize "${{ steps.rid.outputs.id }}" "${{ steps.push.outputs.sha }}"
+
+      - name: Mark error on failure
+        if: failure()
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: |
+          export SUPABASE_URL="$(op read 'op://ademas.ai/Supabase thesis/add more/url' 2>/dev/null || echo '')"
+          export SUPABASE_SERVICE_KEY="$(op read 'op://ademas.ai/Supabase thesis/service-role-key' 2>/dev/null || echo '')"
+          node scripts/publish_from_supabase.mjs fail "${{ steps.rid.outputs.id }}" "glossa-publish workflow failed" || true
