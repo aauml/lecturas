@@ -4,7 +4,7 @@ const { lang, slug } = Astro.props;
 ---
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="masthead-section" href="/">← Lecturas</a>
+    <a class="masthead-section masthead-brand" href="/" style="font-size:14px">← Glossa</a>
     <span class="masthead-meta">
       <span class="lang-switch">
         {lang === 'en' ? <span class="lang-active">EN</span> : <a href={`/articles/${slug}/en/`} class="lang-link">EN</a>}

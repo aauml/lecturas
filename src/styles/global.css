@@ -37,7 +37,8 @@ a.inline-link:hover, .article a:not(.callback):not(.masthead-section):not(.masth
 .masthead-inner { max-width: 980px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
 .masthead-section { color: var(--muted); font-weight: 500; text-decoration: none; transition: color 0.15s ease; }
 .masthead-section:hover { color: var(--ink); }
-.masthead-brand { color: var(--ink); font-weight: 600; letter-spacing: 0.04em; text-transform: none; font-size: 13px; font-family: 'Spectral', serif; }
+.masthead-brand { color: var(--ink); font-weight: 500; letter-spacing: 0.01em; text-transform: none; font-size: 15px; font-family: 'Fraunces', 'Spectral', serif; }
+.wm-dot { color: var(--accent); }
 .masthead-meta { color: var(--muted); display: inline-flex; align-items: center; gap: 14px; }
 
 .lang-switch { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; font-weight: 500; }
@@ -57,7 +58,7 @@ a.inline-link:hover, .article a:not(.callback):not(.masthead-section):not(.masth
 
 /* ======== Cover ======== */
 .cover { max-width: 980px; margin: 0 auto; padding: 70px 32px 50px; border-bottom: 0.5px solid var(--rule-soft); }
-.cover-wordmark { font-family: 'Spectral', serif; font-weight: 600; font-size: clamp(48px, 9vw, 96px); line-height: 0.95; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 22px; }
+.cover-wordmark { font-family: 'Fraunces', 'Spectral', serif; font-weight: 500; font-size: clamp(52px, 9.5vw, 104px); line-height: 0.95; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 20px; }
 .cover-tagline { font-family: 'Spectral', serif; font-weight: 300; font-style: italic; font-size: calc(clamp(16px, 1.7vw, 19px) * var(--reader-scale)); line-height: 1.5; color: var(--ink-soft); max-width: 600px; margin-bottom: 24px; }
 .cover-meta { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; display: flex; align-items: center; gap: 12px; }
 .cover-meta-bar { width: 20px; height: 1px; background: var(--rule-soft); }
@@ -90,6 +91,19 @@ a.inline-link:hover, .article a:not(.callback):not(.masthead-section):not(.masth
 .article-card-topics { list-style: none; display: flex; flex-wrap: wrap; align-items: center; font-family: 'IBM Plex Sans', sans-serif; font-size: calc(10px * var(--reader-scale)); letter-spacing: 0.06em; color: var(--muted); font-weight: 400; padding: 0; margin: 0; }
 .article-card-topics li { display: inline-flex; align-items: center; }
 .article-card-topics li:not(:last-child)::after { content: '\\2022'; color: var(--rule-soft); margin: 0 10px; }
+
+/* ---- Topic filter (text, no buttons) ---- */
+.cover-filter { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; font-family: 'IBM Plex Sans', sans-serif; font-size: calc(12px * var(--reader-scale)); letter-spacing: 0.02em; padding: 0 0 18px; margin-bottom: 22px; border-bottom: 0.5px solid var(--rule-soft); }
+.cover-filter .f { cursor: pointer; color: var(--muted); background: none; border: none; border-bottom: 1px solid transparent; padding: 0 0 2px; font: inherit; letter-spacing: inherit; transition: color 0.12s ease, border-color 0.12s ease; }
+.cover-filter .f:hover { color: var(--ink); }
+.cover-filter .f.on { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---- Featured (most recent) ---- */
+.article-card.featured { padding: 8px 0 30px; }
+.article-card.featured .featured-tag { font-family: 'IBM Plex Sans', sans-serif; font-size: calc(9px * var(--reader-scale)); letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+.article-card.featured .article-card-title { font-family: 'Fraunces', 'Spectral', serif; font-weight: 500; font-size: calc(clamp(28px, 4.4vw, 40px) * var(--reader-scale)); line-height: 1.12; letter-spacing: -0.015em; }
+.article-card.featured .article-card-dek { font-size: calc(clamp(16px, 1.9vw, 18px) * var(--reader-scale)); }
+.article-card[hidden] { display: none; }
 
 .placeholder-card { border-top: 0.5px dashed var(--rule-soft); padding: 18px 0; text-align: left; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--muted); }
 
