@@ -63,7 +63,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "no changes to commit"
           else
-            git commit -m "N° ${{ steps.prep.outputs.issue_no }} — ${{ steps.prep.outputs.slug }} (publicado desde chat)"
+            git commit -m "${{ steps.prep.outputs.issue_no }} — ${{ steps.prep.outputs.slug }} (publicado desde chat)"
             git push
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
